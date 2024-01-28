@@ -1,16 +1,20 @@
 import { useState } from "react";
+import { LoginHandler } from "./LoginHandler";
+
 const LoginForm = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log("Email:", email);
-		console.log("Password:", password);
+	const submitHandler = async (e) => {
+		e.preventDefault(); // Prevent the default form submission behavior
+
+		const values = { email, password };
+		const res = await LoginHandler(values);
+		console.log(res);
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={submitHandler}>
 			<label>
 				Email:
 				<input
@@ -31,8 +35,11 @@ const LoginForm = () => {
 				/>
 			</label>
 			<br />
-			<button type="submit">Login</button>
+			<button type="button" onClick={submitHandler}>
+				Login
+			</button>
 		</form>
 	);
 };
+
 export default LoginForm;
