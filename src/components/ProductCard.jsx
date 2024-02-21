@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
+import { BASE_API } from "../utils/http-common";
 
 const ProductCard = ({ product }) => {
+	const IMAGEURL = `${BASE_API}/produk/image/${product.gambar_barang}`;
 	return (
 		<div className="card">
-			<img
-				src={product.gambar_barang}
-				className="card-img-top"
-				alt={product.nama_barang}
-			/>
+			<img src={IMAGEURL} className="card-img-top" alt={product.nama_barang} />
 			<div className="card-body">
 				<h5 className="card-title">{product.nama_barang}</h5>
 				<p className="card-text">Category: {product.kategori}</p>
