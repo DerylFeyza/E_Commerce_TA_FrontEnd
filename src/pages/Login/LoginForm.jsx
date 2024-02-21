@@ -6,11 +6,14 @@ const LoginForm = () => {
 	const [password, setPassword] = useState("");
 
 	const submitHandler = async (e) => {
-		e.preventDefault(); // Prevent the default form submission behavior
-
+		e.preventDefault();
 		const values = { email, password };
-		const res = await LoginHandler(values);
-		console.log(res);
+		try {
+			const res = await LoginHandler(values);
+			console.log(res);
+		} catch (error) {
+			console.error("pls:", error);
+		}
 	};
 
 	return (
