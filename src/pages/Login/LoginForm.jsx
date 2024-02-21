@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { LoginHandler } from "./LoginHandler";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -11,6 +13,9 @@ const LoginForm = () => {
 		try {
 			const res = await LoginHandler(values);
 			console.log(res);
+			if (res.success === true) {
+				navigate("/home");
+			}
 		} catch (error) {
 			console.error("pls:", error);
 		}
