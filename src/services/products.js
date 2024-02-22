@@ -41,3 +41,23 @@ export const getProductById = async (ProductId) => {
 		};
 	}
 };
+
+export const findProduct = async (Keyword) => {
+	const URL = `${BASE_API}/produk/find`;
+	try {
+		const data = await axios.post(URL, { keyword: Keyword });
+		const res = data.data;
+
+		if (res.success === true) {
+			return {
+				status: "success",
+				data: res.data,
+			};
+		}
+	} catch (err) {
+		return {
+			status: "error",
+			message: err.response.data.message,
+		};
+	}
+};

@@ -1,8 +1,8 @@
 import ProductList from "../../components/Product/ProductList";
 import { useState, useEffect } from "react";
-import { getPaginatedDataProduct } from "../../services/products";
+import { findProduct } from "../../services/products";
 
-const Home = () => {
+const Searched = () => {
 	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
@@ -11,9 +11,10 @@ const Home = () => {
 
 	const retrieveProducts = async () => {
 		const queryParams = new URLSearchParams(window.location.search);
-		const page = queryParams.get("page");
+		const keyword = queryParams.get("k");
 		try {
-			const res = await getPaginatedDataProduct(page);
+			const res = await findProduct(keyword);
+			console.log(res.status);
 			console.log(res);
 			setProducts(res.data);
 		} catch (err) {
@@ -27,10 +28,11 @@ const Home = () => {
 				<div>
 					<h1>Product List</h1>
 					<ProductList products={products} />
+					{console.log(products)}
 				</div>
 			</div>
 		</>
 	);
 };
 
-export default Home;
+export default Searched;

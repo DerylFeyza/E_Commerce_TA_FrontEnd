@@ -2,6 +2,11 @@ import { useState } from "react";
 
 const Navbar = () => {
 	const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+	const [search, setSearch] = useState("");
+
+	const handleContentChange = (value) => {
+		setSearch(value);
+	};
 
 	const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -75,14 +80,26 @@ const Navbar = () => {
 							</a>
 						</li>
 					</ul>
-					<form className="d-flex" role="search">
+					<form
+						className="d-flex"
+						role="search"
+						onSubmit={(e) => {
+							e.preventDefault();
+							{
+								if (!search) {
+									window.location.href = `/`;
+								} else {
+									window.location.href = `/search?k=${search}`;
+								}
+							}
+						}}
+					>
 						<input
 							className="form-control me-2"
-							type="search"
-							placeholder="Search"
-							aria-label="Search"
+							value={search}
+							onChange={(e) => handleContentChange(e.target.value)}
 						/>
-						<button className="btn btn-outline-success" type="submit">
+						<button type="submit" className="btn btn-primary">
 							Search
 						</button>
 					</form>
