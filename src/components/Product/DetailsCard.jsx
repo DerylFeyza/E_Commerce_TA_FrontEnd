@@ -57,7 +57,7 @@ DetailLayout.propTypes = {
 		details: PropTypes.string.isRequired,
 		harga: PropTypes.number.isRequired,
 		stok: PropTypes.number.isRequired,
-	}).isRequired,
+	}),
 };
 
 export default DetailLayout;

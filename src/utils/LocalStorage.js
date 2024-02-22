@@ -1,26 +1,25 @@
-// function setLocalStorage(key, value) {
-// 	console.log("peniskamubagu");
+export const setLocalStorage = (key, value) => {
+	try {
+		localStorage.setItem(key, JSON.stringify(value));
+	} catch (error) {
+		console.error("Error setting item in local storage:", error);
+	}
+};
 
-// 	if (typeof value === "object") {
-// 		value = JSON.stringify(value);
-// 		localStorage.setItem(key, value);
-// 		console.log("peniskamubagu");
-// 	}
-// }
+export const getLocalStorage = (key) => {
+	try {
+		const item = localStorage.getItem(key);
+		return item ? JSON.parse(item) : null;
+	} catch (error) {
+		console.error("Error getting item from local storage:", error);
+		return null;
+	}
+};
 
-// function getLocalStorage(key) {
-// 	let value = localStorage.getItem(key);
-// 	try {
-// 		value = JSON.parse(value);
-// 	} catch (e) {
-// 		console.error("Error parsing localStorage value:", e);
-// 		return null;
-// 	}
-// 	return value;
-// }
-
-// function clearLocalStorage() {
-// 	localStorage.clear();
-// }
-
-// export { setLocalStorage, getLocalStorage, clearLocalStorage };
+export const removeLocalStorage = (key) => {
+	try {
+		localStorage.removeItem(key);
+	} catch (error) {
+		console.error("Error removing item from local storage:", error);
+	}
+};

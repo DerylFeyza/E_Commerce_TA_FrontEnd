@@ -11,7 +11,6 @@ const ProductDetails = () => {
 		const retrieveProductById = async () => {
 			try {
 				const res = await getProductById(id);
-				console.log(product);
 				setProduct(res.data);
 			} catch (err) {
 				console.log(err);
