@@ -19,7 +19,6 @@ ProductList.propTypes = {
 	products: PropTypes.arrayOf(
 		PropTypes.shape({
 			nama_barang: PropTypes.string.isRequired,
-			// gambar_barang: PropTypes.string.isRequired,
 			kategori: PropTypes.string.isRequired,
 			harga: PropTypes.number.isRequired,
 		})
