@@ -1,4 +1,4 @@
-import ProductList from "../../components/ProductList";
+import ProductList from "../../components/Product/ProductList";
 import { useState, useEffect } from "react";
 import { getPaginatedDataProduct } from "../../services/products";
 
@@ -25,9 +25,6 @@ const Home = () => {
 	return (
 		<>
 			<div className="home-container">
-				<h1>Welcome to Our Website</h1>
-				<p>This is a simple home page.</p>
-				<p>You can add more content here.</p>
 				<div>
 					<h1>Product List</h1>
 					<ProductList products={products} />
