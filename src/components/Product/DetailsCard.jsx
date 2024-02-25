@@ -1,9 +1,44 @@
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaPlus, FaMinus } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
+import { useState } from "react";
+import { addToCart } from "../../services/transaction";
 
 const DetailLayout = ({ product }) => {
 	const IMAGEURL = `${BASE_API}/produk/image/${product.gambar_barang}`;
+	const [quantity, setQuantity] = useState(1);
+
+	const handleQuantityChange = (e) => {
+		const value = e.target.value;
+		if (value === "" || (value > 0 && !isNaN(value))) {
+			setQuantity(value);
+		} else {
+			setQuantity(1);
+		}
+	};
+
+	const incrementQuantity = () => {
+		if (quantity < product.stok) {
+			setQuantity(quantity + 1);
+		}
+	};
+
+	const decrementQuantity = () => {
+		if (quantity > 1) {
+			setQuantity(quantity - 1);
+		}
+	};
+
+	const handleBlur = () => {
+		if (quantity === "") {
+			setQuantity(1);
+		}
+	};
+
+	const handleAddToCart = () => {
+		const values = { id_produk: product.id, quantity };
+		addToCart(values);
+	};
 
 	return (
 		<>
@@ -25,16 +60,36 @@ const DetailLayout = ({ product }) => {
 							</div>
 							<p className="lead">{product.details}</p>
 							<div className="d-flex">
-								<input
-									className="form-control text-center me-3"
-									id="inputQuantity"
-									type="num"
-									defaultValue="1"
-									style={{ maxWidth: "3rem" }}
-								/>
+								<div className="d-flex">
+									<button
+										className="btn btn-outline-dark flex-shrink-0"
+										onClick={decrementQuantity}
+										type="button"
+									>
+										<FaMinus />
+									</button>
+									<input
+										className="form-control text-center me-3"
+										id="inputQuantity"
+										type="num"
+										value={quantity}
+										onChange={handleQuantityChange}
+										onBlur={handleBlur}
+										style={{ maxWidth: "3rem" }}
+									/>
+									<button
+										className="btn btn-outline-dark flex-shrink-0"
+										onClick={incrementQuantity}
+										type="button"
+									>
+										<FaPlus />
+									</button>
+								</div>
+								{console.log(quantity)}
 								<button
 									className="btn btn-outline-dark flex-shrink-0"
 									type="button"
+									onClick={handleAddToCart}
 								>
 									<FaShoppingCart className="me-1" />
 									Add to cart
