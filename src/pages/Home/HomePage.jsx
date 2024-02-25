@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { getPaginatedDataProduct } from "../../services/products";
 
 const Home = () => {
-	const [products, setProducts] = useState();
+	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
 		retrieveProducts();
