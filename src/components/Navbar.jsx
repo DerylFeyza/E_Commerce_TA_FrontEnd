@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { getLocalStorage } from "../utils/LocalStorage";
+import { LOCAL_STORAGE_USER } from "../utils/http-common";
 
 const Navbar = () => {
 	const [isNavCollapsed, setIsNavCollapsed] = useState(true);
@@ -40,7 +42,7 @@ const Navbar = () => {
 						</li>
 						<li className="nav-item">
 							<a className="nav-link" href="#">
-								Link
+								{getLocalStorage(LOCAL_STORAGE_USER).username}
 							</a>
 						</li>
 						<li className="nav-item dropdown">

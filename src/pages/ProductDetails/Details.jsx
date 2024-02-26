@@ -5,7 +5,7 @@ import DetailLayout from "../../components/Product/DetailsCard";
 
 const ProductDetails = () => {
 	const { id } = useParams();
-	const [product, setProduct] = useState([]);
+	const [product, setProduct] = useState();
 
 	useEffect(() => {
 		const retrieveProductById = async () => {

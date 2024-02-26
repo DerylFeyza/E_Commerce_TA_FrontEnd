@@ -4,7 +4,6 @@ import { BASE_API } from "../utils/http-common";
 export const getPaginatedDataProduct = async (page) => {
 	const URL = `${BASE_API}/produk/?page=${page}`;
 	try {
-		// const data = await axios.get(URL, { withCredentials: true });
 		const data = await axios.get(URL);
 		const res = data.data;
 

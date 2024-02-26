@@ -1,15 +1,18 @@
 import axios from "axios";
 import { BASE_API } from "../utils/http-common";
+import { getTokenCookie } from "../utils/HandleCookie";
 
 export const addToCart = async (values) => {
 	const TRANSACTION_URL = `${BASE_API}/transaksi`;
+	const token = getTokenCookie();
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
 	try {
 		console.log("sending . ...");
-		const response = await axios.post(
-			TRANSACTION_URL,
-			{ withCredentials: true },
-			values
-		);
+		const response = await axios.post(TRANSACTION_URL, values, config);
 		console.log("request sent");
 
 		if (response.data.success === true) {
