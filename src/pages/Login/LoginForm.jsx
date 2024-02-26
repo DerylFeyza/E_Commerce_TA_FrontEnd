@@ -10,6 +10,7 @@ const LoginForm = () => {
 	const submitHandler = async (e) => {
 		e.preventDefault();
 		const values = { email, password };
+
 		try {
 			const res = await LoginHandler(values);
 			console.log(res);
@@ -22,31 +23,43 @@ const LoginForm = () => {
 	};
 
 	return (
-		<form onSubmit={submitHandler}>
-			<label>
-				Email:
-				<input
-					type="email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					required
-				/>
-			</label>
-			<br />
-			<label>
-				Password:
-				<input
-					type="password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					required
-				/>
-			</label>
-			<br />
-			<button type="button" onClick={submitHandler}>
-				Login
-			</button>
-		</form>
+		<div className="container">
+			<div className="row justify-content-center">
+				<div className="col-md-6">
+					<form onSubmit={submitHandler}>
+						<div className="mb-3">
+							<label htmlFor="email" className="form-label">
+								Email:
+							</label>
+							<input
+								type="email"
+								className="form-control"
+								id="email"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								required
+							/>
+						</div>
+						<div className="mb-3">
+							<label htmlFor="password" className="form-label">
+								Password:
+							</label>
+							<input
+								type="password"
+								className="form-control"
+								id="password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								required
+							/>
+						</div>
+						<button type="submit" className="btn btn-primary">
+							Login
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
 	);
 };
 
