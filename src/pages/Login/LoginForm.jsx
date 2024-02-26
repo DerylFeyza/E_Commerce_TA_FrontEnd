@@ -23,7 +23,7 @@ const LoginForm = () => {
 	};
 
 	return (
-		<div className="container">
+		<div className="container" style={{ paddingTop: "50px" }}>
 			<div className="row justify-content-center">
 				<div className="col-md-6">
 					<form onSubmit={submitHandler}>
