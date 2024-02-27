@@ -12,6 +12,8 @@ export const getPaginatedDataProduct = async (page) => {
 				status: "success",
 				data: res.data,
 			};
+		} else {
+			return { res: res, success: false };
 		}
 	} catch (err) {
 		return {

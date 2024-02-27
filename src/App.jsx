@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import ProductDetails from "./pages/ProductDetails/Details";
 import ProductSearch from "./pages/SearchPage/SearchPage";
 import Details from "./components/Product/DetailsCard";
+import Cart from "./pages/Cart/Cart";
 function App() {
 	return (
 		<Router>
@@ -18,6 +19,7 @@ function App() {
 				<Route path="/products/:id" element={<ProductDetails />} />
 				<Route path="/search" element={<ProductSearch />} />
 				<Route path="/login" element={<LoginForm />} />
+				<Route path="/cart" element={<Cart />} />
 			</Routes>
 		</Router>
 	);
