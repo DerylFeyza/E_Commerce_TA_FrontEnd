@@ -14,7 +14,6 @@ const Home = () => {
 		const page = queryParams.get("page");
 		try {
 			const res = await getPaginatedDataProduct(page);
-			console.log(res);
 			setProducts(res.data);
 		} catch (err) {
 			console.log(err);
@@ -23,6 +22,8 @@ const Home = () => {
 
 	return (
 		<>
+			{console.log(products)}
+
 			<div className="home-container">
 				<div>
 					<h1>Product List</h1>

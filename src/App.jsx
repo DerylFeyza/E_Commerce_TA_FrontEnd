@@ -5,7 +5,7 @@ import Quill from "./components/QuillEditor/Editor";
 import Navbar from "./components/Navbar";
 import ProductDetails from "./pages/ProductDetails/Details";
 import ProductSearch from "./pages/SearchPage/SearchPage";
-import Details from "./components/Product/DetailsCard";
+import Details from "./pages/ProductDetails/DetailsCard";
 import Cart from "./pages/Cart/Cart";
 function App() {
 	return (

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getProductById } from "../../services/products";
 import { useParams } from "react-router-dom";
-import DetailLayout from "../../components/Product/DetailsCard";
+import DetailLayout from "./DetailsCard";
 
 const ProductDetails = () => {
 	const { id } = useParams();
