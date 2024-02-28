@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
 
 const CartPage = ({ CartData }) => {
-	// const IMAGEURL = `${BASE_API}/produk/image/${product.gambar_barang}`;
-
 	return (
 		<div className="cart_section">
 			{console.log(CartData)}
@@ -21,9 +19,12 @@ const CartPage = ({ CartData }) => {
 										<li className="cart_item clearfix" key={data.id}>
 											<div className="cart_item_image">
 												<img
-													src={CartData.products[index]?.data?.gambar_barang}
+													src={`${BASE_API}/produk/image/${CartData.products[index]?.data?.gambar_barang}`}
 													alt={CartData.products[index]?.data.nama_barang}
 												/>
+												{console.log(
+													CartData.products[index]?.data?.gambar_barang
+												)}
 											</div>
 											<div className="cart_item_info d-flex flex-md-row flex-column justify-content-between">
 												<div className="cart_item_name cart_info_col">
@@ -32,7 +33,6 @@ const CartPage = ({ CartData }) => {
 														{CartData.products[index]?.data.nama_barang}
 													</div>
 												</div>
-
 												<div className="cart_item_quantity cart_info_col">
 													<div className="cart_item_title">Quantity</div>
 													<div className="cart_item_text">
@@ -92,7 +92,7 @@ CartPage.propTypes = {
 		cartItems: PropTypes.arrayOf(PropTypes.object),
 		products: PropTypes.arrayOf(PropTypes.object),
 		cartInfo: PropTypes.shape({
-			totalharga: PropTypes.string,
+			totalharga: PropTypes.number,
 		}),
 	}),
 };
