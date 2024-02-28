@@ -1,96 +1,100 @@
+import "./Cart.css";
 import PropTypes from "prop-types";
+import { BASE_API } from "../../utils/http-common";
 
-const CartPage = ({ cartData }) => {
+const CartPage = ({ CartData }) => {
+	// const IMAGEURL = `${BASE_API}/produk/image/${product.gambar_barang}`;
+
 	return (
-		<>
-			<main className="page">
-				<>{console.log(cartData)}</>
-				<section className="shopping-cart dark">
-					<div className="container">
-						<div className="block-heading">
-							<h2>Shopping Cart</h2>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-								quam urna, dignissim nec auctor in, mattis vitae leo.
-							</p>
-						</div>
-						<div className="content">
-							<div className="row">
-								<div className="col-md-12 col-lg-8">
-									<div className="items">
-										{cartData.cartItems.map((data, index) => (
-											<div className="cart" key={cartData.id}>
-												<div className="row">
-													<div className="col-md-3">
-														<img
-															className="img-fluid mx-auto d-block image"
-															src={data.products[index].image}
-															alt={data.products[index].name}
-														/>
+		<div className="cart_section">
+			{console.log(CartData)}
+			<div className="container-fluid">
+				<div className="row">
+					<div className="col-lg-10 offset-lg-1">
+						<div className="cart_container">
+							<div className="cart_title">
+								Shopping Cart<small> (1 item in your cart)</small>
+							</div>
+							<div className="cart_items">
+								<ul className="cart_list">
+									{CartData.cartItems.map((data, index) => (
+										<li className="cart_item clearfix" key={data.id}>
+											<div className="cart_item_image">
+												<img
+													src={CartData.products[index]?.data?.gambar_barang}
+													alt={CartData.products[index]?.data.nama_barang}
+												/>
+											</div>
+											<div className="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+												<div className="cart_item_name cart_info_col">
+													<div className="cart_item_title">Name</div>
+													<div className="cart_item_text">
+														{CartData.products[index]?.data.nama_barang}
 													</div>
-													<div className="col-md-8">
-														<div className="info">
-															<div className="row">
-																<div className="col-md-5 cart-name">
-																	<div className="cart-name">
-																		<a href="#">{data.products[index].name}</a>
-																		<div className="cart-info"></div>
-																	</div>
-																</div>
-																<div className="col-md-4 quantity">
-																	<label htmlFor="quantity">Quantity:</label>
-																	<input
-																		id="quantity"
-																		type="number"
-																		value={data.cartItems.quantity}
-																		className="form-control quantity-input"
-																	/>
-																</div>
-																<div className="col-md-3 price">
-																	<span>${data.cartItems.total}</span>
-																</div>
-															</div>
-														</div>
+												</div>
+
+												<div className="cart_item_quantity cart_info_col">
+													<div className="cart_item_title">Quantity</div>
+													<div className="cart_item_text">
+														{CartData.cartItems[index]?.quantity}
+													</div>
+												</div>
+												<div className="cart_item_price cart_info_col">
+													<div className="cart_item_title">Price</div>
+													<div className="cart_item_text">
+														{CartData.products[index]?.data.harga}
+													</div>
+												</div>
+												<div className="cart_item_total cart_info_col">
+													<div className="cart_item_title">Total</div>
+													<div className="cart_item_text">
+														{CartData.cartItems[index]?.total}
+													</div>
+												</div>
+												<div className="cart_item_color cart_info_col">
+													<div className="cart_item_title">Color</div>
+													<div className="cart_item_text">
+														<span style={{ backgroundColor: "#999999" }}></span>
+														Silver
 													</div>
 												</div>
 											</div>
-										))}
-									</div>
-								</div>
-								<div className="col-md-12 col-lg-4">
-									<div className="summary">
-										<h3>Summary</h3>
-										<div className="summary-item">
-											<span className="text">Total</span>
-											<span className="price">
-												{cartData.cartInfo.totalharga}
-											</span>
-										</div>
-										<button
-											type="button"
-											className="btn btn-primary btn-lg btn-block"
-										>
-											Checkout
-										</button>
+										</li>
+									))}
+								</ul>
+							</div>
+							<div className="order_total">
+								<div className="order_total_content text-md-right">
+									<div className="order_total_title">Order Total:</div>
+									<div className="order_total_amount">
+										{CartData.cartInfo.totalharga}
 									</div>
 								</div>
 							</div>
+							<div className="cart_buttons">
+								<button type="button" className="button cart_button_clear">
+									Continue Shopping
+								</button>
+								<button type="button" className="button cart_button_checkout">
+									Add to Cart
+								</button>
+							</div>
 						</div>
 					</div>
-				</section>
-			</main>
-		</>
+				</div>
+			</div>
+		</div>
 	);
 };
 
 CartPage.propTypes = {
-	products: PropTypes.arrayOf(
-		PropTypes.shape({
-			cartItems: PropTypes,
-			CartInfo: PropTypes.string.isRequired,
-			harga: PropTypes.number.isRequired,
-		})
-	).isRequired,
+	CartData: PropTypes.shape({
+		cartItems: PropTypes.arrayOf(PropTypes.object),
+		products: PropTypes.arrayOf(PropTypes.object),
+		cartInfo: PropTypes.shape({
+			totalharga: PropTypes.string,
+		}),
+	}),
 };
 
 export default CartPage;

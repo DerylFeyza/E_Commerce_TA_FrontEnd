@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import "./Cart.css";
 import { getCartOnDraft } from "../../services/cart";
 import { getProductById } from "../../services/products";
+import CartPage from "./CartPage";
 
 const Cart = () => {
 	const [cartData, setCartData] = useState(null);
@@ -30,7 +30,13 @@ const Cart = () => {
 
 	return (
 		<>
-			<main className="page">
+			<div className="home-container">
+				<div>
+					<h1>Product List</h1>
+					{cartData && <CartPage CartData={cartData} />}
+				</div>
+			</div>
+			{/* <main className="page">
 				{cartData && (
 					<section className="shopping-cart dark">
 						{console.log(cartData.cartItems[1].quantity)}
@@ -38,10 +44,6 @@ const Cart = () => {
 						<div className="container">
 							<div className="block-heading">
 								<h2>Shopping Cart</h2>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-									quam urna, dignissim nec auctor in, mattis vitae leo.
-								</p>
 							</div>
 							<div className="content">
 								<div className="row">
@@ -54,8 +56,10 @@ const Cart = () => {
 															{console.log(index)}
 															<img
 																className="img-fluid mx-auto d-block image"
-																src={data.products?.data?.image}
-																alt={data.products?.data?.nama_barang}
+																src={
+																	cartData.products[index]?.data?.gambar_barang
+																}
+																alt={cartData.products[index]?.data.nama_barang}
 															/>
 														</div>
 														<div className="col-md-8">
@@ -64,7 +68,10 @@ const Cart = () => {
 																	<div className="col-md-5 cart-name">
 																		<div className="cart-name">
 																			<a href="#">
-																				{data.products?.data.nama_barang}
+																				{
+																					cartData.products[index]?.data
+																						.nama_barang
+																				}
 																			</a>
 																			<div className="cart-info"></div>
 																		</div>
@@ -113,7 +120,7 @@ const Cart = () => {
 						</div>
 					</section>
 				)}
-			</main>
+			</main> */}
 		</>
 	);
 };
