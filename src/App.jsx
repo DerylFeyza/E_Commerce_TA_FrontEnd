@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import LoginForm from "./pages/Login/LoginForm";
+import LoginForm from "./pages/LoginRegister/LoginForm";
+import Register from "./pages/LoginRegister/RegisterForm";
 import Home from "./pages/Home/HomePage";
 import Quill from "./components/QuillEditor/Editor";
 import Navbar from "./components/Navbar";
@@ -19,6 +20,7 @@ function App() {
 				<Route path="/products/:id" element={<ProductDetails />} />
 				<Route path="/search" element={<ProductSearch />} />
 				<Route path="/login" element={<LoginForm />} />
+				<Route path="/register" element={<Register />} />
 				<Route path="/cart" element={<Cart />} />
 			</Routes>
 		</Router>
