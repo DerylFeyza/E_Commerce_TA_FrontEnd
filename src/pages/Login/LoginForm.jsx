@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LoginHandler } from "./LoginHandler";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const LoginForm = () => {
 	const [email, setEmail] = useState("");
@@ -23,41 +24,44 @@ const LoginForm = () => {
 	};
 
 	return (
-		<div className="container" style={{ paddingTop: "50px" }}>
-			<div className="row justify-content-center">
-				<div className="col-md-6">
-					<form onSubmit={submitHandler}>
-						<div className="mb-3">
-							<label htmlFor="email" className="form-label">
-								Email:
-							</label>
-							<input
-								type="email"
-								className="form-control"
-								id="email"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								required
-							/>
-						</div>
-						<div className="mb-3">
-							<label htmlFor="password" className="form-label">
-								Password:
-							</label>
-							<input
-								type="password"
-								className="form-control"
-								id="password"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								required
-							/>
-						</div>
-						<button type="submit" className="btn btn-primary">
-							Login
-						</button>
-					</form>
-				</div>
+		<div className="LoginForm-container">
+			<div className="wrapper">
+				<form onSubmit={submitHandler}>
+					<h1>TAja</h1>
+
+					<div className="input-box">
+						<input
+							type="email"
+							className="form-control"
+							id="email"
+							placeholder="Email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							required
+						/>
+					</div>
+					<div className="input-box">
+						<input
+							type="password"
+							className="form-control"
+							id="password"
+							placeholder="Password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							required
+						/>
+					</div>
+					<button type="submit">Login</button>
+					<div className="register-link">
+						<p>
+							Anda belum memiliki akun? <a href="./register">Registrasi</a>
+						</p>
+					</div>
+					<div className="social-icon">
+						<a href="#" className="social-icon"></a>
+						<i className="fab fa-twiter"></i>
+					</div>
+				</form>
 			</div>
 		</div>
 	);
