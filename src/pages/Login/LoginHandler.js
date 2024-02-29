@@ -14,6 +14,7 @@ export const LoginHandler = async (userData) => {
 				role: res.data.data.role,
 			};
 			const token = res.data.data.token;
+			
 			setTokenCookie(token);
 			setLocalStorage(LOCAL_STORAGE_USER, userData);
 			return { res: res.data.data, success: true };
