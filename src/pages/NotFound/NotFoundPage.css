@@ -1,0 +1,70 @@
+/* NotFoundPage.css */
+
+/* Styles for the notfound container */
+#notfound {
+	position: relative;
+	height: 100vh;
+}
+
+.notfound {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.notfound .notfound-404 {
+	position: relative;
+	height: 180px;
+	margin-bottom: 20px;
+}
+
+.notfound .notfound-404 h3 {
+	font-family: "Montserrat", sans-serif;
+	font-size: 24px;
+	position: relative;
+	padding-left: 15px;
+}
+
+.notfound .notfound-404 h3::before {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #f80000;
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.notfound .notfound-404 h1 {
+	font-family: "Cabin", sans-serif;
+	font-size: 146px;
+	font-weight: 700;
+	margin: 0;
+	color: #f80000;
+	text-transform: uppercase;
+	letter-spacing: -10px;
+}
+
+.notfound h2 {
+	font-family: "Cabin", sans-serif;
+	font-size: 22px;
+	font-weight: 400;
+	margin: 0;
+	text-transform: uppercase;
+	color: #000;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 767px) {
+	.notfound .notfound-404 {
+		height: 142px;
+	}
+
+	.notfound .notfound-404 h1 {
+		font-size: 110px;
+	}
+}

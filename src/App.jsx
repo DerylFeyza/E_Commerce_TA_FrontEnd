@@ -8,6 +8,8 @@ import ProductDetails from "./pages/ProductDetails/Details";
 import ProductSearch from "./pages/SearchPage/SearchPage";
 import Details from "./pages/ProductDetails/DetailsCard";
 import Cart from "./pages/Cart/Cart";
+// import SuccessPopup from "./components/Alerts/SuccessPopup";
+import NotFoundPage from "./pages/NotFound/NotFound";
 function App() {
 	return (
 		<Router>
@@ -22,6 +24,8 @@ function App() {
 				<Route path="/login" element={<LoginForm />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/cart" element={<Cart />} />
+				{/* <Route path="/kontl" element={<SuccessPopup />} /> */}
+				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
 		</Router>
 	);

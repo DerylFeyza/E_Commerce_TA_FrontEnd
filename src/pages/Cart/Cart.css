@@ -59,6 +59,9 @@ ul {
 	width: calc(100% - 133px);
 	float: left;
 	padding-top: 18px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 .cart_item_name {
 	margin-left: 7.53%;
@@ -71,6 +74,14 @@ ul {
 .cart_item_text {
 	font-size: 18px;
 	margin-top: 35px;
+}
+.cart_item_text {
+	display: flex;
+	align-items: center;
+}
+
+.cart_item_text span {
+	margin-right: 10px;
 }
 .cart_item_text span {
 	display: inline-block;
@@ -148,4 +159,8 @@ ul {
 	outline: none;
 	cursor: pointer;
 	vertical-align: top;
+}
+
+.quantity-input {
+	width: 90px;
 }

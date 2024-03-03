@@ -1,8 +1,26 @@
 import "./Cart.css";
 import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
+import { useState } from "react";
 
 const CartPage = ({ CartData }) => {
+	const [quantity, setQuantity] = useState(1);
+
+	const handleQuantityChange = (e) => {
+		const value = e.target.value;
+		if (value === "" || (value > 0 && !isNaN(value))) {
+			setQuantity(value);
+		} else {
+			setQuantity(1);
+		}
+	};
+
+	const handleBlur = () => {
+		if (quantity === "") {
+			setQuantity(1);
+		}
+	};
+
 	return (
 		<div className="cart_section">
 			{console.log(CartData)}
@@ -10,9 +28,7 @@ const CartPage = ({ CartData }) => {
 				<div className="row">
 					<div className="col-lg-10 offset-lg-1">
 						<div className="cart_container">
-							<div className="cart_title">
-								Shopping Cart<small> (1 item in your cart)</small>
-							</div>
+							<div className="cart_title">Shopping Cart</div>
 							<div className="cart_items">
 								<ul className="cart_list">
 									{CartData.cartItems.map((data, index) => (
@@ -36,7 +52,14 @@ const CartPage = ({ CartData }) => {
 												<div className="cart_item_quantity cart_info_col">
 													<div className="cart_item_title">Quantity</div>
 													<div className="cart_item_text">
-														{CartData.cartItems[index]?.quantity}
+														<input
+															id="quantity"
+															type="number"
+															onChange={handleQuantityChange}
+															onBlur={handleBlur}
+															value={CartData.cartItems[index]?.quantity}
+															className="form-control quantity-input"
+														/>
 													</div>
 												</div>
 												<div className="cart_item_price cart_info_col">
@@ -52,10 +75,12 @@ const CartPage = ({ CartData }) => {
 													</div>
 												</div>
 												<div className="cart_item_color cart_info_col">
-													<div className="cart_item_title">Color</div>
-													<div className="cart_item_text">
-														<span style={{ backgroundColor: "#999999" }}></span>
-														Silver
+													<div className="cart_item_title">Action</div>
+													<div
+														className="cart_item_text btn btn-danger"
+														type="button"
+													>
+														Delete
 													</div>
 												</div>
 											</div>
@@ -76,7 +101,7 @@ const CartPage = ({ CartData }) => {
 									Continue Shopping
 								</button>
 								<button type="button" className="button cart_button_checkout">
-									Add to Cart
+									Checkout
 								</button>
 							</div>
 						</div>
