@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BASE_API, LOCAL_STORAGE_USER } from "../../utils/http-common";
-import { setTokenCookie } from "../../utils/HandleCookie";
-import { setLocalStorage } from "../../utils/LocalStorage";
+import { setTokenCookie, removeTokenCookie } from "../../utils/HandleCookie";
+import { setLocalStorage, removeLocalStorage } from "../../utils/LocalStorage";
 
 const LOGIN_URL = BASE_API + "/user/login";
 const REGISTER_URL = BASE_API + "/user/register";
@@ -39,5 +39,14 @@ export const RegisterHandler = async (userData) => {
 	} catch (error) {
 		console.error(error);
 		return { error: "Failed to fetch data" };
+	}
+};
+
+export const Logout = async () => {
+	try {
+		removeLocalStorage(LOCAL_STORAGE_USER);
+		removeTokenCookie();
+	} catch (error) {
+		console.error(error);
 	}
 };

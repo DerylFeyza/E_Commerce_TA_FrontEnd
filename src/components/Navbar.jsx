@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getLocalStorage } from "../utils/LocalStorage";
 import { LOCAL_STORAGE_USER } from "../utils/http-common";
+import { Logout } from "../pages/LoginRegister/LoginHandler";
 
 const Navbar = () => {
 	const [isNavCollapsed, setIsNavCollapsed] = useState(true);
@@ -47,6 +48,12 @@ const Navbar = () => {
 						</li>
 						<a className="nav-link active" aria-current="page" href="/cart">
 							Cart
+						</a>
+						<a className="nav-link active" aria-current="page" href="/login">
+							Login
+						</a>
+						<a className="btn btn-primary" aria-current="page" onClick={Logout}>
+							Logout
 						</a>
 					</ul>
 					<form
