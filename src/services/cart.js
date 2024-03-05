@@ -1,15 +1,16 @@
 import axios from "axios";
 import { BASE_API } from "../utils/http-common";
 import { getTokenCookie } from "../utils/HandleCookie";
-const CART_URL = `${BASE_API}/cart`;
+
+const token = getTokenCookie();
+const config = {
+	headers: {
+		Authorization: `Bearer ${token}`,
+	},
+};
 
 export const getCartOnDraft = async () => {
-	const token = getTokenCookie();
-	const config = {
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-	};
+	const CART_URL = `${BASE_API}/cart`;
 	try {
 		const data = await axios.get(CART_URL, config);
 		const res = data.data;
@@ -29,4 +30,9 @@ export const getCartOnDraft = async () => {
 			message: error.response.data.message,
 		};
 	}
+};
+
+export const removeProductFromCart = async () => {
+	try {
+	} catch (error) {}
 };

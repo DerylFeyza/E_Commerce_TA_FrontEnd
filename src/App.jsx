@@ -20,9 +20,7 @@ const AppLayout = () => (
 	<>
 		<Navbar />
 		<main>
-			<div>
-				<Outlet />
-			</div>
+			<Outlet />
 		</main>
 	</>
 );
