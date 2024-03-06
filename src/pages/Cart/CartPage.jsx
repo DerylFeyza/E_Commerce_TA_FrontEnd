@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
 import { useState } from "react";
 
-const CartPage = ({ CartData }) => {
+const CartPage = ({ CartData, handleDelete }) => {
 	const [quantity, setQuantity] = useState(1);
 
 	const handleQuantityChange = (e) => {
@@ -19,6 +19,10 @@ const CartPage = ({ CartData }) => {
 		if (quantity === "") {
 			setQuantity(1);
 		}
+	};
+
+	const handleDeleteItem = (idProduk) => {
+		handleDelete(idProduk);
 	};
 
 	return (
@@ -79,8 +83,13 @@ const CartPage = ({ CartData }) => {
 													<div
 														className="cart_item_text btn btn-danger"
 														type="button"
+														onClick={() =>
+															handleDeleteItem(
+																CartData.products[index]?.data.id
+															)
+														}
 													>
-														Delete
+														Delete {CartData.products[index]?.data.id}
 													</div>
 												</div>
 											</div>
@@ -120,6 +129,7 @@ CartPage.propTypes = {
 			totalharga: PropTypes.number,
 		}),
 	}),
+	handleDelete: PropTypes.func.isRequired,
 };
 
 export default CartPage;

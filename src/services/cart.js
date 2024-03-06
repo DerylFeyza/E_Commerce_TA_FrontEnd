@@ -31,8 +31,3 @@ export const getCartOnDraft = async () => {
 		};
 	}
 };
-
-export const removeProductFromCart = async () => {
-	try {
-	} catch (error) {}
-};
