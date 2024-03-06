@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getCartOnDraft } from "../../services/cart";
 import { getProductById } from "../../services/products";
+import { removeProductFromCart } from "../../services/transaction";
 import CartPage from "./CartPage";
 
 const Cart = () => {
@@ -28,12 +29,23 @@ const Cart = () => {
 		}
 	};
 
+	const handleDelete = async (idProduk) => {
+		try {
+			await removeProductFromCart(idProduk);
+			retrieveCartandProducts();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<>
 			<div className="home-container">
 				<div>
 					<h1>Product List</h1>
-					{cartData && <CartPage CartData={cartData} />}
+					{cartData && (
+						<CartPage CartData={cartData} handleDelete={handleDelete} />
+					)}
 				</div>
 			</div>
 		</>
