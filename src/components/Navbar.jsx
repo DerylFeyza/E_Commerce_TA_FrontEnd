@@ -4,17 +4,15 @@ import { getLocalStorage } from "../utils/LocalStorage";
 import { LOCAL_STORAGE_USER } from "../utils/http-common";
 import { Logout } from "../pages/LoginRegister/LoginHandler";
 
-
-
 const Navbar = () => {
-	const [isNavCollapsed, setIsNavCollapsed] = useState(true);
-	const [search, setSearch] = useState("");
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+  const [search, setSearch] = useState("");
 
-	const handleContentChange = (value) => {
-		setSearch(value);
-	};
+  const handleContentChange = (value) => {
+    setSearch(value);
+  };
 
-	const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
 	return (
 		<div className="nav">
