@@ -7,7 +7,6 @@ import {
 import LoginForm from "./pages/LoginRegister/LoginForm";
 import Register from "./pages/LoginRegister/RegisterForm";
 import Home from "./pages/Home/HomePage";
-import Quill from "./components/QuillEditor/Editor";
 import Navbar from "./components/Navbar";
 import ProductDetails from "./pages/ProductDetails/Details";
 import ProductSearch from "./pages/SearchPage/SearchPage";
@@ -32,7 +31,6 @@ const App = () => {
 				<Route element={<AppLayout />}>
 					<Route path="/" element={<Home />} />
 					<Route path="/home" element={<Home />} />
-					<Route path="/quiltest" element={<Quill />} />
 					<Route path="/details" element={<Details />} />
 					<Route path="/products/:id" element={<ProductDetails />} />
 					<Route path="/search" element={<ProductSearch />} />

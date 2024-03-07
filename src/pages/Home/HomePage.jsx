@@ -1,6 +1,7 @@
 import ProductList from "../../components/Product/ProductList";
 import { useState, useEffect } from "react";
 import { getPaginatedDataProduct } from "../../services/products";
+import Hero from "../Home/hero"
 
 const Home = () => {
 	const [products, setProducts] = useState([]);
@@ -26,8 +27,7 @@ const Home = () => {
 
 			<div className="home-container">
 				<div>
-					<h1>Product List</h1>
-					<ProductList products={products} />
+					<Hero />
 				</div>
 			</div>
 		</>
