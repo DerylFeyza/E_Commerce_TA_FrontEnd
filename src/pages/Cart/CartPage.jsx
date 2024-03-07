@@ -13,11 +13,18 @@ const CartPage = ({ CartData, handleDelete, qtyChange }) => {
 		}
 	};
 
-	// const handleBlur = () => {
-	// 	if (updatedQuantity === "") {
-	// 		setUpdatedQuantity(1);
-	// 	}
-	// };
+	const handleBlur = (e, index) => {
+		const value = e.target.value;
+
+		if (value == 0) {
+			e.target.value = 1;
+			handleQuantityChange(CartData.products[index]?.data.id, e);
+		}
+		if (value > CartData.products[index]?.data.stok) {
+			e.target.value = CartData.products[index]?.data.stok;
+			handleQuantityChange(CartData.products[index]?.data.id, e);
+		}
+	};
 
 	const handleDeleteItem = (idProduk) => {
 		handleDelete(idProduk);
@@ -57,6 +64,7 @@ const CartPage = ({ CartData, handleDelete, qtyChange }) => {
 														<input
 															id="quantity"
 															type="number"
+															onBlur={(e) => handleBlur(e, index)}
 															onChange={(e) =>
 																handleQuantityChange(
 																	CartData.products[index]?.data.id,
