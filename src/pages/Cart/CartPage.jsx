@@ -2,6 +2,8 @@ import "./Cart.css";
 import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
 
+//ba
+
 const CartPage = ({ CartData, handleDelete, qtyChange }) => {
 	const handleQuantityChange = (idProduct, e) => {
 		const value = e.target.value;
