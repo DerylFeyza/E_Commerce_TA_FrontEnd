@@ -1,25 +1,23 @@
 import "./Cart.css";
 import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
-import { useState } from "react";
 
-const CartPage = ({ CartData, handleDelete }) => {
-	const [quantity, setQuantity] = useState(1);
-
-	const handleQuantityChange = (e) => {
+const CartPage = ({ CartData, handleDelete, qtyChange }) => {
+	const handleQuantityChange = (idProduct, e) => {
 		const value = e.target.value;
+		console.log(value);
 		if (value === "" || (value > 0 && !isNaN(value))) {
-			setQuantity(value);
+			qtyChange(idProduct, value);
 		} else {
-			setQuantity(1);
+			console.log("icikiwir");
 		}
 	};
 
-	const handleBlur = () => {
-		if (quantity === "") {
-			setQuantity(1);
-		}
-	};
+	// const handleBlur = () => {
+	// 	if (updatedQuantity === "") {
+	// 		setUpdatedQuantity(1);
+	// 	}
+	// };
 
 	const handleDeleteItem = (idProduk) => {
 		handleDelete(idProduk);
@@ -59,8 +57,12 @@ const CartPage = ({ CartData, handleDelete }) => {
 														<input
 															id="quantity"
 															type="number"
-															onChange={handleQuantityChange}
-															onBlur={handleBlur}
+															onChange={(e) =>
+																handleQuantityChange(
+																	CartData.products[index]?.data.id,
+																	e
+																)
+															}
 															value={CartData.cartItems[index]?.quantity}
 															className="form-control quantity-input"
 														/>
@@ -130,6 +132,7 @@ CartPage.propTypes = {
 		}),
 	}),
 	handleDelete: PropTypes.func.isRequired,
+	qtyChange: PropTypes.func.isRequired,
 };
 
 export default CartPage;
