@@ -32,11 +32,13 @@ const DetailLayout = ({ product }) => {
 	const handleBlur = () => {
 		if (quantity === "") {
 			setQuantity(1);
+		} else if (quantity > product.stok) {
+			setQuantity(product.stok);
 		}
 	};
 
 	const handleAddToCart = () => {
-		const values = { id_produk: product.id, quantity };
+		const values = { id_produk: product.id, quantity: quantity };
 		addToCart(values);
 	};
 
