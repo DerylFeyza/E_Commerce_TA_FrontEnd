@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { getCartOnDraft } from "../../services/cart";
 import { getProductById } from "../../services/products";
-import { removeProductFromCart } from "../../services/transaction";
-import { addToCart } from "../../services/transaction";
+import {
+	removeProductFromCart,
+	addToCart,
+	Checkout,
+} from "../../services/transaction";
 import CartPage from "./CartPage";
 
 const Cart = () => {
@@ -49,18 +52,27 @@ const Cart = () => {
 		}
 	};
 
+	const handleCheckout = async () => {
+		try {
+			await Checkout();
+			retrieveCartandProducts();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const actions = {
+		handleDelete,
+		handleQuantityChange,
+		handleCheckout,
+	};
+
 	return (
 		<>
 			<div className="home-container">
 				<div>
 					<h1>Product List</h1>
-					{cartData && (
-						<CartPage
-							CartData={cartData}
-							handleDelete={handleDelete}
-							qtyChange={handleQuantityChange}
-						/>
-					)}
+					{cartData && <CartPage CartData={cartData} actions={actions} />}
 				</div>
 			</div>
 		</>

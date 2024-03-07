@@ -1,13 +1,14 @@
 import "./Cart.css";
 import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
+import { Link } from "react-router-dom";
 
-const CartPage = ({ CartData, handleDelete, qtyChange }) => {
+const CartPage = ({ CartData, actions }) => {
 	const handleQuantityChange = (idProduct, e) => {
 		const value = e.target.value;
 		console.log(value);
 		if (value === "" || (value > 0 && !isNaN(value))) {
-			qtyChange(idProduct, value);
+			actions.handleQuantityChange(idProduct, value);
 		} else {
 			console.log("icikiwir");
 		}
@@ -27,7 +28,7 @@ const CartPage = ({ CartData, handleDelete, qtyChange }) => {
 	};
 
 	const handleDeleteItem = (idProduk) => {
-		handleDelete(idProduk);
+		actions.handleDelete(idProduk);
 	};
 
 	return (
@@ -116,12 +117,16 @@ const CartPage = ({ CartData, handleDelete, qtyChange }) => {
 								</div>
 							</div>
 							<div className="cart_buttons">
-								<button type="button" className="button cart_button_clear">
+								<Link to="/home" className="button cart_button_clear">
 									Continue Shopping
-								</button>
-								<button type="button" className="button cart_button_checkout">
+								</Link>
+								<div
+									className="button cart_button_checkout"
+									type="button"
+									onClick={() => actions.handleCheckout()}
+								>
 									Checkout
-								</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -139,8 +144,11 @@ CartPage.propTypes = {
 			totalharga: PropTypes.number,
 		}),
 	}),
-	handleDelete: PropTypes.func.isRequired,
-	qtyChange: PropTypes.func.isRequired,
+	actions: PropTypes.shape({
+		handleDelete: PropTypes.func.isRequired,
+		handleQuantityChange: PropTypes.func.isRequired,
+		handleCheckout: PropTypes.func.isRequired,
+	}),
 };
 
 export default CartPage;
