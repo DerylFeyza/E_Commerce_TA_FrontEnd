@@ -43,6 +43,7 @@ const Cart = () => {
 		try {
 			const values = { id_produk: idProduct, quantity: quantityValues };
 			await addToCart(values);
+			retrieveCartandProducts();
 		} catch (error) {
 			console.log(error);
 		}
