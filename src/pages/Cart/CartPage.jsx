@@ -31,6 +31,10 @@ const CartPage = ({ CartData, actions }) => {
 		actions.handleDelete(idProduk);
 	};
 
+	const handleCheckout = () => {
+		actions.handleCheckout();
+	};
+
 	return (
 		<div className="cart_section">
 			{console.log(CartData)}
@@ -123,7 +127,7 @@ const CartPage = ({ CartData, actions }) => {
 								<div
 									className="button cart_button_checkout"
 									type="button"
-									onClick={() => actions.handleCheckout()}
+									onClick={handleCheckout()}
 								>
 									Checkout
 								</div>

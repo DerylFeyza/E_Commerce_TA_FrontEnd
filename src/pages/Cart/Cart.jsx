@@ -53,12 +53,8 @@ const Cart = () => {
 	};
 
 	const handleCheckout = async () => {
-		try {
-			await Checkout();
-			retrieveCartandProducts();
-		} catch (error) {
-			console.log(error);
-		}
+		await Checkout();
+		retrieveCartandProducts();
 	};
 
 	const actions = {
@@ -71,8 +67,13 @@ const Cart = () => {
 		<>
 			<div className="home-container">
 				<div>
-					<h1>Product List</h1>
-					{cartData && <CartPage CartData={cartData} actions={actions} />}
+					{cartData && cartData.cartItems.length > 0 ? (
+						<CartPage CartData={cartData} actions={actions} />
+					) : (
+						<h1 style={{ textAlign: "center", paddingTop: "50px" }}>
+							Your cart is empty
+						</h1>
+					)}{" "}
 				</div>
 			</div>
 		</>
