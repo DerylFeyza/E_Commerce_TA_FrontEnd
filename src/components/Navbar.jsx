@@ -3,6 +3,8 @@ import { getLocalStorage } from "../utils/LocalStorage";
 import { LOCAL_STORAGE_USER } from "../utils/http-common";
 import { Logout } from "../pages/LoginRegister/LoginHandler";
 
+
+
 const Navbar = () => {
 	const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 	const [search, setSearch] = useState("");
