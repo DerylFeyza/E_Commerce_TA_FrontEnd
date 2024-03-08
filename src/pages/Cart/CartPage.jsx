@@ -37,7 +37,6 @@ const CartPage = ({ CartData, actions }) => {
 
 	return (
 		<div className="cart_section">
-			{console.log(CartData)}
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-lg-10 offset-lg-1">
@@ -127,7 +126,7 @@ const CartPage = ({ CartData, actions }) => {
 								<div
 									className="button cart_button_checkout"
 									type="button"
-									onClick={handleCheckout()}
+									onClick={handleCheckout}
 								>
 									Checkout
 								</div>

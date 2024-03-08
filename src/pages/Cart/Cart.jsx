@@ -18,16 +18,21 @@ const Cart = () => {
 	const retrieveCartandProducts = async () => {
 		try {
 			const res = await getCartOnDraft();
-			const data = {
-				cartInfo: res.cartInfo,
-				cartItems: res.data,
-				products: await Promise.all(
-					res.data.map(async (item) => {
-						return await getProductById(item.id_produk);
-					})
-				),
-			};
-			setCartData(data);
+			console.log(res);
+			if (res.status === "success") {
+				const data = {
+					cartInfo: res.cartInfo,
+					cartItems: res.data,
+					products: await Promise.all(
+						res.data.map(async (item) => {
+							return await getProductById(item.id_produk);
+						})
+					),
+				};
+				setCartData(data);
+			} else {
+				setCartData(null);
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -54,7 +59,7 @@ const Cart = () => {
 
 	const handleCheckout = async () => {
 		await Checkout();
-		retrieveCartandProducts();
+		retrieveCartandProducts(); // Added this line to refresh the cart data after checkout
 	};
 
 	const actions = {
