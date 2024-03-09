@@ -3,8 +3,6 @@ import { getLocalStorage } from "../utils/LocalStorage";
 import { LOCAL_STORAGE_USER } from "../utils/http-common";
 import { Logout } from "../pages/LoginRegister/LoginHandler";
 
-
-
 const Navbar = () => {
 	const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 	const [search, setSearch] = useState("");
@@ -56,6 +54,13 @@ const Navbar = () => {
 						</a>
 						<a className="btn btn-primary" aria-current="page" onClick={Logout}>
 							Logout
+						</a>
+						<a
+							className="btn btn-primary"
+							aria-current="page"
+							href="/purchases"
+						>
+							History
 						</a>
 					</ul>
 					<form
