@@ -26,8 +26,10 @@ const HistoryCard = (HistoryData) => {
 						{dateString} on {timeString}
 					</p>
 					<p>$ {HistoryData.totalharga}</p>
-					<button>View Details</button>
-					<button className="delete-button">Delete History</button>{" "}
+					<div className="button-container-history">
+						<button>View Details</button>
+						<button className="delete-button">Delete History</button>
+					</div>
 				</div>
 			</div>
 		</>
