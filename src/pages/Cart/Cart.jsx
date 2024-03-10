@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getCartOnDraft } from "../../services/cart";
-import { getProductById } from "../../services/products";
+
 import {
 	removeProductFromCart,
 	addToCart,
@@ -18,16 +18,11 @@ const Cart = () => {
 	const retrieveCartandProducts = async () => {
 		try {
 			const res = await getCartOnDraft();
-			console.log(res);
 			if (res.status === "success") {
 				const data = {
 					cartInfo: res.cartInfo,
 					cartItems: res.data,
-					products: await Promise.all(
-						res.data.map(async (item) => {
-							return await getProductById(item.id_produk);
-						})
-					),
+					products: res.products,
 				};
 				setCartData(data);
 			} else {
@@ -70,6 +65,7 @@ const Cart = () => {
 
 	return (
 		<>
+			{console.log(cartData)}
 			<div className="home-container">
 				<div>
 					{cartData && cartData.cartItems.length > 0 ? (

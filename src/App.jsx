@@ -13,6 +13,7 @@ import ProductDetails from "./pages/ProductDetails/Details";
 import ProductSearch from "./pages/SearchPage/SearchPage";
 import Details from "./pages/ProductDetails/DetailsCard";
 import Cart from "./pages/Cart/Cart";
+import Purchases from "./pages/TransHistory/History";
 // import SuccessPopup from "./components/Alerts/SuccessPopup";
 import NotFoundPage from "./pages/NotFound/NotFound";
 
@@ -37,6 +38,7 @@ const App = () => {
 					<Route path="/products/:id" element={<ProductDetails />} />
 					<Route path="/search" element={<ProductSearch />} />
 					<Route path="/cart" element={<Cart />} />
+					<Route path="/purchases" element={<Purchases />} />
 					<Route path="*" element={<NotFoundPage />} />
 				</Route>
 

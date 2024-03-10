@@ -20,6 +20,30 @@ export const getCartOnDraft = async () => {
 				status: "success",
 				cartInfo: res.cart,
 				data: res.data,
+				products: res.products,
+			};
+		} else {
+			return { res: res, success: false };
+		}
+	} catch (error) {
+		return {
+			status: "error",
+			message: error.response.data.message,
+		};
+	}
+};
+
+export const getTransactionHistory = async () => {
+	const CART_URL = `${BASE_API}/cart/history`;
+	try {
+		const data = await axios.get(CART_URL, config);
+		const res = data.data;
+
+		if (res.success === true) {
+			return {
+				status: "success",
+				cartInfo: res.cart,
+				data: res.data,
 			};
 		} else {
 			return { res: res, success: false };
