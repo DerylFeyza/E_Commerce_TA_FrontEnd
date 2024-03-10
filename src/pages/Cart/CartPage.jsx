@@ -19,11 +19,11 @@ const CartPage = ({ CartData, actions }) => {
 
 		if (value == 0) {
 			e.target.value = 1;
-			handleQuantityChange(CartData.products[index]?.data.id, e);
+			handleQuantityChange(CartData.products[index]?.id, e);
 		}
-		if (value > CartData.products[index]?.data.stok) {
-			e.target.value = CartData.products[index]?.data.stok;
-			handleQuantityChange(CartData.products[index]?.data.id, e);
+		if (value > CartData.products[index]?.stok) {
+			e.target.value = CartData.products[index]?.stok;
+			handleQuantityChange(CartData.products[index]?.id, e);
 		}
 	};
 
@@ -48,18 +48,16 @@ const CartPage = ({ CartData, actions }) => {
 										<li className="cart_item clearfix" key={data.id}>
 											<div className="cart_item_image">
 												<img
-													src={`${BASE_API}/produk/image/${CartData.products[index]?.data?.gambar_barang}`}
-													alt={CartData.products[index]?.data.nama_barang}
+													src={`${BASE_API}/produk/image/${CartData.products[index]?.gambar_barang}`}
+													alt={CartData.products[index]?.nama_barang}
 												/>
-												{console.log(
-													CartData.products[index]?.data?.gambar_barang
-												)}
+												{console.log(CartData.products[index]?.gambar_barang)}
 											</div>
 											<div className="cart_item_info d-flex flex-md-row flex-column justify-content-between">
 												<div className="cart_item_name cart_info_col">
 													<div className="cart_item_title">Name</div>
 													<div className="cart_item_text">
-														{CartData.products[index]?.data.nama_barang}
+														{CartData.products[index]?.nama_barang}
 													</div>
 												</div>
 												<div className="cart_item_quantity cart_info_col">
@@ -71,7 +69,7 @@ const CartPage = ({ CartData, actions }) => {
 															onBlur={(e) => handleBlur(e, index)}
 															onChange={(e) =>
 																handleQuantityChange(
-																	CartData.products[index]?.data.id,
+																	CartData.products[index]?.id,
 																	e
 																)
 															}
@@ -83,7 +81,7 @@ const CartPage = ({ CartData, actions }) => {
 												<div className="cart_item_price cart_info_col">
 													<div className="cart_item_title">Price</div>
 													<div className="cart_item_text">
-														{CartData.products[index]?.data.harga}
+														{CartData.products[index]?.harga}
 													</div>
 												</div>
 												<div className="cart_item_total cart_info_col">
@@ -98,12 +96,10 @@ const CartPage = ({ CartData, actions }) => {
 														className="cart_item_text btn btn-danger"
 														type="button"
 														onClick={() =>
-															handleDeleteItem(
-																CartData.products[index]?.data.id
-															)
+															handleDeleteItem(CartData.products[index]?.id)
 														}
 													>
-														Delete {CartData.products[index]?.data.id}
+														Delete {CartData.products[index]?.id}
 													</div>
 												</div>
 											</div>

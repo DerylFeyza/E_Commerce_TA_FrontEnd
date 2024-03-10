@@ -20,6 +20,7 @@ export const getCartOnDraft = async () => {
 				status: "success",
 				cartInfo: res.cart,
 				data: res.data,
+				products: res.products,
 			};
 		} else {
 			return { res: res, success: false };
