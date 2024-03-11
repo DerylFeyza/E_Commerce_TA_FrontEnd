@@ -54,7 +54,7 @@ const Cart = () => {
 
 	const handleCheckout = async () => {
 		await Checkout();
-		retrieveCartandProducts(); // Added this line to refresh the cart data after checkout
+		retrieveCartandProducts();
 	};
 
 	const actions = {

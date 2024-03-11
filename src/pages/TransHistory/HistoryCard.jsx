@@ -1,5 +1,6 @@
 import "./TransactionHistory.css";
 import purchaseSuccessImage from "../../assets/purchase-success.png";
+import { Link } from "react-router-dom";
 
 const HistoryCard = (HistoryData) => {
 	const dateString = new Date(HistoryData.updatedAt).toLocaleDateString(
@@ -27,8 +28,10 @@ const HistoryCard = (HistoryData) => {
 					</p>
 					<p>$ {HistoryData.totalharga}</p>
 					<div className="button-container-history">
-						<button>View Details</button>
-						<button className="delete-button">Delete History</button>
+						<Link to={`/receipt/${HistoryData.id}`} className="btn btn-success">
+							View Details
+						</Link>
+						<button className="btn btn-danger">Delete History</button>
 					</div>
 				</div>
 			</div>
