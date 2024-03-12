@@ -37,30 +37,8 @@
 	margin-left: 50px;
 }
 
-.purchase-success button {
-	background-color: #4caf50;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	padding: 10px 20px;
+.purchase-success .btn {
 	cursor: pointer;
 	margin-top: 10px;
-	flex: 1;
 	display: block;
-	width: 100%;
-}
-.purchase-success button:hover {
-	background-color: #45a049;
-}
-
-.purchase-success button + button {
-	margin-top: 10px;
-}
-
-.purchase-success .delete-button {
-	background-color: #f44336;
-}
-
-.purchase-success .delete-button:hover {
-	background-color: #d32f2f;
 }
