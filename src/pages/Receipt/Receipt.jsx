@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getPurchaseReceipt } from "../../services/cart";
-// import PropTypes from "prop-types";
+import { getPurchaseReceipt } from "../../services/receipt";
 
 const PurchaseReceipt = () => {
 	const { id } = useParams();
