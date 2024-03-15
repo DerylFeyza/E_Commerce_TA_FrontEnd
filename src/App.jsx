@@ -15,6 +15,7 @@ import Cart from "./pages/Cart/Cart";
 import Purchases from "./pages/TransHistory/History";
 import NotFoundPage from "./pages/NotFound/NotFound";
 import PurchaseReceipt from "./pages/Receipt/Receipt";
+import AddProduct from "./pages/AddProduct/AddProduct";
 
 const AppLayout = () => (
 	<>
@@ -34,6 +35,7 @@ const App = () => {
 					<Route path="/home" element={<Home />} />
 					<Route path="/details" element={<Details />} />
 					<Route path="/products/:id" element={<ProductDetails />} />
+					<Route path="/add" element={<AddProduct />} />
 					<Route path="/receipt/:id" element={<PurchaseReceipt />} />
 					<Route path="/search" element={<ProductSearch />} />
 					<Route path="/cart" element={<Cart />} />
