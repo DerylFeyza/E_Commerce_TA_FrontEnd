@@ -15,6 +15,8 @@ import Cart from "./pages/Cart/Cart";
 import Purchases from "./pages/TransHistory/History";
 import NotFoundPage from "./pages/NotFound/NotFound";
 import PurchaseReceipt from "./pages/Receipt/Receipt";
+import AddProduct from "./pages/AddProduct/AddProduct";
+import MerchantDashboard from "./pages/MerchantDashboard/Dashboard";
 
 const AppLayout = () => (
 	<>
@@ -31,9 +33,11 @@ const App = () => {
 			<Routes>
 				<Route element={<AppLayout />}>
 					<Route path="/" element={<Home />} />
+					<Route path="/merchant" element={<MerchantDashboard />} />
 					<Route path="/home" element={<Home />} />
 					<Route path="/details" element={<Details />} />
 					<Route path="/products/:id" element={<ProductDetails />} />
+					<Route path="/products/add" element={<AddProduct />} />
 					<Route path="/receipt/:id" element={<PurchaseReceipt />} />
 					<Route path="/search" element={<ProductSearch />} />
 					<Route path="/cart" element={<Cart />} />
