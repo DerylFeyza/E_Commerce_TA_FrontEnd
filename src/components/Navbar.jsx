@@ -55,6 +55,9 @@ const Navbar = () => {
 						<a className="btn btn-primary" aria-current="page" onClick={Logout}>
 							Logout
 						</a>
+						<a className="btn btn-primary" aria-current="page" href="/merchant">
+							merchant dashboard
+						</a>
 						<a
 							className="btn btn-primary"
 							aria-current="page"

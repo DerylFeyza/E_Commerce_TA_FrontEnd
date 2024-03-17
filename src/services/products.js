@@ -92,3 +92,23 @@ export const addProduct = async (values) => {
 		};
 	}
 };
+
+export const getMerchantProducts = async () => {
+	const MERCHANT_PRODUCTS_URL = `${PRODUCT_URL}/merchant`;
+	try {
+		const data = await axios.get(MERCHANT_PRODUCTS_URL, config);
+		const res = data.data;
+
+		if (res.success === true) {
+			return {
+				status: "success",
+				data: res.data,
+			};
+		}
+	} catch (error) {
+		return {
+			status: "error",
+			message: error.response.data.message,
+		};
+	}
+};
