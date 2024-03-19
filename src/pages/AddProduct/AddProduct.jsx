@@ -35,14 +35,13 @@ const AddProduct = () => {
 		formData.append("details", details);
 		try {
 			const res = await addProduct(formData);
-			if (res.status === "success") {
+			if (res.success === true) {
 				navigate("/home");
 			}
 			console.log(res);
 		} catch (error) {
 			console.log("failed to add product");
 		}
-		console.log(formData);
 	};
 
 	return (

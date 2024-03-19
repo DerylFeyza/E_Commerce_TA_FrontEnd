@@ -78,11 +78,11 @@ export const addProduct = async (values) => {
 	try {
 		const data = await axios.post(ADD_URL, values, config);
 		const res = data.data;
+		console.log(res);
 
 		if (res.success === true) {
 			return {
-				status: "success",
-				data: res.data,
+				success: true,
 			};
 		}
 	} catch (error) {
@@ -103,6 +103,27 @@ export const getMerchantProducts = async () => {
 			return {
 				status: "success",
 				data: res.data,
+			};
+		}
+	} catch (error) {
+		return {
+			status: "error",
+			message: error.response.data.message,
+		};
+	}
+};
+
+export const getRecentPurchase = async () => {
+	const PURCHASES_URL = `${PRODUCT_URL}/merchant/purchases`;
+	try {
+		const data = await axios.get(PURCHASES_URL, config);
+		const res = data.data;
+
+		if (res.success === true) {
+			return {
+				status: "success",
+				data: res.details,
+				products: res.purchases,
 			};
 		}
 	} catch (error) {
