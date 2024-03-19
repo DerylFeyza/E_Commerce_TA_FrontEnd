@@ -11,6 +11,10 @@ const config = {
 
 const PRODUCT_URL = `${BASE_API}/produk`;
 
+export const imageFetcher = (foto) => {
+	return `${PRODUCT_URL}/image/${foto}`;
+};
+
 export const getPaginatedDataProduct = async (page) => {
 	const URL = `${PRODUCT_URL}/?page=${page}`;
 	try {
@@ -122,8 +126,8 @@ export const getRecentPurchase = async () => {
 		if (res.success === true) {
 			return {
 				status: "success",
-				data: res.details,
-				products: res.purchases,
+				data: res.purchases,
+				products: res.details,
 			};
 		}
 	} catch (error) {
