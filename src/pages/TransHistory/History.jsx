@@ -41,10 +41,10 @@ const Home = () => {
 
 			<div className="transaction-container">
 				<div>
-					{transactionHistory.map((transactionHistory, index) => (
+					{transactionHistory.reverse().map((transaction, index) => (
 						<HistoryCard
 							key={index}
-							historyData={transactionHistory}
+							historyData={transaction}
 							handleDelete={handleDelete}
 						/>
 					))}
