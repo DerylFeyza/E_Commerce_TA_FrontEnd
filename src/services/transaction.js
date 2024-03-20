@@ -13,9 +13,7 @@ export const addToCart = async (values) => {
 	const TRANSACTION_URL = `${BASE_API}/transaksi`;
 
 	try {
-		console.log("sending . ...");
 		const response = await axios.post(TRANSACTION_URL, values, config);
-		console.log("request sent");
 
 		if (response.data.success === true) {
 			return {
@@ -47,6 +45,7 @@ export const removeProductFromCart = async (productId) => {
 	const DELETE_URL = `${BASE_API}/transaksi/${productId}`;
 	try {
 		const response = await axios.delete(DELETE_URL, config);
+		console.log(response);
 		if (response.data.success === true) {
 			return {
 				status: "success",
@@ -56,6 +55,31 @@ export const removeProductFromCart = async (productId) => {
 			return {
 				status: "error",
 				message: "Failed to delete product from cart",
+			};
+		}
+	} catch (error) {
+		return {
+			status: "error",
+			message: error.response.data.message,
+		};
+	}
+};
+
+export const Checkout = async () => {
+	const CHECKOUT_URL = BASE_API + "/transaksi/checkout";
+	try {
+		const response = await axios.post(CHECKOUT_URL, "", config);
+		console.log(response);
+		if (response.data.success === true) {
+			return {
+				status: "success",
+				data: response.data.data,
+			};
+		} else {
+			return {
+				status: "error",
+				message: "Failed to checkout cart",
+				data: response.data.data,
 			};
 		}
 	} catch (error) {
