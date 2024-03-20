@@ -15,7 +15,7 @@ import Cart from "./pages/Cart/Cart";
 import Purchases from "./pages/TransHistory/History";
 import NotFoundPage from "./pages/NotFound/NotFound";
 import PurchaseReceipt from "./pages/Receipt/Receipt";
-import AddProduct from "./pages/AddProduct/AddProduct";
+import AddProduct from "./pages/AddEditProduct/AddProduct";
 import MerchantDashboard from "./pages/MerchantDashboard/Dashboard";
 
 const AppLayout = () => (
