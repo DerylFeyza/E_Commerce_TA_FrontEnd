@@ -116,6 +116,26 @@ export const updateProduct = async (id, values) => {
 	}
 };
 
+export const deleteProduct = async (id) => {
+	const DELETE_URL = `${PRODUCT_URL}/delete/${id}`;
+	try {
+		const data = await axios.delete(DELETE_URL, config);
+		const res = data.data;
+
+		if (res.success === true) {
+			return {
+				status: "success",
+				data: res.data,
+			};
+		}
+	} catch (error) {
+		return {
+			status: "error",
+			message: error.response.data.message,
+		};
+	}
+};
+
 export const getMerchantProducts = async () => {
 	const MERCHANT_PRODUCTS_URL = `${PRODUCT_URL}/merchant`;
 	try {

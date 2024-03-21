@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { imageFetcher } from "../../services/products";
 
-const MerchantProductCard = ({ product }) => {
+const MerchantProductCard = ({ product, handleDelete }) => {
 	return (
 		<div className="card">
 			<img
@@ -15,9 +15,22 @@ const MerchantProductCard = ({ product }) => {
 				<h5 className="card-title">{product.id}</h5>
 				<p className="card-text">Category: {product.kategori}</p>
 				<p className="card-text">Price: ${product.harga}</p>
-				<Link to={`/products/update/${product.id}`} className="btn btn-primary">
-					Edit
-				</Link>
+
+				<div className="button-container">
+					<Link
+						to={`/products/update/${product.id}`}
+						className="btn btn-primary mr-2"
+					>
+						Edit
+					</Link>
+					<div
+						className="btn btn-danger"
+						type="button"
+						onClick={() => handleDelete(product.id)}
+					>
+						Delete
+					</div>
+				</div>
 			</div>
 		</div>
 	);
@@ -31,6 +44,7 @@ MerchantProductCard.propTypes = {
 		kategori: PropTypes.string.isRequired,
 		harga: PropTypes.number.isRequired,
 	}).isRequired,
+	handleDelete: PropTypes.func.isRequired,
 };
 
 export default MerchantProductCard;
