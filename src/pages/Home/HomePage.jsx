@@ -28,6 +28,7 @@ const Home = () => {
 			<div className="home-container">
 				<div>
 					<Hero />
+					<ProductList />
 				</div>
 			</div>
 		</>

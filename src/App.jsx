@@ -14,6 +14,8 @@ import Details from "./pages/ProductDetails/DetailsCard";
 import Cart from "./pages/Cart/Cart";
 // import SuccessPopup from "./components/Alerts/SuccessPopup";
 import NotFoundPage from "./pages/NotFound/NotFound";
+import Test from "./components/Product/ProductCard"
+
 
 const AppLayout = () => (
 	<>
@@ -40,6 +42,7 @@ const App = () => {
 
 				<Route path="/login" element={<LoginForm />} />
 				<Route path="/register" element={<Register />} />
+				<Route path="/test" element={<Test />} />
 			</Routes>
 		</Router>
 	);
