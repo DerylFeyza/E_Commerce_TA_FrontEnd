@@ -19,7 +19,7 @@ const Navbar = () => {
 			<div className="nav-logo">TAja</div>
 				<ul className="nav-menu">
 				<li><a href="#"></a>Beranda</li>
-				<li><a href="#"></a>Sedang Trend</li>
+				<li><a href="#"></a>Sedang Populer</li>
 				<li><a href="#"></a> Baru</li>
 				<div className="nav-log">
 				<li><a href="./LoginRegister/LoginForm"></a>Login</li>
