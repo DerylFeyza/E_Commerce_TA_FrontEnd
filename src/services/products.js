@@ -97,6 +97,25 @@ export const addProduct = async (values) => {
 	}
 };
 
+export const updateProduct = async (id, values) => {
+	const UPDATE_URL = `${PRODUCT_URL}/update/${id}`;
+	try {
+		const data = await axios.put(UPDATE_URL, values, config);
+		const res = data.data;
+		if (res.success === true) {
+			return {
+				success: true,
+				message: res.data,
+			};
+		}
+	} catch (error) {
+		return {
+			status: "error",
+			message: error.response.data.message,
+		};
+	}
+};
+
 export const getMerchantProducts = async () => {
 	const MERCHANT_PRODUCTS_URL = `${PRODUCT_URL}/merchant`;
 	try {

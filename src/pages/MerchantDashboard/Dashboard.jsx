@@ -1,5 +1,5 @@
-import ProductList from "../../components/Product/ProductList";
 import RecentPurchaseCard from "./RecentPurchases";
+import MerchantProductCard from "./MerchantProductCard";
 import { useState, useEffect } from "react";
 import {
 	getMerchantProducts,
@@ -31,9 +31,13 @@ const MerchantDashboard = () => {
 	return (
 		<>
 			<div className="container">
-				<div>
+				<div className="row">
 					<h1>Product List</h1>
-					<ProductList products={products} />
+					{products.map((product, index) => (
+						<div key={index} className="col-md-4 mb-4">
+							<MerchantProductCard product={product} />
+						</div>
+					))}
 				</div>
 				<Link to="/products/add">
 					<button>Add Product</button>

@@ -14,7 +14,6 @@ const RecentPurchaseCard = ({ purchaseData, purchaseProduct }) => {
 
 	return (
 		<div className="container">
-			{console.log(purchaseData)}
 			<div className="purchase-success-container">
 				<div className="purchase-success row">
 					<div className="col-md-2 image-container">
