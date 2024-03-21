@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import {
 	getMerchantProducts,
 	getRecentPurchase,
+	deleteProduct,
 } from "../../services/products";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
@@ -28,6 +29,15 @@ const MerchantDashboard = () => {
 		}
 	};
 
+	const handleDelete = async (idProduct) => {
+		try {
+			await deleteProduct(idProduct);
+			retrieveProducts();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<>
 			<div className="container">
@@ -35,7 +45,10 @@ const MerchantDashboard = () => {
 					<h1>Product List</h1>
 					{products.map((product, index) => (
 						<div key={index} className="col-md-4 mb-4">
-							<MerchantProductCard product={product} />
+							<MerchantProductCard
+								product={product}
+								handleDelete={handleDelete}
+							/>
 						</div>
 					))}
 				</div>
