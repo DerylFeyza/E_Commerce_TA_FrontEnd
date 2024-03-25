@@ -15,6 +15,7 @@ import Details from "./pages/ProductDetails/DetailsCard";
 import Cart from "./pages/Cart/Cart";
 // import SuccessPopup from "./components/Alerts/SuccessPopup";
 import NotFoundPage from "./pages/NotFound/NotFound";
+import DetailProducts from "./pages/DetailProducts/Product"
 
 const AppLayout = () => (
 	<>
@@ -37,6 +38,7 @@ const App = () => {
 					<Route path="/products/:id" element={<ProductDetails />} />
 					<Route path="/search" element={<ProductSearch />} />
 					<Route path="/cart" element={<Cart />} />
+					<Route path="/detailproduct" element={<DetailProducts />} />					
 					<Route path="*" element={<NotFoundPage />} />
 				</Route>
 
