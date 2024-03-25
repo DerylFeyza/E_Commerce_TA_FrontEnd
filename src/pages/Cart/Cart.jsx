@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { getCartOnDraft } from "../../services/cart";
-import { getProductById } from "../../services/products";
-import { removeProductFromCart } from "../../services/transaction";
-import { addToCart } from "../../services/transaction";
+
+import {
+	removeProductFromCart,
+	addToCart,
+	Checkout,
+} from "../../services/transaction";
 import CartPage from "./CartPage";
 
 const Cart = () => {
@@ -15,16 +18,16 @@ const Cart = () => {
 	const retrieveCartandProducts = async () => {
 		try {
 			const res = await getCartOnDraft();
-			const data = {
-				cartInfo: res.cartInfo,
-				cartItems: res.data,
-				products: await Promise.all(
-					res.data.map(async (item) => {
-						return await getProductById(item.id_produk);
-					})
-				),
-			};
-			setCartData(data);
+			if (res.status === "success") {
+				const data = {
+					cartInfo: res.cartInfo,
+					cartItems: res.data,
+					products: res.products,
+				};
+				setCartData(data);
+			} else {
+				setCartData(null);
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -49,18 +52,29 @@ const Cart = () => {
 		}
 	};
 
+	const handleCheckout = async () => {
+		await Checkout();
+		retrieveCartandProducts();
+	};
+
+	const actions = {
+		handleDelete,
+		handleQuantityChange,
+		handleCheckout,
+	};
+
 	return (
 		<>
+			{console.log(cartData)}
 			<div className="home-container">
 				<div>
-					<h1>Product List</h1>
-					{cartData && (
-						<CartPage
-							CartData={cartData}
-							handleDelete={handleDelete}
-							qtyChange={handleQuantityChange}
-						/>
-					)}
+					{cartData && cartData.cartItems.length > 0 ? (
+						<CartPage CartData={cartData} actions={actions} />
+					) : (
+						<h1 style={{ textAlign: "center", paddingTop: "50px" }}>
+							Your cart is empty
+						</h1>
+					)}{" "}
 				</div>
 			</div>
 		</>

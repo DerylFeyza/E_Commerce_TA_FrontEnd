@@ -1,15 +1,14 @@
 import "./Cart.css";
 import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
+import { Link } from "react-router-dom";
 
-//ba
-
-const CartPage = ({ CartData, handleDelete, qtyChange }) => {
+const CartPage = ({ CartData, actions }) => {
 	const handleQuantityChange = (idProduct, e) => {
 		const value = e.target.value;
 		console.log(value);
 		if (value === "" || (value > 0 && !isNaN(value))) {
-			qtyChange(idProduct, value);
+			actions.handleQuantityChange(idProduct, value);
 		} else {
 			console.log("icikiwir");
 		}
@@ -20,21 +19,24 @@ const CartPage = ({ CartData, handleDelete, qtyChange }) => {
 
 		if (value == 0) {
 			e.target.value = 1;
-			handleQuantityChange(CartData.products[index]?.data.id, e);
+			handleQuantityChange(CartData.products[index]?.id, e);
 		}
-		if (value > CartData.products[index]?.data.stok) {
-			e.target.value = CartData.products[index]?.data.stok;
-			handleQuantityChange(CartData.products[index]?.data.id, e);
+		if (value > CartData.products[index]?.stok) {
+			e.target.value = CartData.products[index]?.stok;
+			handleQuantityChange(CartData.products[index]?.id, e);
 		}
 	};
 
 	const handleDeleteItem = (idProduk) => {
-		handleDelete(idProduk);
+		actions.handleDelete(idProduk);
+	};
+
+	const handleCheckout = () => {
+		actions.handleCheckout();
 	};
 
 	return (
 		<div className="cart_section">
-			{console.log(CartData)}
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-lg-10 offset-lg-1">
@@ -46,18 +48,16 @@ const CartPage = ({ CartData, handleDelete, qtyChange }) => {
 										<li className="cart_item clearfix" key={data.id}>
 											<div className="cart_item_image">
 												<img
-													src={`${BASE_API}/produk/image/${CartData.products[index]?.data?.gambar_barang}`}
-													alt={CartData.products[index]?.data.nama_barang}
+													src={`${BASE_API}/produk/image/${CartData.products[index]?.gambar_barang}`}
+													alt={CartData.products[index]?.nama_barang}
 												/>
-												{console.log(
-													CartData.products[index]?.data?.gambar_barang
-												)}
+												{console.log(CartData.products[index]?.gambar_barang)}
 											</div>
 											<div className="cart_item_info d-flex flex-md-row flex-column justify-content-between">
 												<div className="cart_item_name cart_info_col">
 													<div className="cart_item_title">Name</div>
 													<div className="cart_item_text">
-														{CartData.products[index]?.data.nama_barang}
+														{CartData.products[index]?.nama_barang}
 													</div>
 												</div>
 												<div className="cart_item_quantity cart_info_col">
@@ -69,7 +69,7 @@ const CartPage = ({ CartData, handleDelete, qtyChange }) => {
 															onBlur={(e) => handleBlur(e, index)}
 															onChange={(e) =>
 																handleQuantityChange(
-																	CartData.products[index]?.data.id,
+																	CartData.products[index]?.id,
 																	e
 																)
 															}
@@ -81,7 +81,7 @@ const CartPage = ({ CartData, handleDelete, qtyChange }) => {
 												<div className="cart_item_price cart_info_col">
 													<div className="cart_item_title">Price</div>
 													<div className="cart_item_text">
-														{CartData.products[index]?.data.harga}
+														{CartData.products[index]?.harga}
 													</div>
 												</div>
 												<div className="cart_item_total cart_info_col">
@@ -96,12 +96,10 @@ const CartPage = ({ CartData, handleDelete, qtyChange }) => {
 														className="cart_item_text btn btn-danger"
 														type="button"
 														onClick={() =>
-															handleDeleteItem(
-																CartData.products[index]?.data.id
-															)
+															handleDeleteItem(CartData.products[index]?.id)
 														}
 													>
-														Delete {CartData.products[index]?.data.id}
+														Delete {CartData.products[index]?.id}
 													</div>
 												</div>
 											</div>
@@ -118,12 +116,16 @@ const CartPage = ({ CartData, handleDelete, qtyChange }) => {
 								</div>
 							</div>
 							<div className="cart_buttons">
-								<button type="button" className="button cart_button_clear">
+								<Link to="/home" className="button cart_button_clear">
 									Continue Shopping
-								</button>
-								<button type="button" className="button cart_button_checkout">
+								</Link>
+								<div
+									className="button cart_button_checkout"
+									type="button"
+									onClick={handleCheckout}
+								>
 									Checkout
-								</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -141,8 +143,11 @@ CartPage.propTypes = {
 			totalharga: PropTypes.number,
 		}),
 	}),
-	handleDelete: PropTypes.func.isRequired,
-	qtyChange: PropTypes.func.isRequired,
+	actions: PropTypes.shape({
+		handleDelete: PropTypes.func.isRequired,
+		handleQuantityChange: PropTypes.func.isRequired,
+		handleCheckout: PropTypes.func.isRequired,
+	}),
 };
 
 export default CartPage;

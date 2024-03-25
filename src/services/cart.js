@@ -9,8 +9,9 @@ const config = {
 	},
 };
 
+const CART_URL = `${BASE_API}/cart`;
+
 export const getCartOnDraft = async () => {
-	const CART_URL = `${BASE_API}/cart`;
 	try {
 		const data = await axios.get(CART_URL, config);
 		const res = data.data;
@@ -20,6 +21,7 @@ export const getCartOnDraft = async () => {
 				status: "success",
 				cartInfo: res.cart,
 				data: res.data,
+				products: res.products,
 			};
 		} else {
 			return { res: res, success: false };
