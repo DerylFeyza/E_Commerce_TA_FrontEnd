@@ -3,7 +3,7 @@ import "./TransactionHistory.css";
 import purchaseSuccessImage from "../../assets/purchase-success.png";
 import { Link } from "react-router-dom";
 
-const HistoryCard = ({ historyData, handleDelete }) => {
+const HistoryCard = ({ historyData }) => {
 	const dateString = new Date(historyData.updatedAt).toLocaleDateString(
 		"en-US",
 		{ timeZone: "Asia/Jakarta" }
@@ -12,10 +12,6 @@ const HistoryCard = ({ historyData, handleDelete }) => {
 		"en-US",
 		{ timeZone: "Asia/Jakarta" }
 	);
-
-	const handleDeleteReceipt = async (id) => {
-		handleDelete(id);
-	};
 
 	return (
 		<div className="purchase-success-container">
@@ -36,13 +32,6 @@ const HistoryCard = ({ historyData, handleDelete }) => {
 					<Link to={`/receipt/${historyData.id}`} className="btn btn-success">
 						View Details
 					</Link>
-					<div
-						className="btn btn-danger"
-						type="button"
-						onClick={() => handleDeleteReceipt(historyData.id)}
-					>
-						Delete
-					</div>
 				</div>
 			</div>
 		</div>
@@ -55,7 +44,6 @@ HistoryCard.propTypes = {
 		updatedAt: PropTypes.string.isRequired,
 		totalharga: PropTypes.number.isRequired,
 	}).isRequired,
-	handleDelete: PropTypes.func.isRequired,
 };
 
 export default HistoryCard;

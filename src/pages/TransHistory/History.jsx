@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-	getTransactionHistory,
-	deleteUserReceipt,
-} from "../../services/receipt";
+import { getTransactionHistory } from "../../services/receipt";
 import HistoryCard from "./HistoryCard";
 import "./TransactionHistory.css";
 
@@ -22,15 +19,6 @@ const Home = () => {
 		}
 	};
 
-	const handleDelete = async (id) => {
-		try {
-			await deleteUserReceipt(id);
-			retrieveTransactionHistory();
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
 	if (!transactionHistory) {
 		return <div>Loading...</div>;
 	}
@@ -42,11 +30,7 @@ const Home = () => {
 			<div className="transaction-container">
 				<div>
 					{transactionHistory.reverse().map((transaction, index) => (
-						<HistoryCard
-							key={index}
-							historyData={transaction}
-							handleDelete={handleDelete}
-						/>
+						<HistoryCard key={index} historyData={transaction} />
 					))}
 				</div>
 			</div>
