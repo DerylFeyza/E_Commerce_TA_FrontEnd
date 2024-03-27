@@ -15,6 +15,7 @@ import Cart from "./pages/Cart/Cart";
 // import SuccessPopup from "./components/Alerts/SuccessPopup";
 import NotFoundPage from "./pages/NotFound/NotFound";
 import Test from "./components/Product/ProductCard"
+// import Iklan from "./components/Iklan/Iklan"
 
 
 const AppLayout = () => (
@@ -43,6 +44,7 @@ const App = () => {
 				<Route path="/login" element={<LoginForm />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/test" element={<Test />} />
+				{/* <Route path="/iklan" element={<Iklan />} /> */}
 			</Routes>
 		</Router>
 	);
