@@ -1,0 +1,59 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 120px;
+    color: #fff;
+}
+
+.nav-logo{
+    color: #fff;
+	font-family: "Montserrat", Helvetica;
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.nav-menu{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    font-size: 18px;
+    gap: 20px;
+    
+}
+
+.nav-log{
+    border-radius: 50px;
+    padding: 10px 30px;
+    background: #fff;
+    color: black;
+    box-shadow: 4px 5px 20px 0px rgba(0, 0, 0, 0.3);
+
+}
+
+.nav-user-cart-fav{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* .nav-user-cart-fav: active{
+    
+} */
+
+.nav-cart-count{
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -35px;
+    margin-right: 20px;
+    margin-left: -55px;
+    border-radius: 11px;
+    font-size: 14px;
+    background: #142850;
+    color: white;
+}
+
+
