@@ -1,0 +1,21 @@
+.product-card-container {
+	transition: transform 0.3s ease, border-radius 0.3s ease;
+	border-radius: 30px;
+	overflow: hidden;
+}
+
+.product-card-details .price {
+	font-weight: bold; /* Make the text bold */
+	font-size: 35px; /* Set the text size to 16 pixels */
+	color: #142850;
+}
+
+.product-card-container:hover {
+	transform: scale(1.05);
+	border-radius: 30px;
+}
+
+.product-card-link {
+	text-decoration: none;
+	color: inherit;
+}
