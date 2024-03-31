@@ -59,26 +59,3 @@ export const getPurchaseReceipt = async (purchaseId) => {
 		};
 	}
 };
-
-export const deleteUserReceipt = async (purchaseId) => {
-	const DELETEURL = `${RECEIPT_URL}/${purchaseId}`;
-	try {
-		const data = await axios.delete(DELETEURL, config);
-		const res = data.data;
-
-		if (res.success === true) {
-			return {
-				status: "success",
-				message: "receipt deleted successfully",
-				data: res,
-			};
-		} else {
-			return { res: res, success: false };
-		}
-	} catch (error) {
-		return {
-			status: "error",
-			message: error.response.data.message,
-		};
-	}
-};

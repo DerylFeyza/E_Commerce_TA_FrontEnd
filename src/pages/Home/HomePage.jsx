@@ -22,14 +22,7 @@ const Home = () => {
 
 	return (
 		<>
-			{console.log(products)}
-
-			<div className="home-container">
-				<div>
-					<h1>Product List</h1>
-					<ProductList products={products} />
-				</div>
-			</div>
+			<ProductList products={products} />
 		</>
 	);
 };

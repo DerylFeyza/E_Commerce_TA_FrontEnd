@@ -24,13 +24,7 @@ const Searched = () => {
 
 	return (
 		<>
-			<div className="home-container">
-				<div>
-					<h1>Product List</h1>
-					<ProductList products={products} />
-					{console.log(products)}
-				</div>
-			</div>
+			<ProductList products={products} />
 		</>
 	);
 };
