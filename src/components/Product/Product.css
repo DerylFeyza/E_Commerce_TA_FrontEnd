@@ -55,3 +55,7 @@
 .product-card-details .price {
 	margin: 0;
 }
+
+.ProductListContainer {
+	padding: 180px;
+}

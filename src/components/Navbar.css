@@ -52,7 +52,7 @@
 	background-color: #f0f0f0;
 }
 
-@media all and (min-width: 1800px) {
+@media all {
 	.navbar .nav-item .dropdown-menu {
 		display: none;
 	}
