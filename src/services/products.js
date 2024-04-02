@@ -37,6 +37,28 @@ export const getPaginatedDataProduct = async (page) => {
 	}
 };
 
+export const getCheapestProducts = async () => {
+	const URL = `${PRODUCT_URL}/cheapest`;
+	try {
+		const data = await axios.get(URL);
+		const res = data.data;
+
+		if (res.success === true) {
+			return {
+				status: "success",
+				data: res.data,
+			};
+		} else {
+			return { res: res, success: false };
+		}
+	} catch (err) {
+		return {
+			status: "error",
+			message: err.response.data.message,
+		};
+	}
+};
+
 export const getProductById = async (ProductId) => {
 	const URL = `${PRODUCT_URL}/${ProductId}`;
 	try {

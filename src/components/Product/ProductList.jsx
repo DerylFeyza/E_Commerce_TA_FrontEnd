@@ -3,13 +3,15 @@ import ProductCard from "./ProductCard";
 
 const ProductList = ({ products }) => {
 	return (
-		<div className="container">
-			<div className="row">
-				{products.map((product, index) => (
-					<div key={index} className="col mb-4">
-						<ProductCard product={product} />
-					</div>
-				))}
+		<div className="ProductListContainer">
+			<div className="container-fluid">
+				<div className="row">
+					{products.map((product, index) => (
+						<div key={index} className="col mb-4 d-flex justify-content-center">
+							<ProductCard product={product} />
+						</div>
+					))}
+				</div>
 			</div>
 		</div>
 	);
