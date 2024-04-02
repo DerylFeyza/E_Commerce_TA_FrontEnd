@@ -1,3 +1,8 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
 .product-card-container {
 	transition: transform 0.3s ease, border-radius 0.3s ease;
 	border-radius: 25px;
@@ -34,12 +39,12 @@
 }
 
 .product-card-container {
-	width: 260px;
-	height: 364px;
+	width: 16.25rem;
+	height: 22.75rem;
 }
 
 .card-title {
-	font-size: 1.25rem; /* Adjust the font size of the title as needed */
+	font-size: 1.25rem;
 	white-space: nowrap; /* Prevent the title from wrapping to a new line */
 	overflow: hidden; /* Hide any overflow text */
 	text-overflow: ellipsis; /* Add ellipsis (...) to indicate truncated text */
@@ -57,5 +62,26 @@
 }
 
 .ProductListContainer {
-	padding: 180px;
+	padding: 30;
+}
+
+@media (min-width: 768px) {
+	.ProductListContainer {
+		padding: 180px;
+	}
+}
+
+.slider {
+	margin: 0px;
+	overflow: "hidden";
+	padding: 0rem 0;
+}
+
+.slider img {
+	width: 100%;
+	border-radius: 10px;
+}
+
+.react-multi-carousel-list {
+	padding: 0rem 0 2rem 0;
 }

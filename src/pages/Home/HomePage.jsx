@@ -30,7 +30,7 @@ function Home() {
 
 	return (
 		<>
-			<Carousel></Carousel>
+			<Carousel />
 			<ProductCarousel products={carouselProducts} />
 			<ProductList products={products} />
 		</>

@@ -7,7 +7,7 @@ const ProductList = ({ products }) => {
 			<div className="container-fluid">
 				<div className="row">
 					{products.map((product, index) => (
-						<div key={index} className="col mb-4 d-flex justify-content-center">
+						<div key={index} className="col my-4 d-flex justify-content-center">
 							<ProductCard product={product} />
 						</div>
 					))}
