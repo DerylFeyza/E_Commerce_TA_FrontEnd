@@ -15,11 +15,13 @@ export const imageFetcher = (foto) => {
 	return `${PRODUCT_URL}/image/${foto}`;
 };
 
-export const getPaginatedDataProduct = async (page) => {
-	const URL = `${PRODUCT_URL}/?page=${page}`;
+export const getPaginatedDataProduct = async (page, limit) => {
+	const productPerPage = limit ? limit : 20;
+	const URL = `${PRODUCT_URL}/?page=${page}&limit=${productPerPage}`;
 	try {
 		const data = await axios.get(URL);
 		const res = data.data;
+		console.log(res);
 
 		if (res.success === true) {
 			return {

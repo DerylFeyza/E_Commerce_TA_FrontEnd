@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
-import { BASE_API } from "../../utils/http-common";
+import { imageFetcher } from "../../services/products";
 import { Link } from "react-router-dom";
 import { GrLocation } from "react-icons/gr";
 import "./Product.css";
 
 const ProductCard = ({ product }) => {
-	const IMAGEURL = `${BASE_API}/produk/image/${product.gambar_barang}`;
+	const IMAGEURL = imageFetcher(product.gambar_barang);
 	return (
-		<div className="product-card-container shadow ">
+		<div className="product-card-container shadow">
 			<div>
 				<Link
 					to={`/products/${product.id}`}

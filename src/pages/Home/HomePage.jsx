@@ -6,6 +6,7 @@ import {
 	getCheapestProducts,
 } from "../../services/products";
 import Carousel from "./Carousel";
+import HomeAd from "./HomeAd";
 
 function Home() {
 	const [products, setProducts] = useState([]);
@@ -32,7 +33,19 @@ function Home() {
 		<>
 			<Carousel />
 			<ProductCarousel products={carouselProducts} />
-			<ProductList products={products} />
+			<HomeAd />
+			<div className="ProductListContainer-home">
+				<h1>Khusus Untukmu</h1>
+				<ProductList products={products} />
+			</div>
+			<div className="button-home-container">
+				<button
+					type="button"
+					className="load-more-button-home btn btn-outline-primary btn-lg "
+				>
+					Muat Lebih Banyak
+				</button>
+			</div>
 		</>
 	);
 }

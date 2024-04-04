@@ -66,22 +66,51 @@
 }
 
 @media (min-width: 768px) {
-	.ProductListContainer {
-		padding: 180px;
+	.ProductListContainer-home {
+		margin-top: 80px;
+		margin-left: 180px;
+		margin-right: 180px;
+	}
+	.product-carousel-container {
+		margin-top: 80px;
+		margin-left: 180px;
+		margin-right: 180px;
 	}
 }
 
-.slider {
-	margin: 0px;
-	overflow: "hidden";
-	padding: 0rem 0;
+.product-carousel-container h1 {
+	margin-left: 35px;
+	color: #00909e;
+}
+.ProductListContainer-home h1 {
+	margin-left: 35px;
+	color: #00909e;
 }
 
-.slider img {
-	width: 100%;
-	border-radius: 10px;
+.ad-container {
+	padding-top: 3.5rem;
+	width: 80%;
+	margin: auto;
+	display: flex;
+	align-items: flex-start;
 }
 
-.react-multi-carousel-list {
-	padding: 0rem 0 2rem 0;
+.home-ad-image-container {
+	width: 45%;
+	margin-right: 5%;
+	border-radius: 30px;
+	overflow: hidden;
+}
+
+.home-ad-image-container:last-child {
+	margin-right: 0;
+}
+
+.button-home-container {
+	margin-top: 60px;
+	text-align: center;
+}
+
+.load-more-button-home {
+	width: 500px;
 }
