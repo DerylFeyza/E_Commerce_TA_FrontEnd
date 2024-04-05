@@ -81,16 +81,18 @@ export const getProductById = async (ProductId) => {
 	}
 };
 
-export const findProduct = async (Keyword) => {
-	const URL = `${PRODUCT_URL}/find`;
+export const findProduct = async (Keyword, page) => {
+	const URL = `${PRODUCT_URL}/find?page=${page}&limit=${1}`;
 	try {
 		const data = await axios.post(URL, { keyword: Keyword });
 		const res = data.data;
+		console.log(res);
 
 		if (res.success === true) {
 			return {
 				status: "success",
 				data: res.data,
+				pagination: res.pagination,
 			};
 		}
 	} catch (err) {

@@ -7,6 +7,7 @@ import {
 } from "../../services/products";
 import Carousel from "./Carousel";
 import HomeAd from "./HomeAd";
+import { Link } from "react-router-dom";
 
 function Home() {
 	const [products, setProducts] = useState([]);
@@ -39,12 +40,9 @@ function Home() {
 				<ProductList products={products} />
 			</div>
 			<div className="button-home-container">
-				<button
-					type="button"
-					className="load-more-button-home btn btn-outline-primary btn-lg "
-				>
+				<Link to="/your-target-url" className="load-more-button-home ">
 					Muat Lebih Banyak
-				</button>
+				</Link>
 			</div>
 		</>
 	);
