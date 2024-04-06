@@ -143,3 +143,10 @@
 .paginated-product-container {
 	margin-top: 120px;
 }
+
+.custom-column {
+	flex: 0 0 calc(20% - 30px);
+	max-width: calc(20% - 30px);
+	margin: 0 15px 30px;
+	justify-content: center;
+}

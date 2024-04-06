@@ -14,7 +14,7 @@ const Pagination = ({ PaginationData, URL, RefreshPage }) => {
 
 	const handlePageChange = (event) => {
 		const selectedPage = event.selected;
-		navigate(`${URL}${selectedPage + 1}`);
+		navigate(URL + (selectedPage + 1));
 		setCurrentPage(selectedPage);
 		RefreshPage();
 	};

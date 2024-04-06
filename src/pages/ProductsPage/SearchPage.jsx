@@ -20,7 +20,7 @@ const Searched = () => {
 		try {
 			if (window.location.pathname === "/search") {
 				res = await findProduct(keyword, page);
-				setURL(`/search?k=${keyword}&page=$`);
+				setURL(`/search?k=${keyword}&page=`);
 			} else if (window.location.pathname === "/products") {
 				res = await getPaginatedDataProduct(page, 50);
 				setURL(`/products?page=`);

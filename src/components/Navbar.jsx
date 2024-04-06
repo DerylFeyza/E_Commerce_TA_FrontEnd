@@ -7,6 +7,7 @@ import { IoCartOutline, IoPersonCircleSharp } from "react-icons/io5";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 const Navbar = () => {
+	const [userData] = useState(getLocalStorage(LOCAL_STORAGE_USER));
 	const [search, setSearch] = useState("");
 	const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(true);
 
@@ -74,31 +75,47 @@ const Navbar = () => {
 					<Link to="/cart" className="mx-3">
 						<IoCartOutline style={{ color: "#fff", fontSize: "3rem" }} />
 					</Link>
-					<div className="nav-item dropdown">
-						<IoPersonCircleSharp
-							className="nav-link dropdown-toggle"
-							style={{ color: "#fff", fontSize: "2.8rem", cursor: "pointer" }}
-							id="dropdownMenuButton"
-							data-bs-toggle="dropdown"
-						/>
-						<ul className="dropdown-menu">
-							<li>
-								<Link className="dropdown-item" to="/profile">
-									Profile
-								</Link>
-							</li>
-							<li>
-								<Link className="dropdown-item" to="/settings">
-									Settings
-								</Link>
-							</li>
-							<li>
-								<Link className="dropdown-item" to="/logout">
-									Logout
-								</Link>
-							</li>
-						</ul>
-					</div>
+					{userData ? (
+						<div className="nav-item dropdown">
+							<IoPersonCircleSharp
+								className="nav-link dropdown-toggle"
+								style={{ color: "#fff", fontSize: "2.8rem", cursor: "pointer" }}
+								id="dropdownMenuButton"
+								data-bs-toggle="dropdown"
+							/>
+							<ul className="dropdown-menu">
+								<li>
+									<div className="dropdown-item">{userData.username}</div>
+								</li>
+								<li>
+									<Link className="dropdown-item" to="/address">
+										Addresses
+									</Link>
+								</li>
+								<li>
+									<Link className="dropdown-item" to="/purchases">
+										History
+									</Link>
+								</li>
+								{userData.role === "seller" && (
+									<li>
+										<Link className="dropdown-item" to="/merchant">
+											Merchant Dashboard
+										</Link>
+									</li>
+								)}
+								<li>
+									<Link className="dropdown-item" onClick={Logout} to="/login">
+										Logout
+									</Link>
+								</li>
+							</ul>
+						</div>
+					) : (
+						<Link className="btn btn-primary" to="/login">
+							Login
+						</Link>
+					)}
 				</div>
 			</div>
 		</nav>
