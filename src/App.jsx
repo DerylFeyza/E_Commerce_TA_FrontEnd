@@ -9,7 +9,7 @@ import Register from "./pages/LoginRegister/RegisterForm";
 import Home from "./pages/Home/HomePage";
 import Navbar from "./components/Navbar";
 import ProductDetails from "./pages/ProductDetails/Details";
-import ProductSearch from "./pages/SearchPage/SearchPage";
+import ProductSearch from "./pages/ProductsPage/SearchPage";
 import Details from "./pages/ProductDetails/DetailsCard";
 import Cart from "./pages/Cart/Cart";
 import Purchases from "./pages/TransHistory/History";
@@ -41,6 +41,7 @@ const App = () => {
 					<Route path="/products/update/:id" element={<AddProduct />} />
 					<Route path="/receipt/:id" element={<PurchaseReceipt />} />
 					<Route path="/search" element={<ProductSearch />} />
+					<Route path="/products" element={<ProductSearch />} />
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/purchases" element={<Purchases />} />
 					<Route path="*" element={<NotFoundPage />} />

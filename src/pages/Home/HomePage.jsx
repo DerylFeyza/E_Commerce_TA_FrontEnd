@@ -40,7 +40,7 @@ function Home() {
 				<ProductList products={products} />
 			</div>
 			<div className="button-home-container">
-				<Link to="/your-target-url" className="load-more-button-home ">
+				<Link to="/products" className="load-more-button-home ">
 					Muat Lebih Banyak
 				</Link>
 			</div>
