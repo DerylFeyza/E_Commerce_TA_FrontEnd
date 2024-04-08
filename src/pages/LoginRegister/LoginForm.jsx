@@ -17,6 +17,7 @@ const LoginForm = () => {
 			console.log(res);
 			if (res.success === true) {
 				navigate("/home");
+				window.location.reload();
 			}
 		} catch (error) {
 			console.error("pls:", error);

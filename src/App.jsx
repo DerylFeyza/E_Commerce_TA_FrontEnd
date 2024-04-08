@@ -17,6 +17,7 @@ import NotFoundPage from "./pages/NotFound/NotFound";
 import PurchaseReceipt from "./pages/Receipt/Receipt";
 import AddProduct from "./pages/MerchantDashboard/AddEditProduct";
 import MerchantDashboard from "./pages/MerchantDashboard/Dashboard";
+import AddressPage from "./pages/Address/AddressPage";
 
 const AppLayout = () => (
 	<>
@@ -44,6 +45,7 @@ const App = () => {
 					<Route path="/products" element={<ProductSearch />} />
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/purchases" element={<Purchases />} />
+					<Route path="/address" element={<AddressPage />} />
 					<Route path="*" element={<NotFoundPage />} />
 				</Route>
 
