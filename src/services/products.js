@@ -15,8 +15,33 @@ export const imageFetcher = (foto) => {
 	return `${PRODUCT_URL}/image/${foto}`;
 };
 
-export const getPaginatedDataProduct = async (page) => {
-	const URL = `${PRODUCT_URL}/?page=${page}`;
+export const getPaginatedDataProduct = async (page, limit) => {
+	const productPerPage = limit ? limit : 20;
+	const URL = `${PRODUCT_URL}/?page=${page}&limit=${productPerPage}`;
+	try {
+		const data = await axios.get(URL);
+		const res = data.data;
+		console.log(res);
+
+		if (res.success === true) {
+			return {
+				status: "success",
+				data: res.data,
+				pagination: res.pagination,
+			};
+		} else {
+			return { res: res, success: false };
+		}
+	} catch (err) {
+		return {
+			status: "error",
+			message: err.response.data.message,
+		};
+	}
+};
+
+export const getCheapestProducts = async () => {
+	const URL = `${PRODUCT_URL}/cheapest`;
 	try {
 		const data = await axios.get(URL);
 		const res = data.data;
@@ -57,16 +82,18 @@ export const getProductById = async (ProductId) => {
 	}
 };
 
-export const findProduct = async (Keyword) => {
-	const URL = `${PRODUCT_URL}/find`;
+export const findProduct = async (Keyword, page) => {
+	const URL = `${PRODUCT_URL}/find?page=${page}&limit=${50}`;
 	try {
 		const data = await axios.post(URL, { keyword: Keyword });
 		const res = data.data;
+		console.log(res);
 
 		if (res.success === true) {
 			return {
 				status: "success",
 				data: res.data,
+				pagination: res.pagination,
 			};
 		}
 	} catch (err) {

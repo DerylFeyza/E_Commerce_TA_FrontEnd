@@ -1,19 +1,37 @@
 import PropTypes from "prop-types";
-import { BASE_API } from "../../utils/http-common";
+import { imageFetcher } from "../../services/products";
 import { Link } from "react-router-dom";
+import { GrLocation } from "react-icons/gr";
+import "./Product.css";
 
 const ProductCard = ({ product }) => {
-	const IMAGEURL = `${BASE_API}/produk/image/${product.gambar_barang}`;
+	const IMAGEURL = imageFetcher(product.gambar_barang);
 	return (
-		<div className="card">
-			<img src={IMAGEURL} className="card-img-top" alt={product.nama_barang} />
-			<div className="card-body">
-				<h5 className="card-title">{product.nama_barang}</h5>
-				<h5 className="card-title">{product.id}</h5>
-				<p className="card-text">Category: {product.kategori}</p>
-				<p className="card-text">Price: ${product.harga}</p>
-				<Link to={`/products/${product.id}`} className="btn btn-primary">
-					View Details
+		<div className="product-card-container shadow">
+			<div>
+				<Link
+					to={`/products/${product.id}`}
+					className="product-card-link"
+					style={{ textDecoration: "none" }}
+				>
+					<div className="card product-card border-0 ">
+						<img
+							src={IMAGEURL}
+							className="card-img-top "
+							alt={product.nama_barang}
+							style={{ objectFit: "cover", width: "100%", height: "210px" }}
+						/>
+						<div className="card-body product-card-details">
+							<h5 className="card-title name">{product.nama_barang}</h5>
+							<p className="card-text price">Rp. {product.harga}</p>
+							<p className="card-text shop">
+								{product.additional_info[0].nama_toko}
+							</p>
+							<p className="location">
+								<GrLocation /> {product.additional_info[0].kota}
+							</p>
+						</div>
+					</div>
 				</Link>
 			</div>
 		</div>
@@ -27,6 +45,12 @@ ProductCard.propTypes = {
 		gambar_barang: PropTypes.string.isRequired,
 		kategori: PropTypes.string.isRequired,
 		harga: PropTypes.number.isRequired,
+		additional_info: PropTypes.arrayOf(
+			PropTypes.shape({
+				nama_toko: PropTypes.string,
+				kota: PropTypes.string,
+			})
+		),
 	}).isRequired,
 };
 

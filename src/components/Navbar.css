@@ -1,0 +1,65 @@
+.nav-logo {
+	color: #fff;
+	font-family: "Montserrat", Helvetica;
+	font-weight: bold;
+	margin-left: 25px;
+}
+
+.nav-logo-title {
+	text-decoration: none;
+	color: inherit;
+	font-size: 42px;
+	color: #fff;
+}
+
+.navbar-bg {
+	background-color: #142850;
+}
+
+.search-form {
+	color: #fff;
+}
+
+.navbar input[type="text"] {
+	background-color: transparent;
+	border: 2px solid #fff;
+	color: #fff;
+	padding-left: 2rem;
+}
+
+.navbar input[type="text"]::placeholder {
+	color: #fff;
+	opacity: 0.5;
+}
+
+.navbar-logo-container {
+	margin-left: 130px;
+}
+
+.navbar-logo-container {
+	padding-right: 100px;
+}
+
+.dropdown-menu {
+	background-color: #fff;
+}
+
+.dropdown-item {
+	color: #000;
+}
+
+.dropdown-item:hover {
+	background-color: #f0f0f0;
+}
+
+@media all {
+	.navbar .nav-item .dropdown-menu {
+		display: none;
+	}
+	.navbar .nav-item:hover .dropdown-menu {
+		display: block;
+	}
+	.navbar .nav-item .dropdown-menu {
+		margin-top: 0;
+	}
+}

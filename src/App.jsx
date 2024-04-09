@@ -9,7 +9,7 @@ import Register from "./pages/LoginRegister/RegisterForm";
 import Home from "./pages/Home/HomePage";
 import Navbar from "./components/Navbar";
 import ProductDetails from "./pages/ProductDetails/Details";
-import ProductSearch from "./pages/SearchPage/SearchPage";
+import ProductSearch from "./pages/ProductsPage/SearchPage";
 import Details from "./pages/ProductDetails/DetailsCard";
 import Cart from "./pages/Cart/Cart";
 import Purchases from "./pages/TransHistory/History";
@@ -17,6 +17,7 @@ import NotFoundPage from "./pages/NotFound/NotFound";
 import PurchaseReceipt from "./pages/Receipt/Receipt";
 import AddProduct from "./pages/MerchantDashboard/AddEditProduct";
 import MerchantDashboard from "./pages/MerchantDashboard/Dashboard";
+import AddressPage from "./pages/Address/AddressPage";
 
 const AppLayout = () => (
 	<>
@@ -41,8 +42,10 @@ const App = () => {
 					<Route path="/products/update/:id" element={<AddProduct />} />
 					<Route path="/receipt/:id" element={<PurchaseReceipt />} />
 					<Route path="/search" element={<ProductSearch />} />
+					<Route path="/products" element={<ProductSearch />} />
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/purchases" element={<Purchases />} />
+					<Route path="/address" element={<AddressPage />} />
 					<Route path="*" element={<NotFoundPage />} />
 				</Route>
 
