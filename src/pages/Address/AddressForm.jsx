@@ -1,13 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-const AddressForm = ({ HandleAdd, showModal, setShowModal }) => {
+const AddressForm = ({
+	HandleAdd,
+	showModal,
+	setShowModal,
+	isUpdate,
+	HandleUpdate,
+}) => {
+	const [onUpdate, setOnUpdate] = useState(false);
 	const [nama, setNama] = useState("");
 	const [kota, setKota] = useState("");
 	const [alamat, setAlamat] = useState("");
 	const [warning, setWarning] = useState(null);
-	const handleClose = () => setShowModal(false);
+	const handleClose = () => {
+		setShowModal(false);
+		setWarning(null);
+	};
+
+	useEffect(() => {
+		if (showModal && isUpdate) {
+			setNama(isUpdate.nama);
+			setKota(isUpdate.kota);
+			setAlamat(isUpdate.alamat);
+			setOnUpdate(true);
+		} else if (!isUpdate) {
+			setNama("");
+			setKota("");
+			setAlamat("");
+			setOnUpdate(false);
+		}
+	}, [showModal, isUpdate]);
 
 	const handleSave = async (e) => {
 		e.preventDefault();
@@ -17,16 +41,30 @@ const AddressForm = ({ HandleAdd, showModal, setShowModal }) => {
 		}
 		const values = { nama, kota, alamat };
 		try {
-			const res = await HandleAdd(values);
-			if (res.success === true) {
-				setShowModal(false);
-				setWarning(null);
-				setAlamat("");
-				setKota("");
-				setNama("");
-			}
-			if (res.success === false) {
-				setWarning(res.message);
+			if (onUpdate) {
+				const res = await HandleUpdate(isUpdate.id, values);
+				if (res.success === true) {
+					setShowModal(false);
+					setWarning(null);
+					setAlamat("");
+					setKota("");
+					setNama("");
+				}
+				if (res.success === false) {
+					setWarning(res.message);
+				}
+			} else {
+				const res = await HandleAdd(values);
+				if (res.success === true) {
+					setShowModal(false);
+					setWarning(null);
+					setAlamat("");
+					setKota("");
+					setNama("");
+				}
+				if (res.success === false) {
+					setWarning(res.message);
+				}
 			}
 		} catch (error) {
 			console.log("failed to add product", error);
@@ -37,7 +75,9 @@ const AddressForm = ({ HandleAdd, showModal, setShowModal }) => {
 		<>
 			<Modal show={showModal} onHide={handleClose} centered>
 				<Modal.Header>
-					<Modal.Title>Add Address</Modal.Title>
+					<Modal.Title>
+						{onUpdate ? "Update Address" : "Add Address"}
+					</Modal.Title>
 				</Modal.Header>
 				<Form onSubmit={(e) => handleSave(e)}>
 					<Modal.Body className="">
@@ -92,6 +132,10 @@ const AddressForm = ({ HandleAdd, showModal, setShowModal }) => {
 
 AddressForm.propTypes = {
 	HandleAdd: PropTypes.func.isRequired,
+	showModal: PropTypes.bool.isRequired,
+	setShowModal: PropTypes.func.isRequired,
+	isUpdate: PropTypes.object,
+	HandleUpdate: PropTypes.func.isRequired,
 };
 
 export default AddressForm;

@@ -42,16 +42,18 @@ const AddressPage = () => {
 
 	const handleUpdate = async (id, values) => {
 		try {
-			await updateAddress(id, values);
+			const res = await updateAddress(id, values);
 			retrieveAddresses();
+			console.log(res);
+			return res;
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
 	const updateForm = (addressData) => {
-		setInitialData(addressData);
 		setShowModal(true);
+		setInitialData(addressData);
 	};
 
 	const handleAdd = async (values) => {
@@ -87,7 +89,8 @@ const AddressPage = () => {
 					</button>
 					<AddressForm
 						HandleAdd={handleAdd}
-						initialData={initialData}
+						isUpdate={initialData}
+						HandleUpdate={handleUpdate}
 						showModal={showModal}
 						setShowModal={setShowModal}
 					/>

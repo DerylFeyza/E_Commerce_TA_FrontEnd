@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const AddressCard = ({ UserAddress, HandleDelete, TriggerUpdateForm }) => {
 	return (
 		<div className="card mt-4">
@@ -13,7 +15,7 @@ const AddressCard = ({ UserAddress, HandleDelete, TriggerUpdateForm }) => {
 					Update
 				</div>
 				<div
-					className="btn btn-danger"
+					className="btn btn-danger mx-2"
 					type="button"
 					onClick={() => HandleDelete(UserAddress.id)}
 				>
@@ -22,6 +24,17 @@ const AddressCard = ({ UserAddress, HandleDelete, TriggerUpdateForm }) => {
 			</div>
 		</div>
 	);
+};
+
+AddressCard.propTypes = {
+	UserAddress: PropTypes.shape({
+		id: PropTypes.number.isRequired,
+		nama: PropTypes.string.isRequired,
+		kota: PropTypes.string.isRequired,
+		alamat: PropTypes.string.isRequired,
+	}).isRequired,
+	HandleDelete: PropTypes.func.isRequired,
+	TriggerUpdateForm: PropTypes.func.isRequired,
 };
 
 export default AddressCard;

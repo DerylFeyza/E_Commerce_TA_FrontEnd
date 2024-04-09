@@ -61,7 +61,12 @@ export const updateAddress = async (id, values) => {
 		if (res.success === true) {
 			return {
 				success: true,
-				message: res.data,
+				message: res.message,
+			};
+		} else {
+			return {
+				success: false,
+				message: res.message,
 			};
 		}
 	} catch (error) {
