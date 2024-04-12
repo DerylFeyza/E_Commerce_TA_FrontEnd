@@ -1,4 +1,3 @@
-import RecentPurchaseCard from "./RecentPurchases";
 import MerchantProductCard from "./MerchantProductCard";
 import { useState, useEffect } from "react";
 import {
@@ -6,7 +5,9 @@ import {
 	getRecentPurchase,
 	deleteProduct,
 } from "../../services/products";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
+import "./MerchantDashboard.css";
+import { imageFetcher } from "../../services/products";
 
 const MerchantDashboard = () => {
 	const [products, setProducts] = useState([]);
@@ -40,6 +41,57 @@ const MerchantDashboard = () => {
 
 	return (
 		<>
+			<div className="container-recent-sales">
+				<div className="left-column-dashboard">
+					<h1>Recent Sales</h1>
+				</div>
+				<div className="right-column-dashboard">
+					{/* <div>
+						{purchasesDetail.map((purchases, index) => (
+							<RecentPurchaseCard
+								key={index}
+								purchaseData={purchases}
+								purchaseProduct={purchasesProducts[index]}
+							/>
+						))}
+					</div> */}
+					<div className="table-responsive">
+						<table className="table">
+							<thead>
+								<tr>
+									<th scope="col">Name</th>
+									<th scope="col">image</th>
+									<th scope="col">Quantity Sold</th>
+									<th scope="col">Price</th>
+									<th scope="col">Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								{purchasesProducts.map((products, index) => (
+									<tr key={index}>
+										<th scope="row" style={{ color: "#666666" }}>
+											{products.nama_barang}
+										</th>
+										<td>
+											<img
+												src={imageFetcher(products.gambar_barang)}
+												alt={products.nama_barang}
+												style={{
+													width: "50px",
+												}}
+											/>
+										</td>
+										<td>{purchasesDetail[index].quantity}</td>
+										<td>{products.harga}</td>
+										<td>{products.harga * purchasesDetail[index].quantity}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
 			<div className="container">
 				<div className="row">
 					<h1>Product List</h1>
@@ -55,15 +107,6 @@ const MerchantDashboard = () => {
 				<Link to="/products/add">
 					<button>Add Product</button>
 				</Link>
-			</div>
-			<div>
-				{purchasesDetail.map((purchases, index) => (
-					<RecentPurchaseCard
-						key={index}
-						purchaseData={purchases}
-						purchaseProduct={purchasesProducts[index]}
-					/>
-				))}
 			</div>
 		</>
 	);

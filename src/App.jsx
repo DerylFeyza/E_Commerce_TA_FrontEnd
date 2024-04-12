@@ -18,6 +18,7 @@ import PurchaseReceipt from "./pages/Receipt/Receipt";
 import AddProduct from "./pages/MerchantDashboard/AddEditProduct";
 import MerchantDashboard from "./pages/MerchantDashboard/Dashboard";
 import AddressPage from "./pages/Address/AddressPage";
+import AddressPicker from "./pages/MerchantDashboard/AddressPicker";
 
 const AppLayout = () => (
 	<>
@@ -51,6 +52,7 @@ const App = () => {
 
 				<Route path="/login" element={<LoginForm />} />
 				<Route path="/register" element={<Register />} />
+				<Route path="/test" element={<AddressPicker />} />
 			</Routes>
 		</Router>
 	);

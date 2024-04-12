@@ -25,7 +25,6 @@ const AddressPage = () => {
 		try {
 			const res = await getUserAddress();
 			setAddress(res.data);
-			console.log("walawe");
 		} catch (err) {
 			console.log(err);
 		}
