@@ -1,4 +1,3 @@
-import "./Cart.css";
 import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
 import { Link } from "react-router-dom";

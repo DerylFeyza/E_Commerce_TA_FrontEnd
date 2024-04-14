@@ -19,6 +19,7 @@ import AddProduct from "./pages/MerchantDashboard/AddEditProduct";
 import MerchantDashboard from "./pages/MerchantDashboard/Dashboard";
 import AddressPage from "./pages/Address/AddressPage";
 import AddressPicker from "./pages/MerchantDashboard/AddressPicker";
+import "./App.css";
 
 const AppLayout = () => (
 	<>

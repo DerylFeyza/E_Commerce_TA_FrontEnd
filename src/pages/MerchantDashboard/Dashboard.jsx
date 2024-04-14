@@ -6,7 +6,6 @@ import {
 	deleteProduct,
 } from "../../services/products";
 import { Link } from "react-router-dom";
-import "./MerchantDashboard.css";
 import { imageFetcher } from "../../services/products";
 
 const MerchantDashboard = () => {
@@ -38,6 +37,10 @@ const MerchantDashboard = () => {
 			console.log(error);
 		}
 	};
+
+	if (!products || !purchasesDetail) {
+		return <>loading</>;
+	}
 
 	return (
 		<>
@@ -92,11 +95,11 @@ const MerchantDashboard = () => {
 				</div>
 			</div>
 
-			<div className="container">
+			<div className="container-merchant-products">
 				<div className="row">
-					<h1>Product List</h1>
+					<h1>Your Products</h1>
 					{products.map((product, index) => (
-						<div key={index} className="col-md-4 mb-4">
+						<div key={index} className="custom-column mb-4 mt-4">
 							<MerchantProductCard
 								product={product}
 								handleDelete={handleDelete}

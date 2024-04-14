@@ -1,6 +1,4 @@
 import Ad1 from "../../assets/sale1.png";
-import "./Carousel.css";
-
 const Carousel = () => {
 	return (
 		<div className="carousel-container">
