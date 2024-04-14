@@ -4,35 +4,45 @@ import { imageFetcher } from "../../services/products";
 
 const MerchantProductCard = ({ product, handleDelete }) => {
 	return (
-		<div className="card">
-			<img
-				src={imageFetcher(product.gambar_barang)}
-				className="card-img-top"
-				alt={product.nama_barang}
-			/>
-			<div className="card-body">
-				<h5 className="card-title">{product.nama_barang}</h5>
-				<h5 className="card-title">{product.id}</h5>
-				<p className="card-text">Category: {product.kategori}</p>
-				<p className="card-text">Price: ${product.harga}</p>
-
-				<div className="button-container">
+		<>
+			<div className="product-card-container shadow">
+				<div>
 					<Link
-						to={`/products/update/${product.id}`}
-						className="btn btn-primary mr-2"
+						to={`/products/${product.id}`}
+						className="product-card-link"
+						style={{ textDecoration: "none" }}
 					>
-						Edit
+						<div className="card product-card border-0 ">
+							<img
+								src={imageFetcher(product.gambar_barang)}
+								className="card-img-top "
+								alt={product.nama_barang}
+								style={{ objectFit: "cover", width: "100%", height: "210px" }}
+							/>
+							<div className="card-body product-card-details">
+								<h5 className="card-title name">{product.nama_barang}</h5>
+
+								<div className="button-container">
+									<Link
+										to={`/products/update/${product.id}`}
+										className="btn btn-primary mr-2"
+									>
+										Edit
+									</Link>
+									<div
+										className="btn btn-danger"
+										type="button"
+										onClick={() => handleDelete(product.id)}
+									>
+										Delete
+									</div>
+								</div>
+							</div>
+						</div>
 					</Link>
-					<div
-						className="btn btn-danger"
-						type="button"
-						onClick={() => handleDelete(product.id)}
-					>
-						Delete
-					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

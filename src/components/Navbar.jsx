@@ -4,7 +4,6 @@ import { LOCAL_STORAGE_USER } from "../utils/http-common";
 import { Logout } from "../pages/LoginRegister/LoginHandler";
 import { CiSearch } from "react-icons/ci";
 import { IoCartOutline, IoPersonCircleSharp } from "react-icons/io5";
-import "./Navbar.css";
 import { Link } from "react-router-dom";
 const Navbar = () => {
 	const [userData] = useState(getLocalStorage(LOCAL_STORAGE_USER));

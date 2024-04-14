@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import { imageFetcher } from "../../services/products";
 import { Link } from "react-router-dom";
 import { GrLocation } from "react-icons/gr";
-import "./Product.css";
 
 const ProductCard = ({ product }) => {
 	const IMAGEURL = imageFetcher(product.gambar_barang);

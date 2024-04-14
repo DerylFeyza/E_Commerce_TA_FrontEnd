@@ -6,6 +6,8 @@ import {
 	updateProduct,
 } from "../../services/products";
 import { useNavigate, useParams } from "react-router-dom";
+import { getUserAddress } from "../../services/address";
+import { Link } from "react-router-dom";
 
 const AddProduct = () => {
 	const { id } = useParams();
@@ -15,6 +17,8 @@ const AddProduct = () => {
 	const [harga, setHarga] = useState("");
 	const [stok, setStok] = useState("");
 	const [details, setDetails] = useState("");
+	const [pickedAddress, setPickedAddress] = useState(null);
+	const [userAddress, setUserAddress] = useState([]);
 	const [imagePreview, setImagePreview] = useState("");
 	const navigate = useNavigate();
 
@@ -28,6 +32,7 @@ const AddProduct = () => {
 				setHarga(product.harga);
 				setStok(product.stok);
 				setDetails(product.details);
+				setPickedAddress(product.id_alamat);
 				if (product.gambar_barang) {
 					setImagePreview(imageFetcher(product.gambar_barang));
 				}
@@ -38,6 +43,7 @@ const AddProduct = () => {
 		if (id) {
 			fetchProduct();
 		}
+		retrieveProductAddress();
 	}, [id]);
 
 	const handleImageChange = (e) => {
@@ -53,12 +59,27 @@ const AddProduct = () => {
 		}
 	};
 
+	const retrieveProductAddress = async () => {
+		try {
+			const res = await getUserAddress();
+			setUserAddress(res.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const onChangeAddress = (e) => {
+		const value = e.target.value;
+		setPickedAddress(value);
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const formData = new FormData();
 		formData.append("nama_barang", namaBarang);
 		formData.append("gambar_barang", gambarBarang);
 		formData.append("kategori", kategori);
+		formData.append("id_alamat", pickedAddress);
 		formData.append("harga", harga);
 		formData.append("stok", stok);
 		formData.append("details", details);
@@ -83,6 +104,8 @@ const AddProduct = () => {
 
 	return (
 		<>
+			{console.log(pickedAddress)}
+
 			<section className="py-5">
 				<form onSubmit={handleSubmit}>
 					<div className="container px-4 px-lg-5 my-5">
@@ -146,6 +169,35 @@ const AddProduct = () => {
 									value={stok}
 									onChange={(e) => setStok(e.target.value)}
 								/>
+								{userAddress.length > 0 ? (
+									<div className="col-md-6">
+										<div className="input-group">
+											<select
+												className="form-select"
+												aria-label="Default select example"
+												onChange={onChangeAddress}
+											>
+												{userAddress.map((address, index) => {
+													return (
+														<option
+															key={index}
+															value={address.id}
+															selected={address.id === pickedAddress}
+														>
+															{address.nama} - {address.kota}
+														</option>
+													);
+												})}
+											</select>
+										</div>
+									</div>
+								) : (
+									<div className="col-md-6">
+										<Link to="/Address" className="btn btn-primary">
+											No Address Found, Add An Address
+										</Link>
+									</div>
+								)}
 								<label htmlFor="details" className="form-label">
 									Details
 								</label>

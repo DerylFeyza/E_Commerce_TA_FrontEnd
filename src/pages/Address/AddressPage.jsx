@@ -10,7 +10,6 @@ import {
 import SmallTown from "../../assets/SmallTown.svg";
 import AddressCard from "./AddressCard";
 import AddressForm from "./AddressForm";
-import "./Address.css";
 const AddressPage = () => {
 	const [userData] = useState(getLocalStorage(LOCAL_STORAGE_USER));
 	const [address, setAddress] = useState([]);
@@ -25,7 +24,6 @@ const AddressPage = () => {
 		try {
 			const res = await getUserAddress();
 			setAddress(res.data);
-			console.log("walawe");
 		} catch (err) {
 			console.log(err);
 		}

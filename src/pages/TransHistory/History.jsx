@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { getTransactionHistory } from "../../services/receipt";
 import HistoryCard from "./HistoryCard";
-import "./TransactionHistory.css";
 
 const Home = () => {
 	const [transactionHistory, setTransactionHistory] = useState([]);
