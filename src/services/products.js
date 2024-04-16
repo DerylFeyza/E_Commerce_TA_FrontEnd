@@ -82,6 +82,26 @@ export const getProductById = async (ProductId) => {
 	}
 };
 
+export const MerchantRetrieveProductDataById = async (ProductId) => {
+	const URL = `${PRODUCT_URL}/data/${ProductId}`;
+	try {
+		const data = await axios.get(URL, config);
+		const res = data.data;
+
+		if (res.success === true) {
+			return {
+				status: "success",
+				data: res.data,
+			};
+		}
+	} catch (err) {
+		return {
+			status: "error",
+			message: err.response.data.message,
+		};
+	}
+};
+
 export const findProduct = async (Keyword, page) => {
 	const URL = `${PRODUCT_URL}/find?page=${page}&limit=${50}`;
 	try {

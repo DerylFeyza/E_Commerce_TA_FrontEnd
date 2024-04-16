@@ -43,7 +43,7 @@ const MerchantDashboard = () => {
 	}
 
 	return (
-		<>
+		<div className="merchant-dashboard-container">
 			<div className="container-recent-sales">
 				<div className="left-column-dashboard">
 					<h1>Recent Sales</h1>
@@ -97,7 +97,12 @@ const MerchantDashboard = () => {
 
 			<div className="container-merchant-products">
 				<div className="row">
-					<h1>Your Products</h1>
+					<div className="product-list-details-memrchant-container">
+						<h1>Your Products</h1>
+						<Link to="/products/add" className="btn btn-success">
+							Add Product
+						</Link>
+					</div>
 					{products.map((product, index) => (
 						<div key={index} className="custom-column mb-4 mt-4">
 							<MerchantProductCard
@@ -107,11 +112,8 @@ const MerchantDashboard = () => {
 						</div>
 					))}
 				</div>
-				<Link to="/products/add">
-					<button>Add Product</button>
-				</Link>
 			</div>
-		</>
+		</div>
 	);
 };
 

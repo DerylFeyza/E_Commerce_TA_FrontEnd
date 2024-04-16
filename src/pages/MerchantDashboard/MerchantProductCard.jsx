@@ -5,7 +5,7 @@ import { imageFetcher } from "../../services/products";
 const MerchantProductCard = ({ product, handleDelete }) => {
 	return (
 		<>
-			<div className="product-card-container shadow">
+			<div className="merchant-product-card-container product-card-container shadow">
 				<div>
 					<Link
 						to={`/products/${product.id}`}
@@ -19,15 +19,16 @@ const MerchantProductCard = ({ product, handleDelete }) => {
 								alt={product.nama_barang}
 								style={{ objectFit: "cover", width: "100%", height: "210px" }}
 							/>
-							<div className="card-body product-card-details">
-								<h5 className="card-title name">{product.nama_barang}</h5>
+							<div className="card-body product-card-details merchant-product-card-details">
+								<h3 className="card-title name">{product.nama_barang}</h3>
+								<p className="card-title">Stock Remaining: {product.stok}</p>
 
 								<div className="button-container">
 									<Link
 										to={`/products/update/${product.id}`}
-										className="btn btn-primary mr-2"
+										className="btn btn-primary"
 									>
-										Edit
+										Update
 									</Link>
 									<div
 										className="btn btn-danger"
@@ -51,8 +52,7 @@ MerchantProductCard.propTypes = {
 		id: PropTypes.number.isRequired,
 		nama_barang: PropTypes.string.isRequired,
 		gambar_barang: PropTypes.string.isRequired,
-		kategori: PropTypes.string.isRequired,
-		harga: PropTypes.number.isRequired,
+		stok: PropTypes.number.isRequired,
 	}).isRequired,
 	handleDelete: PropTypes.func.isRequired,
 };

@@ -591,7 +591,7 @@ ul {
 
 .product-card-container {
 	width: 16.25rem;
-	height: 22.75rem;
+	height: auto;
 }
 
 .card-title {
@@ -781,6 +781,7 @@ ul {
 }
 
 .table-responsive {
+	width: 85%;
 	margin-top: 200px;
 	display: flex;
 	justify-content: center;
@@ -802,4 +803,37 @@ table th {
 
 table th {
 	max-width: 80px;
+}
+
+.container-merchant-products .product-list-details-memrchant-container {
+	margin-left: 20px;
+}
+.container-merchant-products .product-list-details-memrchant-container .btn {
+	width: 22%;
+	margin-bottom: 50px;
+}
+
+@media (min-width: 768px) {
+	.container-merchant-products {
+		margin-top: 80px;
+		margin-left: 150px;
+		margin-right: 150px;
+	}
+}
+
+.merchant-product-card-details .btn {
+	margin-top: 10px;
+}
+
+.merchant-product-card-details .button-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.merchant-product-card-details .button-container .btn {
+	width: 47%;
+}
+
+.merchant-product-card-container p {
+	font-size: 20px;
 }
