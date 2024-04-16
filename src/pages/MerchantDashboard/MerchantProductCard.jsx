@@ -22,6 +22,19 @@ const MerchantProductCard = ({ product, handleDelete }) => {
 							<div className="card-body product-card-details merchant-product-card-details">
 								<h3 className="card-title name">{product.nama_barang}</h3>
 								<p className="card-title">Stock Remaining: {product.stok}</p>
+								{product.status === "SoldOut" ? (
+									<div className="product-status-alert warning">SOLD OUT</div>
+								) : product.status === "MissingInformation" ? (
+									<div className="product-status-alert danger">
+										PRODUCT ADDRESS MISSING
+									</div>
+								) : product.status === "OnSale" ? (
+									<div className="product-status-alert success">
+										Product On Sale
+									</div>
+								) : (
+									<div className="product-status-alert dark">Sale Halted</div>
+								)}
 
 								<div className="button-container">
 									<Link
@@ -53,6 +66,7 @@ MerchantProductCard.propTypes = {
 		nama_barang: PropTypes.string.isRequired,
 		gambar_barang: PropTypes.string.isRequired,
 		stok: PropTypes.number.isRequired,
+		status: PropTypes.string.isRequired,
 	}).isRequired,
 	handleDelete: PropTypes.func.isRequired,
 };
