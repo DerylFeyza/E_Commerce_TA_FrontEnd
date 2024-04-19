@@ -868,3 +868,28 @@ table th {
 	background-color: #c8cbcf;
 	border-color: #b1b4b8;
 }
+
+.merchant-product-card-details .restock-btn {
+	width: 100%;
+}
+
+.restock-form-container .restock-product-image {
+	border-radius: 15px;
+}
+
+.restock-form-container {
+	display: flex;
+	align-items: center;
+}
+
+.restock-form-container img {
+	width: 25%;
+	height: 70%;
+	object-fit: cover;
+	margin-right: 10px;
+}
+
+.restock-form-container .product-information-container {
+	width: 50%;
+	flex: 1;
+}

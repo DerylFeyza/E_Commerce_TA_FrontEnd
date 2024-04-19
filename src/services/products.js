@@ -223,3 +223,23 @@ export const getRecentPurchase = async () => {
 		};
 	}
 };
+
+export const restockProduct = async (id, value) => {
+	const RESTOCK_URL = `${PRODUCT_URL}/restock/${id}`;
+	try {
+		const data = await axios.post(RESTOCK_URL, value, config);
+		const res = data.data;
+
+		if (res.success === true) {
+			return {
+				status: "success",
+				message: res.message,
+			};
+		}
+	} catch (error) {
+		return {
+			status: "error",
+			message: error.response.data.message,
+		};
+	}
+};
