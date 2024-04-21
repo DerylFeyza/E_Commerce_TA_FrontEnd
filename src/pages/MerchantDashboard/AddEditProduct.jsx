@@ -19,6 +19,7 @@ const AddProduct = () => {
 	const [details, setDetails] = useState("");
 	const [pickedAddress, setPickedAddress] = useState(null);
 	const [userAddress, setUserAddress] = useState([]);
+	const [saleStatus, setSaleStatus] = useState("");
 	const [imagePreview, setImagePreview] = useState("");
 	const navigate = useNavigate();
 
@@ -33,6 +34,8 @@ const AddProduct = () => {
 				setStok(product.stok);
 				setDetails(product.details);
 				setPickedAddress(product.id_alamat);
+				setSaleStatus(product.status);
+				console.log(product);
 				if (product.gambar_barang) {
 					setImagePreview(imageFetcher(product.gambar_barang));
 				}
@@ -73,6 +76,10 @@ const AddProduct = () => {
 		setPickedAddress(value);
 	};
 
+	const handleSaleStatusChange = (status) => {
+		setSaleStatus(status);
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const formData = new FormData();
@@ -83,11 +90,11 @@ const AddProduct = () => {
 		formData.append("harga", harga);
 		formData.append("stok", stok);
 		formData.append("details", details);
+		formData.append("status", saleStatus);
 		try {
 			if (id) {
 				console.log("updating...");
 				const res = await updateProduct(id, formData);
-				console.log(res);
 				if (res.success === true) {
 					navigate("/merchant");
 				}
@@ -104,7 +111,7 @@ const AddProduct = () => {
 
 	return (
 		<>
-			{console.log(pickedAddress)}
+			{/* {console.log(saleStatus)} */}
 
 			<section className="py-5">
 				<form onSubmit={handleSubmit}>
@@ -207,6 +214,30 @@ const AddProduct = () => {
 									value={details}
 									onChange={(e) => setDetails(e.target.value)}
 								></textarea>
+								<div className="form-check">
+									<input
+										type="radio"
+										className="form-check-input"
+										id="putOnSale"
+										checked={saleStatus === "OnSale"}
+										onChange={() => handleSaleStatusChange("OnSale")}
+									/>
+									<label className="form-check-label" htmlFor="putOnSale">
+										Put product on Sale
+									</label>
+								</div>
+								<div className="form-check">
+									<input
+										type="radio"
+										className="form-check-input"
+										id="haltSale"
+										checked={saleStatus === "Halted"}
+										onChange={() => handleSaleStatusChange("Halted")}
+									/>
+									<label className="form-check-label" htmlFor="haltSale">
+										Halt Sale
+									</label>
+								</div>
 								<button type="submit" className="btn btn-primary">
 									Submit
 								</button>
