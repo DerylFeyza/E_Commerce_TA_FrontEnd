@@ -893,3 +893,15 @@ table th {
 	width: 50%;
 	flex: 1;
 }
+
+.restock-form-container .product-information-container {
+	width: 50%;
+	flex: 1;
+}
+
+.restock-form-container .product-information-container h2 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #00909e;
+}

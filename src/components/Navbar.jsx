@@ -103,6 +103,13 @@ const Navbar = () => {
 										</Link>
 									</li>
 								)}
+								{userData.role === "customer" && (
+									<li>
+										<Link className="dropdown-item" to="/merchantregistration">
+											Be a merchant
+										</Link>
+									</li>
+								)}
 								<li>
 									<Link className="dropdown-item" onClick={Logout} to="/login">
 										Logout

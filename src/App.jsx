@@ -19,6 +19,7 @@ import AddProduct from "./pages/MerchantDashboard/AddEditProduct";
 import MerchantDashboard from "./pages/MerchantDashboard/Dashboard";
 import AddressPage from "./pages/Address/AddressPage";
 import AddressPicker from "./pages/MerchantDashboard/AddressPicker";
+import MerchantForm from "./pages/MerchantForm";
 import "./App.css";
 
 const AppLayout = () => (
@@ -37,6 +38,7 @@ const App = () => {
 				<Route element={<AppLayout />}>
 					<Route path="/" element={<Home />} />
 					<Route path="/merchant" element={<MerchantDashboard />} />
+					<Route path="/merchantregistration" element={<MerchantForm />} />
 					<Route path="/home" element={<Home />} />
 					<Route path="/details" element={<Details />} />
 					<Route path="/products/:id" element={<ProductDetails />} />
