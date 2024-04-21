@@ -1,4 +1,5 @@
 import MerchantProductCard from "./MerchantProductCard";
+import RestockForm from "./RestockForm";
 import { useState, useEffect } from "react";
 import {
 	getMerchantProducts,
@@ -6,12 +7,32 @@ import {
 	deleteProduct,
 } from "../../services/products";
 import { Link } from "react-router-dom";
-import { imageFetcher } from "../../services/products";
+import { imageFetcher, restockProduct } from "../../services/products";
 
 const MerchantDashboard = () => {
 	const [products, setProducts] = useState([]);
 	const [purchasesDetail, setPurchasesDetail] = useState([]);
 	const [purchasesProducts, setPurchasesProducts] = useState([]);
+	const [showModal, setShowModal] = useState(false);
+	const [initialData, setInitialData] = useState(null);
+
+	const handleRestock = async (id, value) => {
+		const requestBody = { add: value };
+		try {
+			const res = await restockProduct(id, requestBody);
+			console.log(res);
+			setShowModal(false);
+			retrieveProducts();
+			return res.status;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const productForm = (product) => {
+		setShowModal(true);
+		setInitialData(product);
+	};
 
 	useEffect(() => {
 		retrieveProducts();
@@ -43,7 +64,7 @@ const MerchantDashboard = () => {
 	}
 
 	return (
-		<>
+		<div className="merchant-dashboard-container">
 			<div className="container-recent-sales">
 				<div className="left-column-dashboard">
 					<h1>Recent Sales</h1>
@@ -97,21 +118,30 @@ const MerchantDashboard = () => {
 
 			<div className="container-merchant-products">
 				<div className="row">
-					<h1>Your Products</h1>
+					<div className="product-list-details-memrchant-container">
+						<h1>Your Products</h1>
+						<Link to="/products/add" className="btn btn-success">
+							Add Product
+						</Link>
+					</div>
 					{products.map((product, index) => (
 						<div key={index} className="custom-column mb-4 mt-4">
 							<MerchantProductCard
 								product={product}
 								handleDelete={handleDelete}
+								productForm={productForm}
 							/>
 						</div>
 					))}
 				</div>
-				<Link to="/products/add">
-					<button>Add Product</button>
-				</Link>
 			</div>
-		</>
+			<RestockForm
+				Product={initialData}
+				HandleRestock={handleRestock}
+				showModal={showModal}
+				setShowModal={setShowModal}
+			/>
+		</div>
 	);
 };
 

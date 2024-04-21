@@ -75,11 +75,12 @@ export const Checkout = async () => {
 				status: "success",
 				data: response.data.data,
 			};
-		} else {
+		} else if (response.data.success === false) {
+			console.log(response.data.message);
 			return {
 				status: "error",
 				message: "Failed to checkout cart",
-				data: response.data.data,
+				data: response.data.message,
 			};
 		}
 	} catch (error) {

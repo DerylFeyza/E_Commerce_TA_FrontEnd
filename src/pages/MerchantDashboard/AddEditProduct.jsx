@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {
 	addProduct,
 	imageFetcher,
-	getProductById,
+	MerchantRetrieveProductDataById,
 	updateProduct,
 } from "../../services/products";
 import { useNavigate, useParams } from "react-router-dom";
@@ -25,7 +25,7 @@ const AddProduct = () => {
 	useEffect(() => {
 		const fetchProduct = async () => {
 			try {
-				const res = await getProductById(id);
+				const res = await MerchantRetrieveProductDataById(id);
 				const product = res.data;
 				setNamaBarang(product.nama_barang);
 				setKategori(product.kategori);
