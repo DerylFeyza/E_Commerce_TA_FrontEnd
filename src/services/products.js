@@ -72,6 +72,7 @@ export const getProductById = async (ProductId) => {
 			return {
 				status: "success",
 				data: res.data,
+				additional_info: res.additional_info,
 			};
 		}
 	} catch (err) {

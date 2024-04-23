@@ -21,6 +21,7 @@ import AddressPage from "./pages/Address/AddressPage";
 import AddressPicker from "./pages/MerchantDashboard/AddressPicker";
 import MerchantForm from "./pages/MerchantForm";
 import "./App.css";
+import "./index.css";
 
 const AppLayout = () => (
 	<>
