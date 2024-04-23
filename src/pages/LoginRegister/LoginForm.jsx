@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { LoginHandler } from "./LoginHandler";
 import { useNavigate } from "react-router-dom";
+import ToastDanger from "../../components/ToastDanger";
 
 const LoginForm = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [toastMessage, setToastMessage] = useState("");
 	const navigate = useNavigate();
 
 	const submitHandler = async (e) => {
@@ -13,13 +15,14 @@ const LoginForm = () => {
 
 		try {
 			const res = await LoginHandler(values);
-			console.log(res);
 			if (res.success === true) {
 				navigate("/home");
 				window.location.reload();
+			} else if (res.success === false) {
+				setToastMessage("Login failed! Please check your credentials.");
 			}
 		} catch (error) {
-			console.error("pls:", error);
+			console.error(error);
 		}
 	};
 
@@ -63,6 +66,7 @@ const LoginForm = () => {
 					</div>
 				</form>
 			</div>
+			<ToastDanger message={toastMessage} setMessage={setToastMessage} />
 		</div>
 	);
 };

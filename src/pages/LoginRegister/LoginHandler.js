@@ -9,7 +9,8 @@ const REGISTER_URL = BASE_API + "/user/register";
 export const LoginHandler = async (userData) => {
 	try {
 		const res = await axios.post(LOGIN_URL, userData);
-		if (res.data.status === true) {
+		console.log(res);
+		if (res.data.success === true) {
 			const userData = {
 				email: res.data.data.email,
 				username: res.data.data.username,
@@ -18,12 +19,12 @@ export const LoginHandler = async (userData) => {
 			const token = res.data.data.token;
 			setTokenCookie(token);
 			setLocalStorage(LOCAL_STORAGE_USER, userData);
-			return { res: res.data.data, success: true };
-		} else {
-			return { res: res, success: false };
+			return { success: true };
+		} else if (res.data.success === false) {
+			return { success: false };
 		}
 	} catch (error) {
-		console.error(error);
+		console.error(error.response);
 		return { error: "Failed to fetch data" };
 	}
 };
@@ -37,7 +38,7 @@ export const RegisterHandler = async (userData) => {
 			return { res: res, success: false };
 		}
 	} catch (error) {
-		console.error(error);
+		console.error(error.response.data);
 		return { error: "Failed to fetch data" };
 	}
 };
