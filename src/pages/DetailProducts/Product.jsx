@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-// import cartIcon from "../assets/icon-cart-white.svg";
-// import closeIcon from "../assets/icon-close-white.svg";
-// import prevIcon from "../assets/icon-previous.svg";
-// import nextIcon from "../assets/icon-next.svg";
+import cartIcon from "../../assets/icon-cart-white.svg";
+import closeIcon from "../../assets/icon-close-white.svg";
+import prevIcon from "../../assets/icon-previous.svg";
+import nextIcon from "../../assets/icon-next.svg";
 import { data } from "../constants/image";
 
 const Product = ({ price, qty, setQty }) => {
@@ -13,10 +13,10 @@ const Product = ({ price, qty, setQty }) => {
 
   const largeImage = products[value].largeImg;
 
-  const fixedPrice = price.toFixed(2);
+  const fixedPrice = price;
 
   const totalPrice = fixedPrice * qty;
-  const totalPriceFixed = totalPrice.toFixed(2);
+  const totalPriceFixed = totalPrice;
 
   const decrease = () => {
     if (qty === 0) {

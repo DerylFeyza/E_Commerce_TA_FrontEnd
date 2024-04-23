@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+// <<<<<<< HEAD
 import {
 	BrowserRouter as Router,
 	Route,
@@ -53,5 +53,4 @@ const App = () => {
 export default App;
 
 
-// export default App;
-// >>>>>>> fc15d8160421da67429b9a3cfcfb24a5064d8b55
+
