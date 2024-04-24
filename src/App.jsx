@@ -14,8 +14,9 @@ import Details from "./pages/ProductDetails/DetailsCard";
 import Cart from "./pages/Cart/Cart";
 // import SuccessPopup from "./components/Alerts/SuccessPopup";
 import NotFoundPage from "./pages/NotFound/NotFound";
-import Test from "./components/Product/ProductCard"
+// import Test from "./components/Product/ProductCard"
 // import Iklan from "./components/Iklan/Iklan"
+import Footer from "./pages/Footer/Footer";
 
 
 const AppLayout = () => (
@@ -39,12 +40,15 @@ const App = () => {
 					<Route path="/search" element={<ProductSearch />} />
 					<Route path="/cart" element={<Cart />} />
 					<Route path="*" element={<NotFoundPage />} />
+					{/* <Route path="/iklan" element={<Iklan />} /> */}
+
 				</Route>
 
 				<Route path="/login" element={<LoginForm />} />
 				<Route path="/register" element={<Register />} />
-				<Route path="/test" element={<Test />} />
+				{/* <Route path="/test" element={<Test />} /> */}
 				{/* <Route path="/iklan" element={<Iklan />} /> */}
+				<Route path="/footer" element={<Footer />} />
 			</Routes>
 		</Router>
 	);

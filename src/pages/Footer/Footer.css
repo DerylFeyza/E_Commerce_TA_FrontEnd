@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+footer {
+	background: url("../../assets/footer.jpg") no-repeat;
+	background-size: cover;
+	background-position: center;
+}

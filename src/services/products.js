@@ -2,6 +2,7 @@ import axios from "axios";
 import { BASE_API } from "../utils/http-common";
 
 export const getPaginatedDataProduct = async (page) => {
+	console.log("error")
 	const URL = `${BASE_API}/produk/?page=${page}`;
 	try {
 		const data = await axios.get(URL);
