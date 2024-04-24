@@ -3,10 +3,10 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import PropTypes from "prop-types";
 import "react-toastify/dist/ReactToastify.css";
 
-const ToastDanger = ({ message, setMessage }) => {
+const ToastNotification = ({ message, setMessage, type }) => {
 	useEffect(() => {
 		if (message) {
-			toast.error(message, {
+			toast[type](message, {
 				position: "top-right",
 				autoClose: 3000,
 				hideProgressBar: false,
@@ -19,7 +19,7 @@ const ToastDanger = ({ message, setMessage }) => {
 			});
 			setMessage("");
 		}
-	}, [message, setMessage]);
+	}, [message, setMessage, type]);
 
 	return (
 		<ToastContainer
@@ -38,9 +38,10 @@ const ToastDanger = ({ message, setMessage }) => {
 	);
 };
 
-ToastDanger.propTypes = {
+ToastNotification.propTypes = {
 	message: PropTypes.string.isRequired,
 	setMessage: PropTypes.func.isRequired,
+	type: PropTypes.oneOf(["success", "error", "warning", "info"]).isRequired,
 };
 
-export default ToastDanger;
+export default ToastNotification;

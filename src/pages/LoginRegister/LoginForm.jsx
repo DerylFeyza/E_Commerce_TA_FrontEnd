@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { LoginHandler } from "./LoginHandler";
 import { useNavigate } from "react-router-dom";
-import ToastDanger from "../../components/Toast/ToastDanger";
+import ToastNotification from "../../components/ToastNotification";
 
 const LoginForm = () => {
 	const [email, setEmail] = useState("");
@@ -66,7 +66,11 @@ const LoginForm = () => {
 					</div>
 				</form>
 			</div>
-			<ToastDanger message={toastMessage} setMessage={setToastMessage} />
+			<ToastNotification
+				message={toastMessage}
+				setMessage={setToastMessage}
+				type="error"
+			/>
 		</div>
 	);
 };

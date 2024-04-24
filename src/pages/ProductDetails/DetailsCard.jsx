@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
 import { useState } from "react";
 import { addToCart } from "../../services/transaction";
-import ToastDanger from "../../components/Toast/ToastDanger";
+import ToastNotification from "../../components/ToastNotification";
 
 const DetailLayout = ({ product, additional }) => {
 	const IMAGEURL = `${BASE_API}/produk/image/${product.gambar_barang}`;
 	const [quantity, setQuantity] = useState(1);
 	const [toastMessage, setToastMessage] = useState("");
+	const [toastType, setToastType] = useState("");
 
 	const handleQuantityChange = (e) => {
 		const value = e.target.value;
@@ -22,6 +23,9 @@ const DetailLayout = ({ product, additional }) => {
 	const incrementQuantity = () => {
 		if (quantity < product.stok) {
 			setQuantity(quantity + 1);
+		} else {
+			setToastMessage("Insufficient Stock.");
+			setToastType("warning");
 		}
 	};
 
@@ -36,6 +40,8 @@ const DetailLayout = ({ product, additional }) => {
 			setQuantity(1);
 		} else if (quantity > product.stok) {
 			setQuantity(product.stok);
+			setToastMessage("Insufficient Stock.");
+			setToastType("warning");
 		}
 	};
 
@@ -43,8 +49,13 @@ const DetailLayout = ({ product, additional }) => {
 		console.log("bkp");
 		const values = { id_produk: product.id, quantity: quantity };
 		const res = await addToCart(values);
+		if (res.status === "success") {
+			setToastMessage("Product added to cart");
+			setToastType("success");
+		}
 		if (res.status === "publisher") {
 			setToastMessage("You can't buy your own products.");
+			setToastType("error");
 		}
 	};
 
@@ -116,7 +127,11 @@ const DetailLayout = ({ product, additional }) => {
 						</div>
 					</div>
 				</div>
-				<ToastDanger message={toastMessage} setMessage={setToastMessage} />
+				<ToastNotification
+					message={toastMessage}
+					setMessage={setToastMessage}
+					type={toastType}
+				/>
 			</main>
 		</>
 	);
