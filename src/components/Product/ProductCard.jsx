@@ -26,8 +26,9 @@ const ProductCard = ({ product }) => {
 							<p className="card-text shop">
 								{product.additional_info[0].nama_toko}
 							</p>
-							<p className="location">
-								<GrLocation /> {product.additional_info[0].kota}
+							<p className="location flex items-center">
+								<GrLocation className="mr-2" />
+								{product.additional_info[0].kota}
 							</p>
 						</div>
 					</div>

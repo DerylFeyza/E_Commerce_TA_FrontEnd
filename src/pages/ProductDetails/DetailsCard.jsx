@@ -1,10 +1,9 @@
-import { FaShoppingCart, FaPlus, FaMinus } from "react-icons/fa";
 import { GrLocation } from "react-icons/gr";
 import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
 import { useState } from "react";
 import { addToCart } from "../../services/transaction";
-import ToastDanger from "../../components/ToastDanger";
+import ToastDanger from "../../components/Toast/ToastDanger";
 
 const DetailLayout = ({ product, additional }) => {
 	const IMAGEURL = `${BASE_API}/produk/image/${product.gambar_barang}`;
@@ -117,6 +116,7 @@ const DetailLayout = ({ product, additional }) => {
 						</div>
 					</div>
 				</div>
+				<ToastDanger message={toastMessage} setMessage={setToastMessage} />
 			</main>
 		</>
 	);

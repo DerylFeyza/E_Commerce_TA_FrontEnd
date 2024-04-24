@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { LoginHandler } from "./LoginHandler";
 import { useNavigate } from "react-router-dom";
-import ToastDanger from "../../components/ToastDanger";
+import ToastDanger from "../../components/Toast/ToastDanger";
 
 const LoginForm = () => {
 	const [email, setEmail] = useState("");
