@@ -17,6 +17,7 @@ import NotFoundPage from "./pages/NotFound/NotFound";
 // import Test from "./components/Product/ProductCard"
 // import Iklan from "./components/Iklan/Iklan"
 import Footer from "./pages/Footer/Footer";
+import History from "./pages/History/History";
 
 
 const AppLayout = () => (
@@ -48,7 +49,8 @@ const App = () => {
 				<Route path="/register" element={<Register />} />
 				{/* <Route path="/test" element={<Test />} /> */}
 				{/* <Route path="/iklan" element={<Iklan />} /> */}
-				<Route path="/footer" element={<Footer />} />
+				{/* <Route path="/footer" element={<Footer />} /> */}
+				<Route path="/history" element={<History />} />
 			</Routes>
 		</Router>
 	);
