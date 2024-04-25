@@ -49,8 +49,8 @@ const RecentPurchaseCard = ({ purchaseData, purchaseProduct }) => {
 };
 
 RecentPurchaseCard.propTypes = {
-	purchaseData: PropTypes.object.isRequired, // Ensure purchaseData is an object and is required
-	purchaseProduct: PropTypes.object.isRequired, // Ensure purchaseProduct is an object and is required
+	purchaseData: PropTypes.object.isRequired,
+	purchaseProduct: PropTypes.object.isRequired,
 };
 
 export default RecentPurchaseCard;

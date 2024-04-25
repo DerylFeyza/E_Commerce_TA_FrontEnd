@@ -14,30 +14,23 @@ export const addToCart = async (values) => {
 
 	try {
 		const response = await axios.post(TRANSACTION_URL, values, config);
-
+		console.log(response);
 		if (response.data.success === true) {
 			return {
 				status: "success",
 				data: response.data.data,
 			};
-		} else {
+		} else if (response.data.status === "Publisher") {
 			return {
-				status: "error",
-				message: "Failed to add product to cart",
+				status: "publisher",
+				message: response.data.message,
 			};
 		}
 	} catch (error) {
-		if (error.response && error.response.data && error.response.data.message) {
-			return {
-				status: "error",
-				message: error.response.data.message,
-			};
-		} else {
-			return {
-				status: "error",
-				message: "An error occurred while processing your request.",
-			};
-		}
+		return {
+			status: "error",
+			message: error.response.data.message,
+		};
 	}
 };
 

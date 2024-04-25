@@ -478,7 +478,6 @@ ul {
 
 /* NotFoundPage.css */
 
-/* Styles for the notfound container */
 #notfound {
 	position: relative;
 	height: 100vh;
@@ -892,4 +891,24 @@ table th {
 .restock-form-container .product-information-container {
 	width: 50%;
 	flex: 1;
+}
+
+.restock-form-container .product-information-container {
+	width: 50%;
+	flex: 1;
+}
+
+.restock-form-container .product-information-container h2 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #00909e;
+}
+
+/*  Footer */
+
+footer {
+	background: url("./assets/background.png") no-repeat;
+	background-size: cover;
+	background-position: center;
 }

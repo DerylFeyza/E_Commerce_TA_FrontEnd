@@ -6,12 +6,14 @@ import DetailLayout from "./DetailsCard";
 const ProductDetails = () => {
 	const { id } = useParams();
 	const [product, setProduct] = useState();
+	const [additional, setAdditional] = useState([]);
 
 	useEffect(() => {
 		const retrieveProductById = async () => {
 			try {
 				const res = await getProductById(id);
 				setProduct(res.data);
+				setAdditional(res.additional_info);
 			} catch (err) {
 				console.log(err);
 			}
@@ -20,7 +22,7 @@ const ProductDetails = () => {
 		retrieveProductById();
 	}, [id]);
 
-	if (!product) {
+	if (!product || !additional) {
 		return <div>Loading...</div>;
 	}
 
@@ -28,8 +30,9 @@ const ProductDetails = () => {
 		<>
 			<div className="ProductDetails-container">
 				<div className="product">
+					{console.log(additional[0].nama_toko)}
 					<div>
-						<DetailLayout product={product} />
+						<DetailLayout product={product} additional={additional} />
 					</div>
 				</div>
 			</div>
