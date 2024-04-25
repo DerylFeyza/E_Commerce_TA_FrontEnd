@@ -169,7 +169,7 @@ export const deleteProduct = async (id) => {
 	try {
 		const data = await axios.delete(DELETE_URL, config);
 		const res = data.data;
-
+		console.log(res);
 		if (res.success === true) {
 			return {
 				status: "success",

@@ -46,7 +46,6 @@ const DetailLayout = ({ product, additional }) => {
 	};
 
 	const handleAddToCart = async () => {
-		console.log("bkp");
 		const values = { id_produk: product.id, quantity: quantity };
 		const res = await addToCart(values);
 		if (res.status === "success") {
@@ -85,7 +84,7 @@ const DetailLayout = ({ product, additional }) => {
 							<GrLocation className="mr-1" /> {additional[0].kota}
 						</p>
 
-						<h6 className="text-sm md:text-base mt-3">Stok: {product.stok}</h6>
+						<h6 className="text-sm md:text-base mt-3">Stock: {product.stok}</h6>
 						<p className="block text-darkGrayishBlue my-2 leading-7">
 							{product.details}
 						</p>

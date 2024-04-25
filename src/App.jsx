@@ -18,8 +18,8 @@ import PurchaseReceipt from "./pages/Receipt/Receipt";
 import AddProduct from "./pages/MerchantDashboard/AddEditProduct";
 import MerchantDashboard from "./pages/MerchantDashboard/Dashboard";
 import AddressPage from "./pages/Address/AddressPage";
-import AddressPicker from "./pages/MerchantDashboard/AddressPicker";
 import MerchantForm from "./pages/MerchantForm";
+import Footer from "./pages/footer";
 import "./App.css";
 import "./index.css";
 
@@ -56,7 +56,7 @@ const App = () => {
 
 				<Route path="/login" element={<LoginForm />} />
 				<Route path="/register" element={<Register />} />
-				<Route path="/test" element={<AddressPicker />} />
+				<Route path="/feet" element={<Footer />} />
 			</Routes>
 		</Router>
 	);
