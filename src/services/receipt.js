@@ -59,3 +59,24 @@ export const getPurchaseReceipt = async (purchaseId) => {
 		};
 	}
 };
+
+export const getRecentPurchase = async () => {
+	const PURCHASES_URL = `${RECEIPT_URL}/merchant/purchases`;
+	try {
+		const data = await axios.get(PURCHASES_URL, config);
+		const res = data.data;
+		console.log(res);
+		if (res.success === true) {
+			return {
+				status: "success",
+				data: res.purchases,
+				message: res.message,
+			};
+		}
+	} catch (error) {
+		return {
+			status: "error",
+			message: error.response.data.message,
+		};
+	}
+};

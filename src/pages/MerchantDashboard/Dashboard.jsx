@@ -1,13 +1,10 @@
 import MerchantProductCard from "./MerchantProductCard";
 import RestockForm from "./RestockForm";
 import { useState, useEffect } from "react";
-import {
-	getMerchantProducts,
-	getRecentPurchase,
-	deleteProduct,
-} from "../../services/products";
+import { getMerchantProducts, deleteProduct } from "../../services/products";
+import { getRecentPurchase } from "../../services/receipt";
 import { Link } from "react-router-dom";
-import { imageFetcher, restockProduct } from "../../services/products";
+import { restockProduct } from "../../services/products";
 
 const MerchantDashboard = () => {
 	const [products, setProducts] = useState([]);
@@ -84,7 +81,6 @@ const MerchantDashboard = () => {
 							<thead>
 								<tr>
 									<th scope="col">Name</th>
-									<th scope="col">image</th>
 									<th scope="col">Quantity Sold</th>
 									<th scope="col">Price</th>
 									<th scope="col">Total</th>
@@ -96,15 +92,6 @@ const MerchantDashboard = () => {
 										<th scope="row" style={{ color: "#666666" }}>
 											{products.nama_barang}
 										</th>
-										<td>
-											<img
-												src={imageFetcher(products.gambar_barang)}
-												alt={products.nama_barang}
-												style={{
-													width: "50px",
-												}}
-											/>
-										</td>
 										<td>{purchasesDetail[index].quantity}</td>
 										<td>{products.harga}</td>
 										<td>{products.harga * purchasesDetail[index].quantity}</td>
