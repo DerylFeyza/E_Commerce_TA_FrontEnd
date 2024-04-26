@@ -908,7 +908,12 @@ table th {
 /*  Footer */
 
 footer {
-	background: url("./assets/background.png") no-repeat;
+	background: url("./assets/footer.jpg") no-repeat;
 	background-size: cover;
 	background-position: center;
+}
+
+.footer-container {
+	margin-right: calc(75% - 1rem);
+	margin-left: calc(25% - 1rem);
 }
