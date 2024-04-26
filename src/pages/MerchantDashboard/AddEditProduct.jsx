@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getUserAddress } from "../../services/address";
 import { Link } from "react-router-dom";
 import BlankImg from "../../assets/blankimg.jpg";
+import ToastNotification from "../../components/ToastNotification";
 
 const AddProduct = () => {
 	const { id } = useParams();
@@ -22,6 +23,8 @@ const AddProduct = () => {
 	const [userAddress, setUserAddress] = useState([]);
 	const [saleStatus, setSaleStatus] = useState("");
 	const [imagePreview, setImagePreview] = useState("");
+	const [toastMessage, setToastMessage] = useState("");
+	const [toastType, setToastType] = useState("");
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -36,7 +39,6 @@ const AddProduct = () => {
 				setDetails(product.details);
 				setPickedAddress(product.id_alamat);
 				setSaleStatus(product.status);
-				console.log(product);
 				if (product.gambar_barang) {
 					setImagePreview(imageFetcher(product.gambar_barang));
 				}
@@ -52,7 +54,6 @@ const AddProduct = () => {
 
 	const handleImageChange = (e) => {
 		const file = e.target.files[0];
-		console.log(file);
 		setGambarBarang(file);
 		if (file) {
 			const reader = new FileReader();
@@ -83,158 +84,50 @@ const AddProduct = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const formData = new FormData();
-		formData.append("nama_barang", namaBarang);
-		formData.append("gambar_barang", gambarBarang);
-		formData.append("kategori", kategori);
-		formData.append("id_alamat", pickedAddress);
-		formData.append("harga", harga);
-		formData.append("stok", stok);
-		formData.append("details", details);
-		formData.append("status", saleStatus);
-		try {
-			if (id) {
-				console.log("updating...");
-				const res = await updateProduct(id, formData);
-				if (res.success === true) {
-					navigate("/merchant");
+		if (
+			namaBarang === "" ||
+			imagePreview === null ||
+			kategori === "" ||
+			harga === "" ||
+			stok === "" ||
+			details === "" ||
+			pickedAddress === "" ||
+			userAddress.length === 0
+		) {
+			setToastMessage("Please Fill All Fields.");
+			setToastType("error");
+		} else {
+			const formData = new FormData();
+			formData.append("nama_barang", namaBarang);
+			formData.append("gambar_barang", gambarBarang);
+			formData.append("kategori", kategori);
+			formData.append("id_alamat", pickedAddress);
+			formData.append("harga", harga);
+			formData.append("stok", stok);
+			formData.append("details", details);
+			formData.append("status", saleStatus);
+			try {
+				if (id) {
+					const res = await updateProduct(id, formData);
+					if (res.success === true) {
+						navigate("/merchant");
+					}
+				} else if (!id) {
+					const res = await addProduct(formData);
+					if (res.success === true) {
+						navigate("/merchant");
+					}
 				}
-			} else if (!id) {
-				const res = await addProduct(formData);
-				if (res.success === true) {
-					navigate("/merchant");
-				}
+			} catch (error) {
+				console.log("failed to add product", error);
 			}
-		} catch (error) {
-			console.log("failed to add product", error);
 		}
 	};
 
 	return (
 		<>
-			{/* <section className="py-5">
-				<form onSubmit={handleSubmit}>
-					<div className="container px-4 px-lg-5 my-5">
-						<div className="row gx-4 gx-lg-5 align-items-center">
-							<input
-								type="file"
-								className="form-control"
-								id="gambar_barang"
-								onChange={handleImageChange}
-							/>
-							<div className="col-md-6">
-								<label htmlFor="nama_barang" className="form-label">
-									Nama Barang
-								</label>
-								<input
-									type="text"
-									className="form-control"
-									id="nama_barang"
-									value={namaBarang}
-									onChange={(e) => setNamaBarang(e.target.value)}
-								/>
-								<label htmlFor="kategori" className="form-label">
-									Kategori
-								</label>
-								<input
-									type="text"
-									className="form-control"
-									id="kategori"
-									value={kategori}
-									onChange={(e) => setKategori(e.target.value)}
-								/>
-								<label htmlFor="harga" className="form-label">
-									Harga
-								</label>
-								<input
-									type="number"
-									className="form-control"
-									id="harga"
-									value={harga}
-									onChange={(e) => setHarga(e.target.value)}
-								/>
-								<label htmlFor="stok" className="form-label">
-									Stok
-								</label>
-								<input
-									type="number"
-									className="form-control"
-									id="stok"
-									value={stok}
-									onChange={(e) => setStok(e.target.value)}
-								/>
-								{userAddress.length > 0 ? (
-									<div className="col-md-6">
-										<div className="input-group">
-											<select
-												className="form-select"
-												aria-label="Default select example"
-												onChange={onChangeAddress}
-											>
-												{userAddress.map((address, index) => {
-													return (
-														<option
-															key={index}
-															value={address.id}
-															selected={address.id === pickedAddress}
-														>
-															{address.nama} - {address.kota}
-														</option>
-													);
-												})}
-											</select>
-										</div>
-									</div>
-								) : (
-									<div className="col-md-6">
-										<Link to="/Address" className="btn btn-primary">
-											No Address Found, Add An Address
-										</Link>
-									</div>
-								)}
-								<label htmlFor="details" className="form-label">
-									Details
-								</label>
-								<textarea
-									className="form-control"
-									id="details"
-									value={details}
-									onChange={(e) => setDetails(e.target.value)}
-								></textarea>
-								<div className="form-check">
-									<input
-										type="radio"
-										className="form-check-input"
-										id="putOnSale"
-										checked={saleStatus === "OnSale"}
-										onChange={() => handleSaleStatusChange("OnSale")}
-									/>
-									<label className="form-check-label" htmlFor="putOnSale">
-										Put product on Sale
-									</label>
-								</div>
-								<div className="form-check">
-									<input
-										type="radio"
-										className="form-check-input"
-										id="haltSale"
-										checked={saleStatus === "Halted"}
-										onChange={() => handleSaleStatusChange("Halted")}
-									/>
-									<label className="form-check-label" htmlFor="haltSale">
-										Halt Sale
-									</label>
-								</div>
-								<button type="submit" className="btn btn-primary">
-									Submit
-								</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</section> */}
-
 			<form onSubmit={handleSubmit}>
+				{console.log(pickedAddress)}
 				<div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
 					<div className="container max-w-screen-lg mx-auto">
 						<div>
@@ -297,14 +190,12 @@ const AddProduct = () => {
 														id="address"
 														className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
 														onChange={onChangeAddress}
+														defaultValue={pickedAddress}
 													>
+														<option value="">Pick an address</option>
 														{userAddress.map((address, index) => {
 															return (
-																<option
-																	key={index}
-																	value={address.id}
-																	selected={address.id === pickedAddress}
-																>
+																<option key={index} value={address.id}>
 																	{address.nama} - {address.kota}
 																</option>
 															);
@@ -411,6 +302,11 @@ const AddProduct = () => {
 					</div>
 				</div>
 			</form>
+			<ToastNotification
+				message={toastMessage}
+				setMessage={setToastMessage}
+				type={toastType}
+			/>
 		</>
 	);
 };

@@ -39,9 +39,9 @@ const ToastNotification = ({ message, setMessage, type }) => {
 };
 
 ToastNotification.propTypes = {
-	message: PropTypes.string.isRequired,
-	setMessage: PropTypes.func.isRequired,
-	type: PropTypes.oneOf(["success", "error", "warning", "info"]).isRequired,
+	message: PropTypes.string,
+	setMessage: PropTypes.func,
+	type: PropTypes.oneOf(["success", "error", "warning", "info"]),
 };
 
 export default ToastNotification;

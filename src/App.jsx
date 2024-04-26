@@ -51,6 +51,7 @@ const App = () => {
 						<Route path="/merchant" element={<MerchantDashboard />} />
 						<Route path="/search" element={<ProductSearch />} />
 						<Route path="/home" element={<Home />} />
+						<Route path="/products" element={<ProductSearch />} />
 					</Route>
 					<Route path="/merchantregistration" element={<MerchantForm />} />
 					<Route path="/details" element={<Details />} />
@@ -58,8 +59,6 @@ const App = () => {
 					<Route path="/products/add" element={<AddProduct />} />
 					<Route path="/products/update/:id" element={<AddProduct />} />
 					<Route path="/receipt/:id" element={<PurchaseReceipt />} />
-
-					<Route path="/products" element={<ProductSearch />} />
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/purchases" element={<Purchases />} />
 					<Route path="/address" element={<AddressPage />} />

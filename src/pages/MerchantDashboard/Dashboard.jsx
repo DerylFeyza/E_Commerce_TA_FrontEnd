@@ -9,7 +9,6 @@ import { restockProduct } from "../../services/products";
 const MerchantDashboard = () => {
 	const [products, setProducts] = useState([]);
 	const [purchasesDetail, setPurchasesDetail] = useState([]);
-	const [purchasesProducts, setPurchasesProducts] = useState([]);
 	const [showModal, setShowModal] = useState(false);
 	const [initialData, setInitialData] = useState(null);
 
@@ -41,7 +40,6 @@ const MerchantDashboard = () => {
 			setProducts(res.data);
 			const PurchasesRes = await getRecentPurchase();
 			setPurchasesDetail(PurchasesRes.data);
-			setPurchasesProducts(PurchasesRes.products);
 		} catch (err) {
 			console.log(err);
 		}
@@ -87,14 +85,14 @@ const MerchantDashboard = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{purchasesProducts.map((products, index) => (
+								{purchasesDetail.map((products, index) => (
 									<tr key={index}>
 										<th scope="row" style={{ color: "#666666" }}>
-											{products.nama_barang}
+											{products.namaproduk}
 										</th>
-										<td>{purchasesDetail[index].quantity}</td>
-										<td>{products.harga}</td>
-										<td>{products.harga * purchasesDetail[index].quantity}</td>
+										<td>{products.quantity}</td>
+										<td>{products.hargaproduk}</td>
+										<td>{products.hargaproduk * products.quantity}</td>
 									</tr>
 								))}
 							</tbody>
