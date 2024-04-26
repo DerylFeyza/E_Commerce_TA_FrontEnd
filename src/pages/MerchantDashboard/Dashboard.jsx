@@ -1,18 +1,14 @@
 import MerchantProductCard from "./MerchantProductCard";
 import RestockForm from "./RestockForm";
 import { useState, useEffect } from "react";
-import {
-	getMerchantProducts,
-	getRecentPurchase,
-	deleteProduct,
-} from "../../services/products";
+import { getMerchantProducts, deleteProduct } from "../../services/products";
+import { getRecentPurchase } from "../../services/receipt";
 import { Link } from "react-router-dom";
-import { imageFetcher, restockProduct } from "../../services/products";
+import { restockProduct } from "../../services/products";
 
 const MerchantDashboard = () => {
 	const [products, setProducts] = useState([]);
 	const [purchasesDetail, setPurchasesDetail] = useState([]);
-	const [purchasesProducts, setPurchasesProducts] = useState([]);
 	const [showModal, setShowModal] = useState(false);
 	const [initialData, setInitialData] = useState(null);
 
@@ -44,7 +40,6 @@ const MerchantDashboard = () => {
 			setProducts(res.data);
 			const PurchasesRes = await getRecentPurchase();
 			setPurchasesDetail(PurchasesRes.data);
-			setPurchasesProducts(PurchasesRes.products);
 		} catch (err) {
 			console.log(err);
 		}
@@ -84,30 +79,20 @@ const MerchantDashboard = () => {
 							<thead>
 								<tr>
 									<th scope="col">Name</th>
-									<th scope="col">image</th>
 									<th scope="col">Quantity Sold</th>
 									<th scope="col">Price</th>
 									<th scope="col">Total</th>
 								</tr>
 							</thead>
 							<tbody>
-								{purchasesProducts.map((products, index) => (
+								{purchasesDetail.map((products, index) => (
 									<tr key={index}>
 										<th scope="row" style={{ color: "#666666" }}>
-											{products.nama_barang}
+											{products.namaproduk}
 										</th>
-										<td>
-											<img
-												src={imageFetcher(products.gambar_barang)}
-												alt={products.nama_barang}
-												style={{
-													width: "50px",
-												}}
-											/>
-										</td>
-										<td>{purchasesDetail[index].quantity}</td>
-										<td>{products.harga}</td>
-										<td>{products.harga * purchasesDetail[index].quantity}</td>
+										<td>{products.quantity}</td>
+										<td>{products.hargaproduk}</td>
+										<td>{products.hargaproduk * products.quantity}</td>
 									</tr>
 								))}
 							</tbody>

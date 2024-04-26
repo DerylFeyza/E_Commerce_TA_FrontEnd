@@ -204,27 +204,6 @@ export const getMerchantProducts = async () => {
 	}
 };
 
-export const getRecentPurchase = async () => {
-	const PURCHASES_URL = `${PRODUCT_URL}/merchant/purchases`;
-	try {
-		const data = await axios.get(PURCHASES_URL, config);
-		const res = data.data;
-
-		if (res.success === true) {
-			return {
-				status: "success",
-				data: res.purchases,
-				products: res.details,
-			};
-		}
-	} catch (error) {
-		return {
-			status: "error",
-			message: error.response.data.message,
-		};
-	}
-};
-
 export const restockProduct = async (id, value) => {
 	const RESTOCK_URL = `${PRODUCT_URL}/restock/${id}`;
 	try {

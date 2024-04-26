@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getLocalStorage } from "../utils/LocalStorage";
 import { LOCAL_STORAGE_USER } from "../utils/http-common";
 import { Logout } from "../pages/LoginRegister/LoginHandler";
@@ -10,6 +10,12 @@ const Navbar = () => {
 	const [search, setSearch] = useState("");
 	const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(true);
 
+	useEffect(() => {
+		if (!search) {
+			setSearch(getQueryParam());
+		}
+	}, []);
+
 	const handleContentChange = (value) => {
 		setSearch(value);
 	};
@@ -19,9 +25,14 @@ const Navbar = () => {
 	};
 
 	const handleBlur = () => {
-		if (!search) {
+		if (!search.trim()) {
 			setIsPlaceholderVisible(true);
 		}
+	};
+
+	const getQueryParam = () => {
+		const params = new URLSearchParams(window.location.search);
+		return params.get("k");
 	};
 
 	return (
