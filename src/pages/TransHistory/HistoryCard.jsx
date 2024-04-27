@@ -13,13 +13,15 @@ const HistoryCard = ({ historyData }) => {
 	);
 
 	return (
-		<tr className="border-b border-neutral-200">
+		<tr className="border-b border-neutral-200 history-table-row">
 			<td className="py-4 pr-10 text-black flex items-center justify-center flex-col">
-				<img
-					src={purchaseSuccessImage}
-					className="w-[155px] h-[155px] inline-block shrink-0 rounded-2xl"
-					alt="purchase-success-image"
-				/>
+				<div className="image-container">
+					<img
+						src={purchaseSuccessImage}
+						className="image-content"
+						alt="purchase-success-image"
+					/>
+				</div>
 				<p className="font-bold mt-2 text-center">Purchase Successful</p>
 			</td>
 

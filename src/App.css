@@ -875,7 +875,7 @@ footer {
 
 @media (min-width: 1080px) {
 	.history-container {
-		max-width: 80%;
+		max-width: 90%;
 	}
 }
 
@@ -890,4 +890,15 @@ footer {
 	display: table;
 	width: 100%;
 	table-layout: fixed;
+}
+
+.history-table-row .image-container {
+	max-width: 155px;
+	max-height: 155px;
+	overflow: hidden;
+}
+
+.history-table-row .image-content {
+	width: 100%;
+	height: auto;
 }
