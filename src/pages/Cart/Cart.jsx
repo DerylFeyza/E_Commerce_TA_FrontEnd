@@ -6,11 +6,14 @@ import {
 	addToCart,
 	Checkout,
 } from "../../services/transaction";
+import ToastNotification from "../../components/ToastNotification";
 import CartPage from "./CartPage";
 
 const Cart = () => {
 	const [cartData, setCartData] = useState(null);
 	const [userBalance, setUserBalance] = useState(0);
+	const [toastMessage, setToastMessage] = useState("");
+	const [toastType, setToastType] = useState("");
 
 	useEffect(() => {
 		retrieveCartandProducts();
@@ -57,7 +60,11 @@ const Cart = () => {
 	};
 
 	const handleCheckout = async () => {
-		await Checkout();
+		const res = await Checkout();
+		if (res.status === "Insufficient Balance") {
+			setToastMessage("Insufficient Balance, please top up first.");
+			setToastType("error");
+		}
 		retrieveCartandProducts();
 	};
 
@@ -85,6 +92,11 @@ const Cart = () => {
 					)}
 				</div>
 			</div>
+			<ToastNotification
+				message={toastMessage}
+				setMessage={setToastMessage}
+				type={toastType}
+			/>
 		</>
 	);
 };

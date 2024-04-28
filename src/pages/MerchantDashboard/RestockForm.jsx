@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { imageFetcher } from "../../services/products";
+import PropTypes from "prop-types";
 
 const RestockForm = ({ Product, showModal, setShowModal, HandleRestock }) => {
 	const [restock, setRestock] = useState(0);
@@ -40,7 +41,6 @@ const RestockForm = ({ Product, showModal, setShowModal, HandleRestock }) => {
 							src={imageFetcher(Product.gambar_barang)}
 							className="restock-product-image"
 							alt={Product.nama_barang}
-							// style={{ objectFit: "cover", width: "25%", height: "70%" }}
 						/>
 						<div className="product-information-container">
 							<h2>{Product.nama_barang}</h2>
@@ -64,4 +64,12 @@ const RestockForm = ({ Product, showModal, setShowModal, HandleRestock }) => {
 		</>
 	);
 };
+
+RestockForm.propTypes = {
+	Product: PropTypes.object,
+	showModal: PropTypes.bool.isRequired,
+	setShowModal: PropTypes.func.isRequired,
+	HandleRestock: PropTypes.func.isRequired,
+};
+
 export default RestockForm;

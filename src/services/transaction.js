@@ -62,18 +62,15 @@ export const Checkout = async () => {
 	const CHECKOUT_URL = BASE_API + "/transaksi/checkout";
 	try {
 		const response = await axios.post(CHECKOUT_URL, "", config);
-		console.log(response);
 		if (response.data.success === true) {
 			return {
-				status: "success",
+				success: true,
 				data: response.data.data,
 			};
-		} else if (response.data.success === false) {
-			console.log(response.data.message);
+		} else if (response.data.status === "Insufficient Balance") {
 			return {
-				status: "error",
-				message: "Failed to checkout cart",
-				data: response.data.message,
+				success: false,
+				status: "Insufficient Balance",
 			};
 		}
 	} catch (error) {

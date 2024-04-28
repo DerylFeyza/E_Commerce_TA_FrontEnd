@@ -59,3 +59,24 @@ export const getUserInfo = async () => {
 		};
 	}
 };
+
+export const userRecharge = async (value) => {
+	const recharge = { value: value };
+	const RECHARGE_URL = `${USER_URL}/recharge`;
+	try {
+		const data = await axios.put(RECHARGE_URL, recharge, config);
+		const res = data.data;
+		console.log(value);
+		if (res.success === true) {
+			return {
+				success: true,
+				data: res.data,
+			};
+		}
+	} catch (error) {
+		return {
+			success: false,
+			message: error.response,
+		};
+	}
+};
