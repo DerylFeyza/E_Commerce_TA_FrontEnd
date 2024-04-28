@@ -711,7 +711,8 @@ ul {
 .left-column-dashboard {
 	flex: 1;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	text-align: center;
 	background-color: #f0f0f0;
 }
 
@@ -719,6 +720,10 @@ ul {
 	margin-top: 300px;
 	color: #00909e;
 	font-size: 80px;
+}
+
+.left-column-dashboard h3 {
+	display: block;
 }
 
 .container-merchant-products h1 {
