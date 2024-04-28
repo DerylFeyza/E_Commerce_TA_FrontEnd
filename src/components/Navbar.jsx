@@ -32,7 +32,7 @@ const Navbar = () => {
 
 	const getQueryParam = () => {
 		const params = new URLSearchParams(window.location.search);
-		return params.get("k");
+		return params.get("k") || "";
 	};
 
 	return (

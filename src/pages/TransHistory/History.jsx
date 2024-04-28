@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { getTransactionHistory } from "../../services/receipt";
 import HistoryCard from "./HistoryCard";
-import purchaseSuccessImage from "../../assets/purchase-success.png";
 
 const Home = () => {
 	const [transactionHistory, setTransactionHistory] = useState([]);

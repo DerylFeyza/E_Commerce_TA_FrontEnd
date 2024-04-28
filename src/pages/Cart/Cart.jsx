@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getCartOnDraft } from "../../services/cart";
-
+import { getUserInfo } from "../../services/user";
 import {
 	removeProductFromCart,
 	addToCart,
@@ -10,6 +10,7 @@ import CartPage from "./CartPage";
 
 const Cart = () => {
 	const [cartData, setCartData] = useState(null);
+	const [userBalance, setUserBalance] = useState(0);
 
 	useEffect(() => {
 		retrieveCartandProducts();
@@ -18,15 +19,18 @@ const Cart = () => {
 	const retrieveCartandProducts = async () => {
 		try {
 			const res = await getCartOnDraft();
-			if (res.status === "success") {
+			const resUser = await getUserInfo();
+			if (res.success === true && resUser.success === true) {
 				const data = {
 					cartInfo: res.cartInfo,
 					cartItems: res.data,
 					products: res.products,
 				};
 				setCartData(data);
+				setUserBalance(resUser.data.saldo);
 			} else {
 				setCartData(null);
+				setUserBalance(null);
 			}
 		} catch (error) {
 			console.log(error);
@@ -65,16 +69,20 @@ const Cart = () => {
 
 	return (
 		<>
-			{console.log(cartData)}
+			{console.log(userBalance)}
 			<div className="home-container">
 				<div>
 					{cartData && cartData.cartItems.length > 0 ? (
-						<CartPage CartData={cartData} actions={actions} />
+						<CartPage
+							CartData={cartData}
+							actions={actions}
+							balance={userBalance}
+						/>
 					) : (
 						<h1 style={{ textAlign: "center", paddingTop: "50px" }}>
 							Your cart is empty
 						</h1>
-					)}{" "}
+					)}
 				</div>
 			</div>
 		</>
