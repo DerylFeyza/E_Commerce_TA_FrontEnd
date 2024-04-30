@@ -6,7 +6,6 @@ const PurchaseReceipt = () => {
 	const { id } = useParams();
 	const [user, setUser] = useState(null);
 	const [transactionInfo, setTransactionInfo] = useState(null);
-	const [transactionDetails, setTransactionDetails] = useState([null]);
 	const [products, setProducts] = useState([null]);
 
 	useEffect(() => {
@@ -14,9 +13,8 @@ const PurchaseReceipt = () => {
 			try {
 				const res = await getPurchaseReceipt(id);
 				setUser(res.user.username);
-				setTransactionInfo(res.cart);
-				setTransactionDetails(res.cartDetails);
-				setProducts(res.products);
+				setTransactionInfo(res.receipt);
+				setProducts(res.cart);
 			} catch (err) {
 				console.log(err);
 			}
@@ -25,7 +23,7 @@ const PurchaseReceipt = () => {
 		retrieveProductById();
 	}, [id]);
 
-	if (!user || !transactionInfo || !transactionDetails || !products) {
+	if (!user || !transactionInfo || !products) {
 		return <div>Loading...</div>;
 	}
 
@@ -65,16 +63,16 @@ const PurchaseReceipt = () => {
 						{products.map((item, index) => (
 							<div key={index} className="row">
 								<div className="col">
-									<p>{item.nama_barang}</p>
+									<p>{item.namaproduk}</p>
 								</div>
 								<div className="col">
-									<p>${item.harga.toFixed(2)}</p>
+									<p>${item.hargaproduk.toFixed(2)}</p>
 								</div>
 								<div className="col">
-									<p>{transactionDetails[index].quantity}</p>
+									<p>{item.quantity}</p>
 								</div>
 								<div className="col">
-									<p>${transactionDetails[index].total.toFixed(2)}</p>
+									<p>${item.total.toFixed(2)}</p>
 								</div>
 								<hr />
 							</div>
