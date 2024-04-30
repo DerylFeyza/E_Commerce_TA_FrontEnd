@@ -89,7 +89,7 @@ const AddProduct = () => {
 			imagePreview === null ||
 			kategori === "" ||
 			harga === "" ||
-			stok === "" ||
+			stok === 0 ||
 			details === "" ||
 			pickedAddress === "" ||
 			userAddress.length === 0

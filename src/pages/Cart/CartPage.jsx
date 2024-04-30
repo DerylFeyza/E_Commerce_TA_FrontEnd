@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
 import { Link } from "react-router-dom";
 
-const CartPage = ({ CartData, actions }) => {
+const CartPage = ({ CartData, actions, balance }) => {
 	const handleQuantityChange = (idProduct, e) => {
 		const value = e.target.value;
 		console.log(value);
@@ -50,7 +50,6 @@ const CartPage = ({ CartData, actions }) => {
 													src={`${BASE_API}/produk/image/${CartData.products[index]?.gambar_barang}`}
 													alt={CartData.products[index]?.nama_barang}
 												/>
-												{console.log(CartData.products[index]?.gambar_barang)}
 											</div>
 											<div className="cart_item_info d-flex flex-md-row flex-column justify-content-between">
 												<div className="cart_item_name cart_info_col">
@@ -113,6 +112,10 @@ const CartPage = ({ CartData, actions }) => {
 										{CartData.cartInfo.totalharga}
 									</div>
 								</div>
+								<div className="order_total_content text-md-right">
+									<div className="order_total_title">Balance :</div>
+									<div className="order_total_amount">{balance}</div>
+								</div>
 							</div>
 							<div className="cart_buttons">
 								<Link to="/home" className="button cart_button_clear">
@@ -147,6 +150,7 @@ CartPage.propTypes = {
 		handleQuantityChange: PropTypes.func.isRequired,
 		handleCheckout: PropTypes.func.isRequired,
 	}),
+	balance: PropTypes.number.isRequired,
 };
 
 export default CartPage;

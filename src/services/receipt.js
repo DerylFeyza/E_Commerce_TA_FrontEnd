@@ -39,15 +39,16 @@ export const getPurchaseReceipt = async (purchaseId) => {
 	try {
 		const data = await axios.get(PURCHASERECEIPT_URL, config);
 		const res = data.data;
-		console.log(res);
+		console.log(res.data);
+		console.log(res.receipt);
 
 		if (res.success === true) {
 			return {
 				status: "success",
 				user: res.userData,
-				cart: res.cartInfo,
-				cartDetails: res.data,
-				products: res.products,
+				shopData: res.shopData,
+				cart: res.data,
+				receipt: res.receipt,
 			};
 		} else {
 			return { res: res, success: false };

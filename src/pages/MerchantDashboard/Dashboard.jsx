@@ -5,9 +5,11 @@ import { getMerchantProducts, deleteProduct } from "../../services/products";
 import { getRecentPurchase } from "../../services/receipt";
 import { Link } from "react-router-dom";
 import { restockProduct } from "../../services/products";
+import { getUserInfo } from "../../services/user";
 
 const MerchantDashboard = () => {
 	const [products, setProducts] = useState([]);
+	const [userData, setUserData] = useState(null);
 	const [purchasesDetail, setPurchasesDetail] = useState([]);
 	const [showModal, setShowModal] = useState(false);
 	const [initialData, setInitialData] = useState(null);
@@ -19,6 +21,7 @@ const MerchantDashboard = () => {
 			console.log(res);
 			setShowModal(false);
 			retrieveProducts();
+			retrieveuser();
 			return res.status;
 		} catch (error) {
 			console.log(error);
@@ -32,6 +35,7 @@ const MerchantDashboard = () => {
 
 	useEffect(() => {
 		retrieveProducts();
+		retrieveuser();
 	}, []);
 
 	const retrieveProducts = async () => {
@@ -40,6 +44,15 @@ const MerchantDashboard = () => {
 			setProducts(res.data);
 			const PurchasesRes = await getRecentPurchase();
 			setPurchasesDetail(PurchasesRes.data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const retrieveuser = async () => {
+		try {
+			const resUser = await getUserInfo();
+			setUserData(resUser.data);
 		} catch (err) {
 			console.log(err);
 		}
@@ -54,7 +67,7 @@ const MerchantDashboard = () => {
 		}
 	};
 
-	if (!products || !purchasesDetail) {
+	if (!products || !purchasesDetail || !userData) {
 		return <>loading</>;
 	}
 
@@ -63,17 +76,10 @@ const MerchantDashboard = () => {
 			<div className="container-recent-sales">
 				<div className="left-column-dashboard">
 					<h1>Recent Sales</h1>
+					<h2>{userData.nama_toko}</h2>
+					<h3>Balance: {userData.saldo}</h3>
 				</div>
 				<div className="right-column-dashboard">
-					{/* <div>
-						{purchasesDetail.map((purchases, index) => (
-							<RecentPurchaseCard
-								key={index}
-								purchaseData={purchases}
-								purchaseProduct={purchasesProducts[index]}
-							/>
-						))}
-					</div> */}
 					<div className="table-responsive">
 						<table className="table">
 							<thead>

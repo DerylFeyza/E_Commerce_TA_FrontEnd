@@ -18,7 +18,7 @@ export const getCartOnDraft = async () => {
 
 		if (res.success === true) {
 			return {
-				status: "success",
+				success: true,
 				cartInfo: res.cart,
 				data: res.data,
 				products: res.products,

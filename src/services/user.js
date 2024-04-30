@@ -25,9 +25,6 @@ export const userToMerchant = async (value) => {
 			username: res.data.username,
 			role: res.data.role,
 		};
-		console.log(userData.email);
-		console.log(userData.username);
-		console.log(userData.role);
 		const token = res.data.token;
 		setTokenCookie(token);
 		setLocalStorage(LOCAL_STORAGE_USER, userData);
@@ -39,6 +36,46 @@ export const userToMerchant = async (value) => {
 	} catch (error) {
 		return {
 			status: "error",
+			message: error.response,
+		};
+	}
+};
+
+export const getUserInfo = async () => {
+	const USERINFO_URL = `${USER_URL}/info`;
+	try {
+		const data = await axios.get(USERINFO_URL, config);
+		const res = data.data;
+		if (res.success === true) {
+			return {
+				success: true,
+				data: res.data,
+			};
+		}
+	} catch (error) {
+		return {
+			success: false,
+			message: error.response,
+		};
+	}
+};
+
+export const userRecharge = async (value) => {
+	const recharge = { value: value };
+	const RECHARGE_URL = `${USER_URL}/recharge`;
+	try {
+		const data = await axios.put(RECHARGE_URL, recharge, config);
+		const res = data.data;
+		console.log(value);
+		if (res.success === true) {
+			return {
+				success: true,
+				data: res.data,
+			};
+		}
+	} catch (error) {
+		return {
+			success: false,
 			message: error.response,
 		};
 	}

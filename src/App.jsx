@@ -20,6 +20,7 @@ import AddProduct from "./pages/MerchantDashboard/AddEditProduct";
 import MerchantDashboard from "./pages/MerchantDashboard/Dashboard";
 import AddressPage from "./pages/Address/AddressPage";
 import MerchantForm from "./pages/MerchantForm";
+import UserProfile from "./pages/UserProfile/UserProfileCard";
 import "./App.css";
 import "./index.css";
 
@@ -62,6 +63,7 @@ const App = () => {
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/purchases" element={<Purchases />} />
 					<Route path="/address" element={<AddressPage />} />
+					<Route path="/user" element={<UserProfile />} />
 					<Route path="*" element={<NotFoundPage />} />
 				</Route>
 

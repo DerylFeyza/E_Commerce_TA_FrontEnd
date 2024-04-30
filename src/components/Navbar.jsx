@@ -32,7 +32,7 @@ const Navbar = () => {
 
 	const getQueryParam = () => {
 		const params = new URLSearchParams(window.location.search);
-		return params.get("k");
+		return params.get("k") || "";
 	};
 
 	return (
@@ -95,7 +95,9 @@ const Navbar = () => {
 							/>
 							<ul className="dropdown-menu">
 								<li>
-									<div className="dropdown-item">{userData.username}</div>
+									<Link className="dropdown-item" to="/user">
+										{userData.username}{" "}
+									</Link>
 								</li>
 								<li>
 									<Link className="dropdown-item" to="/address">
