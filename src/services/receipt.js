@@ -46,6 +46,7 @@ export const getPurchaseReceipt = async (purchaseId) => {
 			return {
 				status: "success",
 				user: res.userData,
+				shopData: res.shopData,
 				cart: res.data,
 				receipt: res.receipt,
 			};

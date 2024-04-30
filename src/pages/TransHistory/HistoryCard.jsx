@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import purchaseSuccessImage from "../../assets/purchase-success.png";
 import { Link } from "react-router-dom";
 
-const HistoryCard = ({ historyData }) => {
+const HistoryCard = ({ historyData, modalShow }) => {
 	const dateString = new Date(historyData.createdAt).toLocaleDateString(
 		"en-US",
 		{ timeZone: "Asia/Jakarta" }
@@ -32,13 +32,13 @@ const HistoryCard = ({ historyData }) => {
 				{timeString}
 			</td>
 			<td className="py-4 text-black">
-				<Link
-					to={`/receipt/${historyData.id}`}
+				<button
 					className="bg-blue hover:bg-darkGrayishBlue text-white font-bold py-2 px-4 rounded"
-					style={{ textDecoration: "none" }}
+					style={{ width: "auto", height: "auto" }}
+					onClick={() => modalShow(historyData.id)}
 				>
 					View Details
-				</Link>
+				</button>
 			</td>
 		</tr>
 	);

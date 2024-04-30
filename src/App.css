@@ -907,3 +907,59 @@ footer {
 	width: 100%;
 	height: auto;
 }
+
+.history-modal .history-modal-header {
+	background-color: #142850;
+}
+
+.history-modal-title {
+	color: #fff;
+}
+
+.history-modal-body-container {
+	padding: 15px;
+}
+
+.history-modal-footer .total-container-history {
+	padding-right: 20px;
+}
+
+.history-modal-body .receipt-info {
+	margin-top: 30px;
+	border: solid black 1px;
+	border-radius: 20px;
+	width: 30%;
+}
+
+.history-modal-body .receipt-info h4 {
+	color: #00bbcd;
+}
+
+.history-modal-body .receipt-info .container {
+	padding: 20px 30px;
+}
+
+.receipt-details-container-card {
+	margin-top: 10px;
+	width: 100%;
+	display: flex;
+	border: 1px black solid;
+	padding: 15px;
+	border-radius: 10px;
+}
+
+.receipt-details-container-card .left-column-history-card {
+	width: 70%;
+}
+
+.receipt-details-container-card .right-column-history-card {
+	width: 29%;
+	text-align: end;
+	border-left: solid 1px black;
+}
+
+.receipt-details-card {
+	display: block;
+	height: 500px;
+	overflow: auto;
+}
