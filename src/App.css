@@ -737,29 +737,30 @@ ul {
 	background-color: #f0f0f0;
 }
 
-.table-responsive {
-	width: 85%;
-	margin-top: 200px;
-	display: flex;
-	justify-content: center;
+.merchant-dashboard-container tbody {
+	display: block;
+	height: 400px;
+	overflow: auto;
 }
 
-table {
-	border-radius: 15px;
-	margin: 0 auto;
-	overflow: hidden;
+.merchant-dashboard-container thead,
+.merchant-dashboard-container tbody tr {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
 }
 
-table td,
-table th {
-	text-overflow: ellipsis;
+.merchant-dashboard-container th,
+.merchant-dashboard-container td {
 	white-space: nowrap;
 	overflow: hidden;
-	vertical-align: middle;
+	text-overflow: ellipsis;
+	text-align: center;
+	width: 20%;
 }
 
-table th {
-	max-width: 80px;
+.merchant-dashboard-container .table-head {
+	margin-right: 20px;
 }
 
 .container-merchant-products .product-list-details-memrchant-container {

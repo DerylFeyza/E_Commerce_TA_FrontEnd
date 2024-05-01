@@ -81,3 +81,24 @@ export const getRecentPurchase = async () => {
 		};
 	}
 };
+
+export const getRecentPurchaseDetails = async (id) => {
+	const DETAIL_URL = `${RECEIPT_URL}/merchant/sale/${id}`;
+	try {
+		const data = await axios.get(DETAIL_URL, config);
+		const res = data.data;
+		console.log(res);
+		if (res.success === true) {
+			return {
+				status: "success",
+				user: res.userData,
+				data: res.data,
+			};
+		}
+	} catch (error) {
+		return {
+			status: "error",
+			message: error.response.data.message,
+		};
+	}
+};
