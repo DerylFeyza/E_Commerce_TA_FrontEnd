@@ -20,6 +20,7 @@ import AddProduct from "./pages/MerchantDashboard/AddEditProduct";
 import MerchantDashboard from "./pages/MerchantDashboard/Dashboard";
 import AddressPage from "./pages/Address/AddressPage";
 import MerchantForm from "./pages/MerchantForm";
+// import CartProduct from "./pages/CartProduct";
 import "./App.css";
 import "./index.css";
 
@@ -52,6 +53,7 @@ const App = () => {
 						<Route path="/search" element={<ProductSearch />} />
 						<Route path="/home" element={<Home />} />
 						<Route path="/products" element={<ProductSearch />} />
+						<Route path="/cart" element={<Cart/>}/>
 					</Route>
 					<Route path="/merchantregistration" element={<MerchantForm />} />
 					<Route path="/details" element={<Details />} />
@@ -63,6 +65,7 @@ const App = () => {
 					<Route path="/purchases" element={<Purchases />} />
 					<Route path="/address" element={<AddressPage />} />
 					<Route path="*" element={<NotFoundPage />} />
+					{/* <Route path="/cartproduct" element={CartProduct}/> */}
 				</Route>
 
 				<Route path="/login" element={<LoginForm />} />
