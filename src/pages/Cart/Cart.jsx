@@ -65,6 +65,10 @@ const Cart = () => {
 			setToastMessage("Insufficient Balance, please top up first.");
 			setToastType("error");
 		}
+		if (res.success === true) {
+			setToastMessage("Checkout Successful");
+			setToastType("success");
+		}
 		retrieveCartandProducts();
 	};
 
@@ -86,9 +90,19 @@ const Cart = () => {
 							balance={userBalance}
 						/>
 					) : (
-						<h1 style={{ textAlign: "center", paddingTop: "50px" }}>
-							Your cart is empty
-						</h1>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								height: "100vh",
+							}}
+						>
+							<h1 style={{ textAlign: "center", paddingTop: "50px" }}>
+								<img src="/empty-cart.png" alt="Empty Cart" />
+								Your Cart Is Empty!
+							</h1>
+						</div>
 					)}
 				</div>
 			</div>
