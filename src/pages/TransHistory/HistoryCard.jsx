@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import purchaseSuccessImage from "../../assets/purchase-success.png";
-import { Link } from "react-router-dom";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const HistoryCard = ({ historyData, modalShow }) => {
 	const dateString = new Date(historyData.createdAt).toLocaleDateString(

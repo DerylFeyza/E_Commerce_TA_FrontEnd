@@ -15,7 +15,6 @@ import Details from "./pages/ProductDetails/DetailsCard";
 import Cart from "./pages/Cart/Cart";
 import Purchases from "./pages/TransHistory/History";
 import NotFoundPage from "./pages/NotFound/NotFound";
-import PurchaseReceipt from "./pages/Receipt/Receipt";
 import AddProduct from "./pages/MerchantDashboard/AddEditProduct";
 import MerchantDashboard from "./pages/MerchantDashboard/Dashboard";
 import AddressPage from "./pages/Address/AddressPage";
@@ -59,7 +58,6 @@ const App = () => {
 					<Route path="/products/:id" element={<ProductDetails />} />
 					<Route path="/products/add" element={<AddProduct />} />
 					<Route path="/products/update/:id" element={<AddProduct />} />
-					<Route path="/receipt/:id" element={<PurchaseReceipt />} />
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/purchases" element={<Purchases />} />
 					<Route path="/address" element={<AddressPage />} />
