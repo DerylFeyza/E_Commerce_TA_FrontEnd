@@ -62,6 +62,7 @@ export const Checkout = async () => {
 	const CHECKOUT_URL = BASE_API + "/transaksi/checkout";
 	try {
 		const response = await axios.post(CHECKOUT_URL, "", config);
+		console.log(response);
 		if (response.data.success === true) {
 			return {
 				success: true,

@@ -21,7 +21,7 @@ export const getPaginatedDataProduct = async (page, limit) => {
 	try {
 		const data = await axios.get(URL);
 		const res = data.data;
-		console.log(res);
+		console.log(new Date());
 
 		if (res.success === true) {
 			return {
@@ -115,6 +115,10 @@ export const findProduct = async (Keyword, page) => {
 				status: "success",
 				data: res.data,
 				pagination: res.pagination,
+			};
+		} else if (res.status === "no product found") {
+			return {
+				status: "noproduct",
 			};
 		}
 	} catch (err) {
