@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { RegisterHandler } from "./LoginHandler";
-import { useNavigate } from "react-router-dom";
+import ToastNotification from "../../components/ToastNotification";
 
 const LoginForm = () => {
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const navigate = useNavigate();
+	const [toastMessage, setToastMessage] = useState("");
+	const [toast, setToast] = useState("error");
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -16,7 +17,11 @@ const LoginForm = () => {
 			const res = await RegisterHandler(values);
 			console.log(res);
 			if (res.success === true) {
-				navigate("/login");
+				setToast("success");
+				setToastMessage(res.res);
+			} else if (res.success === false) {
+				setToast("error");
+				setToastMessage(res.res);
 			}
 		} catch (error) {
 			console.error("pls:", error);
@@ -72,6 +77,11 @@ const LoginForm = () => {
 					</div>
 				</form>
 			</div>
+			<ToastNotification
+				message={toastMessage}
+				setMessage={setToastMessage}
+				type={toast}
+			/>
 		</div>
 	);
 };

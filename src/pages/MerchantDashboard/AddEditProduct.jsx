@@ -214,6 +214,7 @@ const AddProduct = () => {
 												<div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
 													<input
 														type="number"
+														min="0"
 														className="px-2 text-center appearance-none outline-none text-gray-800 w-full bg-transparent"
 														id="stok"
 														value={stok}
@@ -227,6 +228,7 @@ const AddProduct = () => {
 												<div className="h-10  bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
 													<input
 														type="number"
+														min="0"
 														className="px-2 text-center appearance-none outline-none text-gray-800 w-full bg-transparent"
 														id="harga"
 														value={harga}

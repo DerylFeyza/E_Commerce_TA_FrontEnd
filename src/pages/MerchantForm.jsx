@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userToMerchant } from "../services/user";
+import ToastNotification from "../components/ToastNotification";
 
 const MerchantForm = () => {
 	const [namaToko, setNamaToko] = useState("");
 	const [password, setPassword] = useState("");
+	const [toastMessage, setToastMessage] = useState("");
 	const navigate = useNavigate();
 
 	const submitHandler = async (e) => {
@@ -15,6 +17,8 @@ const MerchantForm = () => {
 			if (res.success === true) {
 				navigate("/home");
 				window.location.reload();
+			} else if (res.success === false) {
+				setToastMessage(res.message);
 			}
 		} catch (error) {
 			console.error(error);
@@ -56,6 +60,11 @@ const MerchantForm = () => {
 					</div>
 				</form>
 			</div>
+			<ToastNotification
+				message={toastMessage}
+				setMessage={setToastMessage}
+				type="error"
+			/>
 		</div>
 	);
 };

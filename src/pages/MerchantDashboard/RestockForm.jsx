@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { imageFetcher } from "../../services/products";
 import PropTypes from "prop-types";
+import ToastNotification from "../../components/ToastNotification";
 
 const RestockForm = ({ Product, showModal, setShowModal, HandleRestock }) => {
 	const [restock, setRestock] = useState(0);
+	const [toastMessage, setToastMessage] = useState("");
 
 	const handleClose = () => {
 		setShowModal(false);
@@ -13,9 +15,13 @@ const RestockForm = ({ Product, showModal, setShowModal, HandleRestock }) => {
 	const handleSave = async (e) => {
 		e.preventDefault();
 		try {
-			const res = await HandleRestock(Product.id, restock);
-			if (res === "success") {
-				setRestock(0);
+			if (restock < 0) {
+				setToastMessage("Stock has not been updated");
+			} else {
+				const res = await HandleRestock(Product.id, restock);
+				if (res === "success") {
+					setRestock(0);
+				}
 			}
 		} catch (error) {
 			console.log("failed to add product", error);
@@ -48,6 +54,7 @@ const RestockForm = ({ Product, showModal, setShowModal, HandleRestock }) => {
 							<Form.Group controlId="restock" className="restock-form">
 								<Form.Control
 									type="number"
+									min="0"
 									value={restock === 0 ? "" : restock}
 									onChange={(ev) => setRestock(ev.target.value)}
 								/>
@@ -61,6 +68,11 @@ const RestockForm = ({ Product, showModal, setShowModal, HandleRestock }) => {
 					</Modal.Footer>
 				</Form>
 			</Modal>
+			<ToastNotification
+				message={toastMessage}
+				setMessage={setToastMessage}
+				type="error"
+			/>
 		</>
 	);
 };

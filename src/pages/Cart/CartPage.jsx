@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { BASE_API } from "../../utils/http-common";
 import { Link } from "react-router-dom";
 import { IoTrashOutline } from "react-icons/io5";
+import BlankImg from "../../assets/blankimg.jpg";
 
 const CartPage = ({ CartData, actions, balance }) => {
 	const handleQuantityChange = (idProduct, e) => {
@@ -51,7 +52,11 @@ const CartPage = ({ CartData, actions, balance }) => {
 											<li className="cart_item clearfix" key={data.id}>
 												<div className="cart_item_image">
 													<img
-														src={`${BASE_API}/produk/image/${CartData.products[index]?.gambar_barang}`}
+														src={
+															`${BASE_API}/produk/image/${CartData.products[index]?.gambar_barang}` || {
+																BlankImg,
+															}
+														}
 														alt={CartData.products[index]?.nama_barang}
 													/>
 													{console.log(CartData.products[index]?.gambar_barang)}
