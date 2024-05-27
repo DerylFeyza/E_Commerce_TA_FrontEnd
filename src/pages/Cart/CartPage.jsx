@@ -59,7 +59,8 @@ const CartPage = ({ CartData, actions, balance }) => {
 												<div className="cart_item_info">
 													<div className="cart_item_name cart_info_col">
 														<div className="cart_item_text mt-1  font-semibold">
-															{CartData.products[index]?.nama_barang}
+															{CartData.products[index]?.nama_barang ||
+																"Deleted Product"}
 														</div>
 														<div className="cart_item_text mt-2 font-bold">
 															Total: Rp. {""}

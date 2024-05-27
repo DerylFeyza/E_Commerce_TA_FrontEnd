@@ -130,6 +130,7 @@ export const findProduct = async (Keyword, page) => {
 };
 
 export const addProduct = async (values) => {
+	console.log(values);
 	const ADD_URL = `${PRODUCT_URL}/add`;
 	try {
 		const data = await axios.post(ADD_URL, values, config);

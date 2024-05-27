@@ -73,6 +73,12 @@ export const Checkout = async () => {
 				success: false,
 				status: "Insufficient Balance",
 			};
+		} else if (response.data.status === "NoStock") {
+			return {
+				success: false,
+				status:
+					"Insufficient Product Stock, product has been removed from your cart",
+			};
 		}
 	} catch (error) {
 		return {
