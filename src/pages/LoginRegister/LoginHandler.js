@@ -32,10 +32,12 @@ export const LoginHandler = async (userData) => {
 export const RegisterHandler = async (userData) => {
 	try {
 		const res = await axios.post(REGISTER_URL, userData);
+		console.log(res);
+
 		if (res.data.success === true) {
-			return { res: res.data.data, success: true };
+			return { res: res.data.message, success: true };
 		} else {
-			return { res: res, success: false };
+			return { res: res.data.message, success: false };
 		}
 	} catch (error) {
 		console.error(error.response.data);

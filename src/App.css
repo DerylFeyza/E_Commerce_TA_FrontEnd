@@ -993,3 +993,7 @@ footer {
 	height: 500px;
 	overflow: auto;
 }
+
+.noproduct {
+	height: 80vh;
+}

@@ -61,8 +61,8 @@ const Cart = () => {
 
 	const handleCheckout = async () => {
 		const res = await Checkout();
-		if (res.status === "Insufficient Balance") {
-			setToastMessage("Insufficient Balance, please top up first.");
+		if (res.success === false) {
+			setToastMessage(res.status);
 			setToastType("error");
 		}
 		if (res.success === true) {

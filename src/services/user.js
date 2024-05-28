@@ -19,18 +19,24 @@ export const userToMerchant = async (value) => {
 	try {
 		const data = await axios.put(USERTOMERCHANT_URL, value, config);
 		const res = data.data;
-		console.log(res);
-		const userData = {
-			email: res.data.email,
-			username: res.data.username,
-			role: res.data.role,
-		};
-		const token = res.data.token;
-		setTokenCookie(token);
-		setLocalStorage(LOCAL_STORAGE_USER, userData);
-		if (data.data.success === true) {
+		console.log(res.success);
+
+		if (res.success === true) {
+			const userData = {
+				email: res.data.email,
+				username: res.data.username,
+				role: res.data.role,
+			};
+			const token = res.data.token;
+			setTokenCookie(token);
+			setLocalStorage(LOCAL_STORAGE_USER, userData);
 			return {
 				success: true,
+			};
+		} else if (res.success == false) {
+			return {
+				success: false,
+				message: "password doesn't match",
 			};
 		}
 	} catch (error) {

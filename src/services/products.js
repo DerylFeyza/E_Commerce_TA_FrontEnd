@@ -21,7 +21,7 @@ export const getPaginatedDataProduct = async (page, limit) => {
 	try {
 		const data = await axios.get(URL);
 		const res = data.data;
-		console.log(res);
+		console.log(new Date());
 
 		if (res.success === true) {
 			return {
@@ -116,6 +116,10 @@ export const findProduct = async (Keyword, page) => {
 				data: res.data,
 				pagination: res.pagination,
 			};
+		} else if (res.status === "no product found") {
+			return {
+				status: "noproduct",
+			};
 		}
 	} catch (err) {
 		return {
@@ -126,6 +130,7 @@ export const findProduct = async (Keyword, page) => {
 };
 
 export const addProduct = async (values) => {
+	console.log(values);
 	const ADD_URL = `${PRODUCT_URL}/add`;
 	try {
 		const data = await axios.post(ADD_URL, values, config);
